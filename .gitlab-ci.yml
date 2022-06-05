@@ -10,7 +10,9 @@ build:
     stage: build
     script:
         - mvn clean install
-    artifacts:
+    tags:
+        - ugrad    
+    #artifacts:
     # paths:
     #     - target/*.jar
 

@@ -1,0 +1,53 @@
+
+stages:
+    - build
+    - test
+    - deploy
+ 
+
+build:
+    image: maven:3-jdk-8
+    stage: build
+    script:
+        - mvn clean install
+    artifacts:
+    # paths:
+    #     - target/*.jar
+
+
+test:
+    image: maven:3-jdk-8
+    stage: test
+    script:
+        - mvn clean test
+    artifacts:
+    when: always
+    # reports:
+    #     junit:
+    #         - target/surefire-reports/TEST-*.xml
+    #         - target/failsafe-reports/TEST-*.xml
+
+deploy-staging:
+    image: ruby:latest
+    stage: deploy
+    before_script:
+        - apt-get update -qy
+        - apt-get install -y ruby-dev
+        - gem install dpl
+    script:
+        - dpl --provider=heroku --app=$HEROKU_STAGING_APP_NAME --api-key=$HEROKU_API_KEY
+    only:
+        - develop
+
+
+deploy-prod:
+    image: ruby:latest
+    stage: deploy
+    before_script:
+        - apt-get update -qy
+        - apt-get install -y ruby-dev
+        - gem install dpl
+    script:
+        - dpl --provider=heroku --app=$HEROKU_PROD_APP_NAME --api-key=$HEROKU_API_KEY
+    only:
+        - main

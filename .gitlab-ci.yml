@@ -21,7 +21,7 @@ test:
     image: maven:3-jdk-11
     stage: test
     script:
-        - mvn -f demo/po.xml test
+        - mvn -f demo/pom.xml test
     artifacts:
     when: always
     tags:

@@ -45,8 +45,8 @@ staging:
     #     - sudo apt-get install -y ruby-dev
     #     - gem install dpl
     script:
-        - sudo apt-get update -qy
-        - sudo apt-get install -y ruby-dev
+        - apt-get update -qy
+        - apt-get install -y ruby-dev
         - gem install dpl
         - dpl --provider=heroku --app=$HEROKU_STAGING_APP_NAME --api-key=$HEROKU_API_KEY
     only:
@@ -65,8 +65,8 @@ production:
     #     - sudo apt-get install -y ruby-dev
     #     - gem install dpl
     script:
-        - sudo apt-get update -qy
-        - sudo apt-get install -y ruby-dev
+        - apt-get update -qy
+        - apt-get install -y ruby-dev
         - gem install dpl
         - dpl --provider=heroku --app=$HEROKU_PROD_APP_NAME --api-key=$HEROKU_API_KEY
     only:

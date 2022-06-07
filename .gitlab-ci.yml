@@ -40,9 +40,9 @@ staging:
     tags:
         - ugrad
     before_script:
-        - chmod -R 777 /var/lib/apt/lists
-        - apt-get update -qy
-        - apt-get install -y ruby-dev
+        #- chmod -R 777 /var/lib/apt/lists
+        - sudo apt-get update -qy
+        - sudo apt-get install -y ruby-dev
         - gem install dpl
     script:
         - dpl --provider=heroku --app=$HEROKU_STAGING_APP_NAME --api-key=$HEROKU_API_KEY
@@ -57,9 +57,9 @@ production:
     tags:
         - ugrad
     before_script:
-        - chmod -R 777 /var/lib/apt/lists
-        - apt-get update -qy
-        - apt-get install -y ruby-dev
+        #- chmod -R 777 /var/lib/apt/lists
+        - sudo apt-get update -qy
+        - sudo apt-get install -y ruby-dev
         - gem install dpl
     script:
         - dpl --provider=heroku --app=$HEROKU_PROD_APP_NAME --api-key=$HEROKU_API_KEY

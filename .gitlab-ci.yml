@@ -9,7 +9,7 @@ build:
     image: maven:3-jdk-11
     stage: build
     script:
-        - mvn -f demo/pom.xml compile
+        -mvn -f demo/pom.xml compile
     tags:
         - ugrad    
     #artifacts:

@@ -2,8 +2,8 @@
 stages:
     - build
     - test
-    - deploy-staging
-    - deploy-prod
+    - staging
+    - production
     
  
 
@@ -33,9 +33,10 @@ test:
     #         - target/surefire-reports/TEST-*.xml
     #         - target/failsafe-reports/TEST-*.xml
 
-deploy-staging:
+staging:
     image: ruby:latest
-    stage: deploy
+    type: deploy
+    stage: staging
     tags:
         - ugrad
     before_script:
@@ -48,9 +49,10 @@ deploy-staging:
         - develop
 
 
-deploy-prod:
+production:
     image: ruby:latest
-    stage: deploy
+    type: deploy
+    stage: production
     tags:
         - ugrad
     before_script:

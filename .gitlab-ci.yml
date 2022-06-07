@@ -24,6 +24,8 @@ test:
         - mvn clean test
     artifacts:
     when: always
+    tags:
+        - ugrad
     # reports:
     #     junit:
     #         - target/surefire-reports/TEST-*.xml

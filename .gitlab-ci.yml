@@ -34,6 +34,8 @@ test:
 deploy-staging:
     image: ruby:latest
     stage: deploy
+    tags:
+        - ugrad
     before_script:
         - apt-get update -qy
         - apt-get install -y ruby-dev
@@ -47,6 +49,8 @@ deploy-staging:
 deploy-prod:
     image: ruby:latest
     stage: deploy
+    tags:
+        - ugrad
     before_script:
         - apt-get update -qy
         - apt-get install -y ruby-dev

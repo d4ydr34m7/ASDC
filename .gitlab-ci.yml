@@ -2,7 +2,7 @@
 stages:
     - build
     - test
-    - staging
+#    - staging
     - production
     
 image: maven:latest
@@ -10,7 +10,7 @@ image: maven:latest
 variables:
     GIT_STRATEGY: clone
     HEROKU_API_KEY: 516ca83e-0d6c-4149-8608-5ca8b521fd9f
-    HEROKU_STAGING_APP_NAME: heroku-gitlabenv-staging
+#    HEROKU_STAGING_APP_NAME: heroku-gitlabenv-staging
     HEROKU_PROD_APP_NAME: heroku-gitlabenv-prod
 
 
@@ -28,18 +28,18 @@ test-process:
     tags:
         - dalfcs_docker_kvm
 
-staging-process:
-    image: ruby:latest
-    stage: staging
-    tags:
-        - dalfcs_docker_kvm
-    script:
-        - apt-get update -qy
-        - apt-get install -y ruby-dev
-        - gem install dpl
-        - dpl --provider=heroku --app=$HEROKU_STAGING_APP_NAME --api-key=$HEROKU_API_KEY
-    only:
-        - develop
+#staging-process:
+#    image: ruby:latest
+#    stage: staging
+#    tags:
+#        - dalfcs_docker_kvm
+#    script:
+#        - apt-get update -qy
+#        - apt-get install -y ruby-dev
+#        - gem install dpl
+#        - dpl --provider=heroku --app=$HEROKU_STAGING_APP_NAME --api-key=$HEROKU_API_KEY
+#    only:
+#        - develop
 
 
 production-process:

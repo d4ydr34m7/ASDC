@@ -43,8 +43,8 @@ test-process:
 
 
 production-process:
-    image: ruby:latest
     stage: production
+    image: ruby:2.6
     tags:
         - dalfcs_docker_kvm
     script:

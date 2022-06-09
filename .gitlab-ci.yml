@@ -5,45 +5,30 @@ stages:
     - staging
     - production
     
- 
+image: maven:latest
 
-build:
-    image: maven:3-jdk-11
+variables:
+    GIT_STRATEGY: clone
+
+build-process:
     stage: build
     script:
-        - mvn -f demo/pom.xml compile
+        - mvn compile
     tags:
-        - ugrad    
-    #artifacts:
-    # paths:
-    #     - target/*.jar
+        - dalfcs_docker_kvm
 
-
-test:
-    image: maven:3-jdk-11
+test-process:
     stage: test
     script:
-        - mvn -f demo/pom.xml test
-    artifacts:
-    when: always
+        - mvn test
     tags:
-        - ugrad
-    # reports:
-    #     junit:
-    #         - target/surefire-reports/TEST-*.xml
-    #         - target/failsafe-reports/TEST-*.xml
+        - dalfcs_docker_kvm
 
-staging:
+staging-process:
     image: ruby:latest
-    type: deploy
     stage: staging
     tags:
-        - ugrad
-    # before_script:
-    #     #- chmod -R 777 /var/lib/apt/lists
-    #     - sudo apt-get update -qy
-    #     - sudo apt-get install -y ruby-dev
-    #     - gem install dpl
+        - dalfcs_docker_kvm
     script:
         - apt-get update -qy
         - apt-get install -y ruby-dev
@@ -53,17 +38,11 @@ staging:
         - develop
 
 
-production:
+production-process:
     image: ruby:latest
-    type: deploy
     stage: production
     tags:
-        - ugrad
-    # before_script:
-    #     #- chmod -R 777 /var/lib/apt/lists
-    #     - sudo apt-get update -qy
-    #     - sudo apt-get install -y ruby-dev
-    #     - gem install dpl
+        - dalfcs_docker_kvm
     script:
         - apt-get update -qy
         - apt-get install -y ruby-dev

@@ -9,6 +9,10 @@ image: maven:latest
 
 variables:
     GIT_STRATEGY: clone
+    HEROKU_API_KEY: 516ca83e-0d6c-4149-8608-5ca8b521fd9f
+    HEROKU_STAGING_APP_NAME: heroku-gitlabenv-staging
+    HEROKU_PROD_APP_NAME: heroku-gitlabenv-prod
+
 
 build-process:
     stage: build

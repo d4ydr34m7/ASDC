@@ -19,7 +19,7 @@ test:
         - mvn clean test
 
 
-deploy:
+deploy-test:
     stage: deploy
     tags:
         - dalfcs_gitlab_docker_ci

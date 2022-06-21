@@ -30,4 +30,4 @@ deploy-test:
         - gem install dpl
         - dpl --provider=heroku --app=$HEROKU_PROD_APP_NAME --api-key=HEROKU_API_KEY
     only:
-        - develop
+        - main

@@ -23,7 +23,7 @@ deploy-test:
     stage: deploy
     tags:
         - dalfcs_gitlab_docker_ci
-    image: ruby:latest
+    image: ruby:ruby:2.7.5
     script:
         - apt-get update -qy
         - apt-get install -y ruby-dev

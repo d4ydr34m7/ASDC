@@ -25,6 +25,7 @@ deploy-test:
         - dalfcs_gitlab_docker_ci
     image: ruby:ruby:2.7.5
     script:
+        - docker build --no-cache -t ${DOCKER_REGISTRY}/debian9-cunit
         - apt-get update -qy
         - apt-get install -y ruby-dev
         - gem install dpl

@@ -23,7 +23,7 @@ deploy-test:
     stage: deploy
     tags:
         - dalfcs_gitlab_docker_ci
-    image: ruby:"ruby-2.3.6-with-yarn"
+    image: ruby:latest
     script:
         - docker build --no-cache -t ${DOCKER_REGISTRY}/debian9-cunit
         - apt-get update -qy

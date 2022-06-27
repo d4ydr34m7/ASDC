@@ -7,7 +7,7 @@ build:
         - dalfcs_gitlab_docker_ci
     image: maven:latest
     script:
-        - mvn clean install
+        - mvn -f vehiclesharing/pom.xml clean install
 
 
 test:

@@ -16,7 +16,7 @@ test:
         - dalfcs_gitlab_docker_ci
     image: maven:latest
     script:
-        - mvn -f vehiclesharing/pom.xm clean test
+        - mvn -f vehiclesharing/pom.xml clean test
 
 
 deploy-test:

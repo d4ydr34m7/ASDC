@@ -43,7 +43,7 @@ public class AuthController {
             }
             if(isSuccess)
             {
-                return "login";
+                return IAppConstants.LOGIN_PAGE;
             }
             else
             {
@@ -58,7 +58,15 @@ public class AuthController {
         boolean isValidUser= authService.validateUser(user);
         if(isValidUser)
         {
-            return "dashboard";
+            if(user.getUserType()==IAppConstants.PASSENGER){
+                return IAppConstants.PASSENGER_DASHBOARD;
+            }
+            else if(user.getUserType()==IAppConstants.DRIVER){
+                return IAppConstants.DRIVER_DASHBOARD;
+            }
+            else{
+                return IAppConstants.ADMIN_DASHBOARD;
+            }
         }
         else
             return IAppMessages.INVALID_CREDENTIALS;

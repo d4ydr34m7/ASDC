@@ -13,7 +13,7 @@ public class DriverServiceImpl implements DriverService{
 
     @Override
     public boolean saveDriver(User user) {
-        Driver driver=new Driver(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getPassword(),user.getContact());
+        Driver driver=new Driver(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getPassword());
         boolean isDriverSaved=driverDAO.save(driver);
         return isDriverSaved;
     }

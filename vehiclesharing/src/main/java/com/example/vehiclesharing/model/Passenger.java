@@ -6,17 +6,17 @@ public class Passenger {
     private String passenger_lname;
     private String passenger_email;
     private String passenger_password;
-    private String passenger_contact;
+    //private String passenger_contact;
 
     public Passenger( String passenger_fname, String passenger_lname, String passenger_email, String passenger_password, String passenger_contact) {
         this.passenger_fname = passenger_fname;
         this.passenger_lname = passenger_lname;
         this.passenger_email = passenger_email;
         this.passenger_password = passenger_password;
-        this.passenger_contact = passenger_contact;
+        //this.passenger_contact = passenger_contact;
     }
 
-    Passenger(){}
+    public Passenger(){}
 
     public Passenger(int passenger_id, String passenger_fname, String passenger_lname, String passenger_email, String passenger_password) {
         this.passenger_id = passenger_id;

@@ -1,13 +1,27 @@
+image: ubuntu:latest
 variables:
     GIT_STRATEGY: clone
 
+stages:
+    - build
+    - test
+    - deploy
+
+
 build:
+    image: maven:latest
     stage: build
     tags:
         - dalfcs_gitlab_docker_ci
-    image: maven:latest
     script:
-        - mvn clean install
+        - cd vehiclesharing
+        - mvn clean package -DskipTests=true
+    artifacts:
+        paths:
+            - target/*.jar
+    only:
+        refs:
+            - shreya_dev
 
 
 test:
@@ -17,17 +31,26 @@ test:
     image: maven:latest
     script:
         - mvn clean test
+    only:
+        - main
 
 
-deploy-test:
+deploy:
+    image: ruby:latest
     stage: deploy
     tags:
         - dalfcs_gitlab_docker_ci
-    image: ruby:latest
+    before_script:
+        - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+        - eval $(ssh-agent -s)
+        - tr -d '\r' | base64 --decode | ssh-add -
+        #- cat ~/.ssh/id_rsa | pbcopy
+
     script:
         - apt-get update -qy
         - apt-get install -y ruby-dev
         - gem install dpl
-        - dpl --provider=heroku --app=ride-sharing --api-key=28b18150-7f5f-473e-99b1-f194a7c4cf65
+        - dpl --provider=heroku --app=$HEROKU_PROD_APP_NAME --api-key=$HEROKU_API_KEY
     only:
         - main
+        - shreya_dev

@@ -14,7 +14,7 @@ build:
     tags:
         - dalfcs_gitlab_docker_ci
     script:
-        - mvn -f /vehiclesharing/pom.xml clean package -DskipTests=true
+        - mvn -f ./vehiclesharing/pom.xml clean package -DskipTests=true
     artifacts:
         paths:
             - target/*.jar

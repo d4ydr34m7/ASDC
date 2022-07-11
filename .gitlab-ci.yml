@@ -5,7 +5,7 @@ variables:
 stages:
     - build
     - test
-    - deploy-test
+    - deploy
 
 
 build:
@@ -32,12 +32,11 @@ test:
         - mvn clean test
 
 
-deploy-test:
+deploy:
     image: ruby:latest
     stage: deploy
     tags:
         - dalfcs_gitlab_docker_ci
-
     before_script:
         - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
         - eval $(ssh-agent -s)

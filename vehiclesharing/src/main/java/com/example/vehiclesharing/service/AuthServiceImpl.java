@@ -24,7 +24,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public boolean checkIfUserExists(User user) {
         if(user.getUserType().equals(IAppConstants.PASSENGER)) {
-            Passenger passenger = (Passenger) passengerDAO.getObject(user.getEmail());
+            Passenger passenger = (Passenger) passengerDAO.getpassengerByEmail(user.getEmail());
             if (null == passenger) {
                 return false;
             }

@@ -1,10 +1,8 @@
 package com.example.vehiclesharing.dao;
 
-import com.example.vehiclesharing.model.Driver;
 import com.example.vehiclesharing.model.Passenger;
 
 import java.sql.*;
-import java.util.List;
 
 public class PassengerDAOImpl implements PassengerDAO{
 
@@ -39,6 +37,26 @@ public class PassengerDAOImpl implements PassengerDAO{
             sqlException.printStackTrace();
         }
 
+        return false;
+    }
+
+    @Override
+    public boolean savePassenger(Passenger passenger) {
+        return false;
+    }
+
+    @Override
+    public Passenger getpassengerByEmail(String email) {
+        return null;
+    }
+
+    @Override
+    public Passenger getPassengerById(int id) {
+        return null;
+    }
+
+    @Override
+    public boolean updateAvaialableCredits(int passenger_id, int available_credits) {
         return false;
     }
 

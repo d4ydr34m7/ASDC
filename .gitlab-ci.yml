@@ -43,7 +43,7 @@ deploy:
     before_script:
         - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
         - eval $(ssh-agent -s)
-        - tr -d '\r' | base64 --decode | ssh-add -
+        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
         #- cat ~/.ssh/id_rsa | pbcopy
 
     script:

@@ -9,7 +9,7 @@ stages:
 
 
 build:
-    image: maven:latest
+    image: maven:3-jdk-11
     stage: build
     tags:
         - dalfcs_gitlab_docker_ci
@@ -18,7 +18,7 @@ build:
         - mvn clean install -DskipTests=true
     artifacts:
         paths:
-            - target/vehiclesharing-0.0.1-SNAPSHOT.jar
+            - target/vehiclesharing.jar
     only:
         refs:
             - shreya_dev

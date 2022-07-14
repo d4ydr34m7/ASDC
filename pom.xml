@@ -114,7 +114,7 @@
     </dependencies>
 
     <build>
-        <finalName>vehiclesharing</finalName>
+<!--        <finalName>vehiclesharing</finalName>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

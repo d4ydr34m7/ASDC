@@ -16,6 +16,8 @@ build:
     script:
         - cd vehiclesharing
         - mvn clean install -DskipTests=true
+        - sh cd C:\Users\shrey\git\group-3\vehiclesharing\target
+        - ls
     artifacts:
         paths:
             - target/vehiclesharing.jar

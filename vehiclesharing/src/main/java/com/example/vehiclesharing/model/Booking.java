@@ -10,6 +10,10 @@ private int seats_booked;
 private int is_paid;
 private String email_id;
 
+    public Booking() {
+
+    }
+
     public String getEmail_id() {
         return email_id;
     }

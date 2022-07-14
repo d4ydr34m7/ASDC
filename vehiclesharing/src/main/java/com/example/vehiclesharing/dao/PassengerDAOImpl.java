@@ -41,24 +41,10 @@ public class PassengerDAOImpl implements PassengerDAO{
     }
 
     @Override
-    public boolean savePassenger(Passenger passenger) {
+    public boolean updateAvaialableCredits(int customer_id, int available_credits) {
         return false;
     }
 
-    @Override
-    public Passenger getpassengerByEmail(String email) {
-        return null;
-    }
-
-    @Override
-    public Passenger getPassengerById(int id) {
-        return null;
-    }
-
-    @Override
-    public boolean updateAvaialableCredits(int passenger_id, int available_credits) {
-        return false;
-    }
 
     @Override
     public Object getObject(String queryParam) {
@@ -80,22 +66,9 @@ public class PassengerDAOImpl implements PassengerDAO{
         }
         return null;
     }
-//
-//    @Override
-//    public List<Object> getObjectsList() {
-//        return null;
-//    }
-//    @Override
-//    public boolean savePassenger(Passenger passenger) {
-//        return false;
-//    }
-//
-//    @Override
-//    public Passenger getPassengerByEmail(String email) {
-//        return null;
-//    }
 
-    private Passenger extractDetails(ResultSet resultSet) throws SQLException{
+
+    public Passenger extractDetails(ResultSet resultSet) throws SQLException{
         Passenger passenger= new Passenger();
         passenger.setPassenger_id(resultSet.getInt("passenger_id"));
         passenger.setPassenger_fname(resultSet.getString("passenger_fname"));

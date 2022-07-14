@@ -60,7 +60,7 @@ import java.util.Locale;
                     boolean isSuccess = bookedRidesDAO.saveRide(booking);
                     if (isSuccess) {
                         logger.info("Successfully booked seats");
-                        String email = passengerDAO.getPassengerById(booking.getPassenger_id()).getPassenger_email();
+                        String email = (String) passengerDAO.getObject(booking.getEmail_id());
                         String message = IAppMessages.RIDE_BOOKED_SUCCESSFULLY + ride.getSource() + "-->" + ride.getDestination();
                         //notificationService.sendEmail(message, ServiceStringMessages.RIDE_BOOKED,
                         //email);
@@ -139,7 +139,7 @@ import java.util.Locale;
         public String payforRide(Booking booking) {
             if(booking==null)
                 return IAppMessages.ERROR_OCCURRED;
-            Passenger passenger=passengerDAO.getPassengerById(booking.getPassenger_id());
+            Passenger passenger= (Passenger) passengerDAO.getObject(booking.getPassenger_id());
             int amount_credits=(int) Math.ceil(booking.getAmount());
             Ride ride=rideCreationDAO.getRideDetails(booking.getBooking_id());
             if(ride==null||passenger==null)

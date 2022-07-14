@@ -23,16 +23,4 @@ public class PassengerServiceImpl implements PassengerService{
         return passenger;
     }
 
-    @Override
-    @Transactional
-    public Passenger getPassengerById(int id) {
-        try{
-            Passenger passenger= passengerDAO.getPassengerById(id);
-            return passenger;
-        }
-        catch(Exception e)
-        {
-            return null;
-        }
-    }
 }

@@ -8,8 +8,7 @@ public interface PassengerService {
     public boolean savePassenger(User user);
 
     public Passenger getPassengerByEmail(String email);
-    @Transactional
-    public Passenger getPassengerById(int Id);
+
 
 
 

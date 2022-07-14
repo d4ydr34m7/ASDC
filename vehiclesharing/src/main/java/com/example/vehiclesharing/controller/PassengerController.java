@@ -63,12 +63,7 @@ public class PassengerController {
         else {
             return (String) IAppMessages.FAILURE_STATUS;
         }
-//        model.addAttribute("message",paymentStatusMessage);
-        //Passenger passenger = passengerService.getPassengerByEmail(booking.getEmail_id());
-//        session.setAttribute("passenger", passenger);
-//        session.setAttribute("upcomingRides", bookingService.getUpcomingRidesForCustomer(booking.getPassenger_id()));
-//        session.setAttribute("previousRides", bookingService.getPreviousRidesForCustomer(booking.getPassenger_id()));
-//        return "dashboard";
+
     }
     @RequestMapping("/booking-history")
     public String showBookingHistory(HttpSession session, Model model){

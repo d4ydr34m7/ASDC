@@ -47,6 +47,7 @@ deploy:
         #- cat ~/.ssh/id_rsa | pbcopy
 
     script:
+        #
         - cd vehiclesharing
         - apt-get update -qy
         - apt-get install -y ruby-dev

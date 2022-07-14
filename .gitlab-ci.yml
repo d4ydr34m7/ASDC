@@ -14,10 +14,8 @@ build:
     tags:
         - dalfcs_gitlab_docker_ci
     script:
-        - cd vehiclesharing
+        #- cd vehiclesharing
         - mvn clean install -DskipTests=true
-        - sh cd vehiclesharing/target
-        - ls
     artifacts:
         paths:
             - target/vehiclesharing.jar
@@ -50,8 +48,6 @@ deploy:
         #
 
     script:
-        #
-        - cd vehiclesharing
         - apt-get update -qy
         - apt-get install -y ruby-dev
         - gem install dpl

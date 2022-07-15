@@ -6,24 +6,24 @@ public class Driver {
     private String driver_lname;
     private String driver_email;
     private String driver_password;
-    private String driver_contact;
+    //private String driver_contact;
+//
+//    public String getDriver_contact() {
+//        return driver_contact;
+//    }
+//
+//    public void setDriver_contact(String driver_contact) {
+//        this.driver_contact = driver_contact;
+//    }
 
-    public String getDriver_contact() {
-        return driver_contact;
-    }
+    public Driver(){}
 
-    public void setDriver_contact(String driver_contact) {
-        this.driver_contact = driver_contact;
-    }
-
-    Driver(){}
-
-    public Driver( String driver_fname, String driver_lname, String driver_email, String driver_password, String driver_contact) {
+    public Driver( String driver_fname, String driver_lname, String driver_email, String driver_password) {
         this.driver_fname = driver_fname;
         this.driver_lname = driver_lname;
         this.driver_email = driver_email;
         this.driver_password = driver_password;
-        this.driver_contact = driver_contact;
+        //this.driver_contact = driver_contact;
     }
 
     public int getDriver_id() {

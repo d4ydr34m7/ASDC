@@ -1,6 +1,8 @@
 package com.example.vehiclesharing.service;
 
+import com.example.vehiclesharing.constants.AdminCredentials;
 import com.example.vehiclesharing.constants.IAppConstants;
+import com.example.vehiclesharing.dao.AdminDAO;
 import com.example.vehiclesharing.dao.DriverDAO;
 import com.example.vehiclesharing.dao.PassengerDAO;
 import com.example.vehiclesharing.model.Driver;
@@ -15,6 +17,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private DriverDAO driverDAO;
+
+    @Autowired
+    private AdminDAO adminDAO;
 
     @Override
     public boolean checkIfUserExists(User user) {
@@ -43,13 +48,21 @@ public class AuthServiceImpl implements AuthService {
                     return true;
                 }
             }
-            else
+            else if(user.getUserType().equals(IAppConstants.DRIVER))
             {
                 Driver driver=(Driver) driverDAO.getObject(user.getEmail());
                 if(driver.getDriver_password().equals(user.getPassword()))
                 {
                     return true;
                 }
+            }
+            else if(user.getUserType().equals((IAppConstants.ADMIN))){
+                if(user.getEmail()== AdminCredentials.ADMIN_EMAIL && user.getPassword()==AdminCredentials.ADMIN_PASSWORD){
+                    return true;
+                }
+            }
+            else{
+                return false;
             }
 
         }

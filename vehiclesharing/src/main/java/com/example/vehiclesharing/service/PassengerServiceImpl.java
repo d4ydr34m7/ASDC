@@ -4,7 +4,6 @@ import com.example.vehiclesharing.dao.PassengerDAO;
 import com.example.vehiclesharing.model.Passenger;
 import com.example.vehiclesharing.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 public class PassengerServiceImpl implements PassengerService{
 
@@ -22,5 +21,4 @@ public class PassengerServiceImpl implements PassengerService{
         Passenger passenger= (Passenger) passengerDAO.getObject(email);
         return passenger;
     }
-
 }

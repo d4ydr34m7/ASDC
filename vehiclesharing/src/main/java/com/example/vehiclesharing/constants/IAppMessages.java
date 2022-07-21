@@ -14,4 +14,14 @@ public interface IAppMessages {
     Object FAILURE_STATUS = "Unsuccessfull";
     Object NO_RIDES = "there are no rides";
     String RIDES_AVAILABLE = " there are available rides";
+
+    //Notification messages
+    public static final String USER_REGISTERED_NOTIFY_SUBJECT="REGISTRATION SUCCESSFUL!";
+    public static final String USER_REGISTERED_NOTIFY_MESSAGE="Welcome! You are registered successfully. You can start your journey with us by booking a ride";
+
+    public static final String RIDE_BOOKED_NOTIFY_SUBJECT="RIDE BOOKED SUCCESSFUL!";
+    public static final String RIDE_BOOKED_NOTIFY_MESSAGE="Yaaay! Your ride has been booked successfully! You will receive a notification soon from a driver. Hope you have a safe and exciting journey.";
+
+    public static final String NOTIFY_NO_DRIVER= "No driver present";
+
 }

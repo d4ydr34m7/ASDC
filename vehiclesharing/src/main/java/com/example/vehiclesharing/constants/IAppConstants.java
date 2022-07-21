@@ -10,7 +10,15 @@ public interface IAppConstants {
     public static final String DRIVER="DRIVER";
     public static final String PASSENGER="PASSENGER";   //check
     public static final String ADMIN="ADMIN";
+    public static final String EMAIL_SENDER="vehiclesharingapp@gmail.com";
+    public static final String APP_RUN_PATH= "vehiclesharing/src/main/resources/application.properties";
+    public static final String TEST_RUN_PATH="src/main/resources/application.properties";
 
+
+
+    //Database usage params
+    public static final String PASSENGER_CREDITS="passenger_credits";
+    public static final String DRIVER_CREDITS="driver_credits";
 
 
 }

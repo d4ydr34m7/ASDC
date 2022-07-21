@@ -9,16 +9,16 @@ stages:
 
 
 build:
-    image: maven:latest
+    image: maven:3-jdk-11
     stage: build
     tags:
         - dalfcs_gitlab_docker_ci
     script:
-        - cd vehiclesharing
-        - mvn clean package -DskipTests=true
+        #- cd vehiclesharing
+        - mvn clean install -DskipTests=true
     artifacts:
         paths:
-            - target/*.jar
+            - target/vehiclesharing.jar
     only:
         refs:
             - shreya_dev
@@ -43,8 +43,9 @@ deploy:
     before_script:
         - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
         - eval $(ssh-agent -s)
-        - tr -d '\r' | base64 --decode | ssh-add -
+        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
         #- cat ~/.ssh/id_rsa | pbcopy
+        #
 
     script:
         - apt-get update -qy

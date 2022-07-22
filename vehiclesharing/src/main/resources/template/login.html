@@ -78,7 +78,7 @@
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
+                        <input required id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
                     </div>
 
                     <!-- Password -->
@@ -88,7 +88,7 @@
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+                        <input required id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
                     </div>
 
                     <!-- Role -->
@@ -98,14 +98,14 @@
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <select class="form-control bg-white border-left-0 border-md text-muted" name="role">
+                        <select required class="form-control bg-white border-left-0 border-md text-muted" name="role">
                             <option disabled="" selected="" class="text-muted">--- Select Role ---</option>
                             <option value="Owner" class="text-muted">Owner</option>
                             <option value="Passenger" class="text-muted">Passenger</option>
                             <option value="Admin" class="text-muted">Admin</option>
                         </select>
                     </div>
-                    <p style="margin-top: -20px;"><span style="float: right;"> <a href="preset.php" class="forgot-password-link">Forgot password?</a></span></p>
+                    <p style="margin-top: -20px;"><span style="float: right;"> <a href="#" class="forgot-password-link">Forgot password?</a></span></p>
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
                         <input type="submit" value="Log In"  name="submit" class="btn btn-primary btn-block py-2">

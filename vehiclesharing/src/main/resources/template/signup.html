@@ -58,14 +58,14 @@
                     <h2 class="d-flex justify-content-center">Register</h2>
                     <hr style="width: 94%;">
                     <!-- Name -->
-                    <span class="error"><?php echo $nameErr; ?></span>
+                    <span class="error"></span>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                                     <i class="fa fa-user text-muted"></i>
                                 </span>
                         </div>
-                        <input id="fname" type="name" name="fname" placeholder="First Name" class="form-control bg-white border-left-0 border-md">
+                        <input required id="fname" type="name" name="fname" placeholder="First Name" class="form-control bg-white border-left-0 border-md">
                     </div>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
@@ -73,17 +73,17 @@
                                     <i class="fa fa-user text-muted"></i>
                                 </span>
                         </div>
-                        <input id="lname" type="name" name="lname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md">
+                        <input required id="lname" type="name" name="lname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md">
                     </div>
                     <!-- Phone -->
-                    <span class="error"><?php echo $numberErr; ?></span>
+                    <span class="error"></span>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-phone text-muted"></i>
                             </span>
                         </div>
-                        <input id="phone" type="phone" name="phone" placeholder="Contact" class="form-control bg-white border-left-0 border-md">
+                        <input required id="phone" type="phone" name="phone" placeholder="Contact" class="form-control bg-white border-left-0 border-md">
                     </div>
                     <!---------------Role------------------>
 
@@ -93,42 +93,42 @@
                                 <i class="fa fa-user-circle text-muted"></i>
                             </span>
                         </div>
-                        <select class="form-control bg-white border-left-0 border-md text-muted" name="role">
+                        <select class="form-control bg-white border-left-0 border-md text-muted" name="role" required>
                             <option disabled="" selected="" class="text-muted form-control">--- Select Role ---</option>
                             <option value="Owner" class="form-control">Owner</option>
                             <option value="Passenger" class="form-control">Passenger</option>
                         </select>
                     </div>
                     <!-- Email Address -->
-                    <span class="error"><?php echo $emailErr; ?></span>
+                    <span class="error"></span>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
+                        <input required id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
                     </div>
 
                     <!-- Password -->
-                    <span class="error"><?php echo $passwordErr; ?></span>
+                    <span class="error"></span>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+                        <input required id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
                     </div>
                     <!-- Confirm Password -->
-                    <span class="error"><?php echo $cpasswordErr; ?></span>
+                    <span class="error"></span>
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="cpassword" type="password" name="cpassword" placeholder="Confirm - Password" class="form-control bg-white border-left-0 border-md">
+                        <input required id="cpassword" type="password" name="cpassword" placeholder="Confirm - Password" class="form-control bg-white border-left-0 border-md">
                     </div>
                     <!-- Submit Button -->
                     <!-- <div class="form-group col-lg-12 mx-auto mb-0">

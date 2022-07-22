@@ -1,0 +1,220 @@
+package com.example.vehiclesharing.model;
+
+import com.example.vehiclesharing.Utility;
+import com.example.vehiclesharing.constants.IAppMessages;
+import com.example.vehiclesharing.dao.BookingDAO;
+import com.example.vehiclesharing.dao.IDriverDAO;
+import com.example.vehiclesharing.dao.PassengerDAO;
+import com.example.vehiclesharing.dao.RideCreationDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+@Component
+public class Booking implements IBooking{
+
+    @Autowired
+    BookingDAO bookedRidesDAO;
+
+    @Autowired
+    RideCreationDAO rideCreationDAO;
+
+    @Autowired
+    PassengerDAO passengerDAO;
+
+    @Autowired
+    IDriverDAO driverDAO;
+
+
+    private int booking_id;
+private int passenger_id;
+private String timestamp;
+private float amount;
+private int seats_booked;
+private int is_paid;
+private String email_id;
+
+    public Booking() {
+
+    }
+
+    public String getEmail_id() {
+        return email_id;
+    }
+
+    public void setEmail_id(String email_id) {
+        this.email_id = email_id;
+    }
+
+    private Ride ride;
+
+    public Booking(int booking_id, int passenger_id, String timestamp, float amount, int seats_booked, int is_paid, Ride ride) {
+        this.booking_id = booking_id;
+        this.passenger_id = passenger_id;
+        this.timestamp = timestamp;
+        this.amount = amount;
+        this.seats_booked = seats_booked;
+        this.is_paid = is_paid;
+        this.ride = ride;
+    }
+
+    public Ride getRide() {
+        return ride;
+    }
+
+    public void setRide(Ride ride) {
+        this.ride = ride;
+    }
+
+    public int getBooking_id() {
+        return booking_id;
+    }
+
+    public void setBooking_id(int booking_id) {
+        this.booking_id = booking_id;
+    }
+
+    public int getPassenger_id() {
+        return passenger_id;
+    }
+
+    public void setPassenger_id(int passenger_id) {
+        this.passenger_id = passenger_id;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
+
+    public int getSeats_booked() {
+        return seats_booked;
+    }
+
+    public void setSeats_booked(int seats_booked) {
+        this.seats_booked = seats_booked;
+    }
+
+    public int getIs_paid() {
+        return is_paid;
+    }
+
+    public void setIs_paid(int is_paid) {
+        this.is_paid = is_paid;
+    }
+
+    Logger logger = LoggerFactory.getLogger(com.example.vehiclesharing.model.Booking.class);
+    @Override
+
+    public boolean saveRide(Booking booking) {
+        if(booking==null)
+            return false;
+        try {
+            logger.info("Inside saveRide method of BookingServiceImpl");
+            Ride ride = rideCreationDAO.getRideDetails(booking.getRide().getRide_id());
+            if(ride==null)
+                return false;
+            if ((ride.getRemaining_seats()) - booking.getSeats_booked() >= 0) {
+                booking.setAmount(ride.getTotal_cost()*booking.getSeats_booked());
+                booking.setTimestamp(ride.getStart_time());
+                booking.setIs_paid(0);
+                logger.info("There are available seats in the vehicle, attempting to book " + booking.getSeats_booked()
+                        + " seats now");
+                boolean isSuccess = bookedRidesDAO.saveRide(booking);
+                if (isSuccess) {
+                    logger.info("Successfully booked seats");
+                    String email = (String) passengerDAO.getObject(booking.getEmail_id());
+                    String message = IAppMessages.RIDE_BOOKED_SUCCESSFULLY + ride.getSource() + "-->" + ride.getDestination();
+                    //notificationService.sendEmail(message, ServiceStringMessages.RIDE_BOOKED,
+                    //email);
+                    rideCreationDAO.availableRides(ride.getSource(), ride.getDestination());
+                    logger.info("Successfully sent notification");
+                }
+                return isSuccess;
+            }
+            logger.info("Seats not available");
+            return false;
+        } catch (Exception e) {
+            logger.info("Unable to book seats", e);
+            return false;
+        }
+    }
+
+
+    @Override
+
+    public List<Booking> getUpcomingRidesForCustomer(int passenger_id) {
+        try {
+            List<Booking> bookingList = bookedRidesDAO.getAllRidesForPassenger(passenger_id);
+            List<Booking> upcomingBookings = new ArrayList<>();
+            for (Booking booking : bookingList) {
+//                    float cost = 0;
+//                    cost = (float) Math.ceil(booking.getAmount());
+                booking.getAmount();
+                String start_time = booking.getTimestamp().replace("T", " ");
+                booking.setTimestamp(Utility.convertDate(booking.getTimestamp()));
+                booking.setRide(rideCreationDAO.getRideDetails(booking.getBooking_id()));
+                String current_time = Utility.getCurrentTime();
+                Date start = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(start_time);
+                Date current = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(current_time);
+                if (current.compareTo(start) < 0) {
+                    upcomingBookings.add(booking);
+                }
+            }
+
+            return upcomingBookings;
+        } catch (Exception e) {
+            return new ArrayList<Booking>();
+        }
+    }
+
+    @Override
+    public List<Booking> getPreviousRidesForCustomer(int passenger_id) {
+        try {
+            List<Booking> allRides = bookedRidesDAO.getAllRidesForPassenger(passenger_id);
+            List<Booking> previousRides = new ArrayList<>();
+            for (Booking ride : allRides) {
+                float cost=(float) Math.ceil(ride.getAmount());
+                ride.setAmount(cost);
+                String start_time = ride.getTimestamp().replace("T", " ");
+                String current_time = Utility.getCurrentTime();
+                ride.setTimestamp(Utility.convertDate(ride.getTimestamp()));
+                ride.setRide(rideCreationDAO.getRideDetails(ride.getBooking_id()));
+                Date end = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(start_time);
+                Date current = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(current_time);
+                if (current.compareTo(end) > 0) {
+                    previousRides.add(ride);
+                }
+
+            }
+            return previousRides;
+        } catch (Exception e) {
+            return new ArrayList<Booking>();
+        }
+
+    }
+
+    @Override
+        public String payforRide(Booking booking) {
+            return null;
+        }
+
+}

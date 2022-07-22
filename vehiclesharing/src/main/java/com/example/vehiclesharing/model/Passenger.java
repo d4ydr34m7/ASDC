@@ -32,11 +32,12 @@ public class Passenger implements IPassenger{
 
     //private String passenger_contact;
 
-    public Passenger( String passenger_fname, String passenger_lname, String passenger_email, String passenger_password) {
+    public Passenger( String passenger_fname, String passenger_lname, String passenger_email, String passenger_password, String passenger_contact) {
         this.passenger_fname = passenger_fname;
         this.passenger_lname = passenger_lname;
         this.passenger_email = passenger_email;
         this.passenger_password = passenger_password;
+        //this.passenger_contact = passenger_contact;
     }
 
     public Passenger(){}

@@ -10,7 +10,8 @@ import java.util.List;
 
 @Component
 public class PassengerDAOImpl implements PassengerDAO{
-    Connection connection= ConnectionFactory.getInstance().getConnection();
+
+    Connection connection= ConnectionFactory.getConnection();
     Statement statement;
     PreparedStatement preparedStatement;
     String query;
@@ -164,7 +165,8 @@ public class PassengerDAOImpl implements PassengerDAO{
 //        return null;
 //    }
 
-    private Passenger extractDetails(ResultSet resultSet) throws SQLException{
+
+    public Passenger extractDetails(ResultSet resultSet) throws SQLException{
         Passenger passenger= new Passenger();
         passenger.setPassenger_id(resultSet.getInt("passenger_id"));
         passenger.setPassenger_fname(resultSet.getString("passenger_fname"));

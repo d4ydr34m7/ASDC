@@ -21,7 +21,7 @@ build:
             - target/*.jar
     only:
         refs:
-            - shreya_dev
+            - Shravya_dev
 
 
 test:

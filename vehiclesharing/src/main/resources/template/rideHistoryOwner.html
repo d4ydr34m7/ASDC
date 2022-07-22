@@ -20,7 +20,7 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css" integrity="sha384-jbCTJB16Q17718YM9U22iJkhuGbS0Gd2LjaWb4YJEZToOPmnKDjySVa323U+W7Fv" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <title>Owner Dashboard</title>
+    <title>Rides</title>
 
 </head>
 <body>
@@ -30,7 +30,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="hp.php"><img src="images/logo.png" class="logo"></a>&nbsp;
+            <a class="navbar-brand" href="http://localhost:63342/ASDC/resources/dashboardOwner.html?_ijt=1nse86vel5nk3ni1ikpgci49kg&_ij_reload=RELOAD_ON_SAVE"><img src="images/logo.png" class="logo"></a>&nbsp;
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
             </ul>
@@ -43,23 +43,79 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid">
-    <img src="https://img.freepik.com/free-vector/carpool-concept-illustration_114360-9238.jpg?w=2000" class="firstimg">
-</div>
-<section class="s1">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-12 d-flex justify-content-center">
-                <button class="btn btn-lg btn-primary" style="margin-right: 2.2%;">Search Ride</button>
-                <button class="btn btn-lg btn-primary" style="margin-right: 2.2%;" onclick="location.href = 'http://localhost:63342/ASDC/resources/carDetails.html?_ijt=cgdnghlved44vnf2rn8h5cr0gc&_ij_reload=RELOAD_ON_SAVE';">Book Ride</button>
-                <button class="btn btn-lg btn-primary" style="margin-right: 2.2%;">Ride History</button>
-                <button class="btn btn-lg btn-primary">Purchase Credits</button>
+
+<section class="s2">
+    <div class="container">
+        <div class="s2h2">
+            <h2>Rides</h2>
+            <hr class="mb-0" />
+        </div>
+        <div class="row">
+            <div class="col mb-0">
+                <h5 class="s2h2">Upcoming Rides</h5>
+                <div class="container table-responsive pt-2">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">To</th>
+                            <th scope="col">From</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Distance</th>
+                            <th scope="col">No. of Seats</th>
+                            <th scope="col">Car</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Bridge Terminal</td>
+                            <td>Mumford Terminal</td>
+                            <td>21 Jul 2022</td>
+                            <td>5.2 Kms</td>
+                            <td>4</td>
+                            <td>Hyundai Elantra<br><i>NSH 299</i></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-2">
+                <h5 class="s2h2">Previous Rides</h5>
+                <div class="container table-responsive pt-2">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">To</th>
+                            <th scope="col">From</th>
+                            <th scope="col">Date Completed</th>
+                            <th scope="col">Distance</th>
+                            <th scope="col">No. of Passengers</th>
+                            <th scope="col">Car</th>
+                            <th scope="col">Fare Collected</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Spring Garden</td>
+                            <td>Robie Street</td>
+                            <td>23 May 2022</td>
+                            <td>4.6 Kms</td>
+                            <td>2</td>
+                            <td>Tesla<br><i>NSK 2833</i></td>
+                            <td>38.74$</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    </div>
 </section>
-
 
 <section class="s4">
     <footer class="container-fluid">

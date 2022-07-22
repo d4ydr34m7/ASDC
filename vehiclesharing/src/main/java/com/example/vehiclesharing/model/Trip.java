@@ -1,20 +1,37 @@
 package com.example.vehiclesharing.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Trip {
-    private Ride ride;
+
     private int vehicle_id;
     private String numberPlate;
     private String phone;
     private float amount;
     private int availableSeats;
+    private Ride ride;
 
-    public Trip(Ride ride, int vehicle_id, String numberPlate, String phone, float amount, int availableSeats) {
-        this.ride = ride;
+//    public Trip(Ride ride, int vehicle_id, String numberPlate, String phone, float amount, int availableSeats) {
+//        this.ride = ride;
+//        this.vehicle_id = vehicle_id;
+//        this.numberPlate = numberPlate;
+//        this.phone = phone;
+//        this.amount = amount;
+//        this.availableSeats = availableSeats;
+//    }
+
+    public Trip(int vehicle_id, String numberPlate, String phone, float amount, int availableSeats, Ride ride) {
         this.vehicle_id = vehicle_id;
         this.numberPlate = numberPlate;
         this.phone = phone;
         this.amount = amount;
         this.availableSeats = availableSeats;
+        this.ride = ride;
+    }
+    public Trip()
+    {
+
     }
 
     public Ride getRide() {

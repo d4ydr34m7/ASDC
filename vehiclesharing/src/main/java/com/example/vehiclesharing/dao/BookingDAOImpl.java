@@ -1,11 +1,13 @@
 package com.example.vehiclesharing.dao;
 
 import com.example.vehiclesharing.model.Booking;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class BookingDAOImpl implements BookingDAO{
 
     Connection connection= ConnectionFactory.getConnection();

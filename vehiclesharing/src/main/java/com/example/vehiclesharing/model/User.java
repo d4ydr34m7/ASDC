@@ -1,5 +1,8 @@
 package com.example.vehiclesharing.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
     public User() {
     }
@@ -9,6 +12,17 @@ public class User {
     String userType;
     String first_name;
     String last_name;
+    float credits;
+
+    public float getCredits() {
+        return credits;
+    }
+
+    public void setCredits(float credits) {
+        this.credits = credits;
+    }
+
+
 
     public String getContact() {
         return contact;

@@ -24,6 +24,7 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.codingapi.springboot</groupId>

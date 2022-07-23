@@ -9,7 +9,7 @@ stages:
 
 
 build:
-    image: maven:3-jdk-11
+    image: maven:3-jdk-8
     stage: build
     tags:
         - dalfcs_gitlab_docker_ci

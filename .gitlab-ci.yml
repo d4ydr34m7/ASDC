@@ -15,7 +15,7 @@ build:
         - dalfcs_gitlab_docker_ci
     script:
         #- cd vehiclesharing
-        - mvn clean install -DskipTests=true
+        - mvn clean package -DskipTests=true
     artifacts:
         paths:
             - target/*.jar

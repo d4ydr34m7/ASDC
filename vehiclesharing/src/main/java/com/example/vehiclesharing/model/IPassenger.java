@@ -11,5 +11,6 @@ public interface IPassenger {
     public boolean addCredits(String passenger_email, String columnName, float value);
     public boolean debitCreditsFromPassenger(String passenger_email, String columnName, float value);
     public Passenger convertObject();
+    public boolean resetPassword(String email, String newPassword);
 
 }

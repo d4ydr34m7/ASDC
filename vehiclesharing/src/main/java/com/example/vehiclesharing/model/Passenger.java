@@ -7,7 +7,7 @@ import com.example.vehiclesharing.dao.DriverDAO;
 import com.example.vehiclesharing.dao.PassengerDAO;
 import com.example.vehiclesharing.model.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
+//import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -156,10 +156,24 @@ public class Passenger implements IPassenger{
     }
 
     @Override
+    public boolean resetPassword(String email, String newPassword) {
+        if (email == null) {
+            return false;
+        }
+        else{
+            return passengerDAO.resetPassword(email, newPassword);
+        }
+
+
+    }
+
+    @Override
     public Passenger convertObject(){
         Passenger passenger= new Passenger(this.passenger_fname, this.passenger_lname, this.passenger_email, this.passenger_password);
         return passenger;
     }
+
+
 
 
 }

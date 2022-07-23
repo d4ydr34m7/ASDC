@@ -11,5 +11,6 @@ public interface IPersistence {
     public boolean updateObject(String queryParam, String columnName, float value);
     public boolean removeObject(int id);        //admin
     public List<Object> getObjectsList();      //admin and implement methods by driverdao, passengerdao
+    public boolean resetPassword(String email, String newPassword);
 
 }

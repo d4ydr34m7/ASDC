@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class ConnectionFactory {
     private static ConnectionFactory instance;
-    static String configFilePath= IAppConstants.TEST_RUN_PATH;  //VARYING FOR TEST AND PROJ APP
+    static String configFilePath= IAppConstants.APP_RUN_PATH;  //VARYING FOR TEST AND PROJ APP
     static Properties prop = new Properties();
     private Connection connection=null;
 

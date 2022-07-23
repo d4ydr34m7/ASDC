@@ -15,4 +15,5 @@ public interface IDriver {
     public boolean addCredits(String driver_email, String columnName, float value);
     public boolean depositCreditsToDriver(String driver_email, String columnName, float value);
     public Driver convertObject();
+    public boolean resetPassword(String email, String newPassword);
 }

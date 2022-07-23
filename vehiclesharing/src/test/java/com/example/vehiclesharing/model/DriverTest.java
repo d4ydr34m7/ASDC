@@ -62,6 +62,11 @@ public class DriverTest {
         assertTrue(iDriver.addCredits("test@case.com", "driver_credits", 50));
     }
 
+    @Test
+    void checkIfPasswordUpdated(){
+        assertTrue(iDriver.resetPassword("test@case.com", "xxxyyyzz"));
+    }
+
 
 
 

@@ -1,0 +1,375 @@
+/*---------------Navbar--------------*/
+.navbar {
+	background-color: white;
+	 box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+	 border: 0 0 2px 0;
+	 border-color:lightblue;
+}
+.logo {
+	height: 45px;
+	width: 200px;
+}
+.nav-link img{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+.nav-link {
+  color: #52b2bf;
+  font-size: 16px;
+}
+.nav-link:hover{
+  color: blue;
+  font-size: 16px;
+}
+/*---------------Carousel img bg--------------*/
+.firstimg {
+	width: 100%;
+	height: 550px;
+    position: relative;
+}
+
+/*---------------Sedtion 1--------------*/
+.s1 {
+	margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 5%;
+  text-align: justify;
+}
+.s1 h3{
+  color: #52b2bf;
+}
+
+.lri img{
+	width: 100%;
+}
+.col {
+	margin-bottom: 8%;
+}
+.btn-outline-warning {
+  float: right;
+  margin-top: -4%;
+  margin-right: 4%;
+}
+.btn-outline-warning:hover{
+  color: white;
+}
+
+/*---------------Blog Cards--------------*/
+.s2h2{
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  color: #4CACBC;
+  font-family: Palatino, serif;
+  padding-top: 3%;
+  border-bottom:1px solid white;
+}
+.card img{
+	width: 100%;
+	height: 200px;
+}
+.card{
+  margin-top: 10%;
+  padding-bottom: 0;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.purchase{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+thead {
+    background-color: #52b2bf;
+    color: white;
+    text-align: center;
+}
+
+tbody{
+    color: grey;
+    text-align:center;
+}
+
+.card:hover{
+box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+#page-content {
+	margin-bottom: 10px;
+}
+/*---------------brand carousel--------------*/
+.s3h2{
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  /*color: #52b2bf;*/
+  font-family: 'Train One', cursive;
+  padding-top: 3%;
+  border-bottom:1px solid #52b2bf;
+
+}
+.text {
+  background-image: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.carousel .carousel-indicators li {
+  background-color: #fff;
+  background-color: rgba(70, 70, 70, 0.25);
+}
+
+.carousel .carousel-indicators .active {
+  background-color: #444;
+}
+/*---------testimonial-----------------*/
+.s3{
+  background-size: cover;
+  margin: 0;
+  padding: 20px 0px;
+}
+.test {
+  background-color: white;
+}
+.carousel-item img{
+  border-radius:50%;
+  height:80px;
+  width:80px;
+  margin-top:-22px;
+}
+.carousel-indicators li{
+  background-color: #fff;
+  background-color: rgba(70, 70, 70, 0.25);
+}
+/*---------------footer--------------*/
+
+body {
+        font-family: 'Signika', sans-serif;
+     }
+     .bg-grey {
+        background: white;
+        color:#57a0d3;
+     }
+     .logo-footer {
+        margin-left:15%;
+        height: 70px;
+        width: 200px;
+     }
+
+     footer {
+            color: #57a0d3;
+     }
+     footer h5 {
+      margin-left: 24%;
+     }
+     footer p,a {
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+}
+footer h6 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 30px;
+    position: relative;
+}
+footer h6:after {
+    position: absolute;
+    content: "";
+    background: #57a0d3;
+    width: 40%;
+    height: 1px;
+    left: 0;
+    bottom: -14px;
+}
+     .btn-footer {
+                 color: #57a0d3;
+
+                text-decoration: none;
+                border: 1px solid;
+                border-radius: 43px;
+                font-size: 13px;
+                padding: 7px 30px;
+                line-height: 47px;
+     }
+     .btn-footer:hover {
+
+                text-decoration: none;
+
+     }
+    .form-footer input[type="text"] {
+        border: 1px solid #57a0d3;
+    border-radius: 16px 0 0 16px;
+    outline: none;
+    border-right: none;
+    padding-left:4px;
+    height:31px;
+
+}
+
+ .form-footer button {
+    border: 1px solid #57a0d3;
+    border-left:none;
+    background:white;
+    margin-left: -8px;
+    color: #57a0d3;
+    outline: none;
+    border-radius: 0 16px 16px 0;
+    height:31px;
+}
+     .social .fa {
+    color: #57a0d3;
+    font-size: 22px;
+    padding: 10px 15px;
+    background: white;
+    border:1px solid #57a0d3;
+}
+.social .fa:hover {
+  color: white;
+  background-color: #57a0d3;
+}
+     footer ul li {
+    list-style: none;
+    display: block;
+}
+  footer ul  {
+   padding-left: 0;
+}
+footer ul  li a{
+  text-decoration: none;
+  color: #57a0d3;
+  text-decoration:none;
+}
+
+.logo-part {
+    border-right: 1px solid grey;
+    height: 100%;
+    }
+    .s4 {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding-top: 10px;
+}
+
+
+.footer2{
+  margin-top: 1%;
+  margin-bottom: unset;
+  width: 100%;
+}
+.footer2 p{
+  padding:1%;
+  font-size: 14px;
+  margin-bottom: unset;
+}
+
+
+
+/*---------------media screen - 767--------------*/
+
+
+
+@media only screen and (max-width: 767px) {
+
+.firstimg {
+	height: 200px;
+}
+.align-left{
+	margin-top: 20%;
+}
+.align-left h6{
+	margin-top: -2%;
+}
+.align-left p{
+	margin-top: -1%;
+}
+.select {
+display: none;
+}
+/*.select1 {
+	width: 100px;
+	left: 4%;
+  top: 40%;
+  font-size: 14px;
+}
+.select2 {
+	width: 100px;
+	left: 70%;
+  top: 40%;
+  font-size: 14px;
+}
+.select3 {
+	width: 120px;
+	left: 35%;
+  top: 40%;
+  font-size: 14px;
+}
+
+.search {
+    width: 160px;
+    height: 30px;
+    font-size: 16px;
+    position: absolute;
+  	left: 28%;
+  	top: 46%;
+    background-color: #52b2bf;
+    color: white;
+}*/
+.s2{
+	margin-top: 4%;
+}
+.col {
+      flex-basis: 100%;
+    }
+
+.text {
+  font-size: 16px;
+}
+.s2h2{
+  width: 100%;
+}
+.s2h2 h2{
+  padding-top: 10px;
+  font-size: 20px;
+}
+.btn-outline-warning {
+  float: right;
+  margin-top: -5%;
+}
+.lri img{
+  display: none;
+}
+.s1 h3{
+  font-size: 21px;
+  text-align: center;
+}
+.s1 {
+  margin-left: 0%;
+}
+.col2, .col3, .first{
+  display: none;
+}
+
+.footer2{
+  margin-top: 0%;
+}
+/*---------------media screen - 1024--------------*/
+
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+.select {
+display: none;
+}
+}
+/*.col {
+      flex-basis: 100%;
+    }*/
+
+/*---------------Media screen - 1366--------------
+
+
+
+@media only screen and (min-device-width : 1024px) and (max-device-width : 1366px) {
+
+.select {
+display: none;
+}
+}

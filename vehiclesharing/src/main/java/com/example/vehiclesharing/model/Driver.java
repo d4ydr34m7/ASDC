@@ -123,7 +123,6 @@ public class Driver implements IDriver{
 
     //admin
 
-
     @Override
     public List<Driver> viewDriverDetails() {
         try{
@@ -139,9 +138,7 @@ public class Driver implements IDriver{
             return null;
 
         }
-
     }
-
 
     @Override
     public boolean deleteDriver(int driver_id) {
@@ -173,6 +170,16 @@ public class Driver implements IDriver{
         return driver;
     }
 
+    @Override
+    public boolean resetPassword(String email, String newPassword) {
+            if (email == null) {
+                return false;
+            }
+            else{
+                return driverDAO.resetPassword(email, newPassword);
+            }
 
+
+    }
 
 }

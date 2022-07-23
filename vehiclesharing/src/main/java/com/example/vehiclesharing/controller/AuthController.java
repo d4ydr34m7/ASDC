@@ -71,9 +71,22 @@ public class AuthController {
             return IAppMessages.INVALID_CREDENTIALS;
     }
 
-
-
-
+//    @PostMapping("/forgotpassword")      //will need to ask user type
+//    public String forgotPassword(User user){
+//        boolean isUserExist= validation.checkIfUserExists(user);
+//        if(isUserExist){
+//            if(user.getUserType()==IAppConstants.PASSENGER){
+//                iPassenger.resetPassword(user.getEmail(), user)
+//                        return
+//            }
+//            else if(user.getUserType()==IAppConstants.DRIVER){
+//                iDriver.resetPassword(user.getEmail(), )
+//                return IAppConstants.DRIVER_DASHBOARD;
+//            }
+//        }
+//        return IAppMessages.NO_USER;
+//
+//    }
 
 
 }

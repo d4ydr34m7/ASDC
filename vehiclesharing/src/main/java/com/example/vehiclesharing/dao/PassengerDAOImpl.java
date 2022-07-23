@@ -149,6 +149,24 @@ public class PassengerDAOImpl implements PassengerDAO{
         }
         return null;
     }
+
+    @Override
+    public boolean resetPassword(String email, String newPassword) {
+        if(email==null){
+            return false;
+        }
+        try{
+            query= "update passenger set passenger_password='"+newPassword+"' where passenger_email='"+email+"'";
+            preparedStatement= connection.prepareStatement(query);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            return true;
+        }
+        catch(SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+        return false;
+    }
 //
 //    @Override
 //    public List<Object> getObjectsList() {

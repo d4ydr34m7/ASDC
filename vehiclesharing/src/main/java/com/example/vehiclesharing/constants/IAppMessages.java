@@ -5,6 +5,7 @@ public interface IAppMessages {
     public static final String USER_REGISTERED_SUCCESSFULLY= "User Registered Successfully";
     public static final String USER_ALREADY_EXISTS = "User already exists";
     public static final String ERROR_REGISTERING_USER = "Error Registering User, Please try again!" ;
+    public static final String NO_USER= "No such user exists";
 
     //Notification messages
     public static final String USER_REGISTERED_NOTIFY_SUBJECT="REGISTRATION SUCCESSFUL!";

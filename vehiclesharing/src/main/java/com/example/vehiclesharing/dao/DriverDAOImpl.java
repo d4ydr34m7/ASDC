@@ -153,6 +153,25 @@ public class DriverDAOImpl implements DriverDAO{
         return null;
     }
 
+    @Override
+    public boolean resetPassword(String email, String newPassword) {
+        if(email==null){
+            return false;
+        }
+        try{
+            query= "update driver set driver_password='"+newPassword+"' where driver_email='"+email+"'";
+            preparedStatement= connection.prepareStatement(query);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            return true;
+        }
+        catch(SQLException sqlException){
+            sqlException.printStackTrace();
+        }
+        return false;
+
+    }
+
 
     private Driver extractDetails(ResultSet resultSet) throws SQLException{
         Driver driver= new Driver();

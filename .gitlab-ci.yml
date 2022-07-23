@@ -18,7 +18,7 @@ build:
         - mvn clean install -DskipTests=true
     artifacts:
         paths:
-            - target/vehiclesharing.jar
+            - target/*.jar
     only:
         refs:
             - shreya_dev

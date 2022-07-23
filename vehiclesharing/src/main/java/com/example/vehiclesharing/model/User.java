@@ -3,16 +3,26 @@ package com.example.vehiclesharing.model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class User {
+public class User implements IUser{
+
     public User() {
     }
 
-    String email;
-    String password;
-    String userType;
-    String first_name;
-    String last_name;
-    float credits;
+    protected int id;
+    protected String email;
+    protected String password;
+    protected String userType;
+    protected String first_name;
+    protected String last_name;
+    protected float credits;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public float getCredits() {
         return credits;
@@ -21,18 +31,6 @@ public class User {
     public void setCredits(float credits) {
         this.credits = credits;
     }
-
-
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
-    String contact;
 
 
     public String getEmail() {

@@ -29,10 +29,10 @@ public class PassengerDAOImpl implements PassengerDAO{
             Passenger passenger=(Passenger) entity;
             query= "insert into passenger values(NULL, ? ,?, ?, ?, 100)";
             preparedStatement= connection.prepareStatement(query);
-            preparedStatement.setString(1, passenger.getPassenger_fname());
-            preparedStatement.setString(2,passenger.getPassenger_lname());
-            preparedStatement.setString(3, passenger.getPassenger_email());
-            preparedStatement.setString(4, passenger.getPassenger_password());
+            preparedStatement.setString(1, passenger.getFirst_name());
+            preparedStatement.setString(2,passenger.getLast_name());
+            preparedStatement.setString(3, passenger.getEmail());
+            preparedStatement.setString(4, passenger.getPassword());
             int i= preparedStatement.executeUpdate();
             preparedStatement.close();
 
@@ -184,10 +184,10 @@ public class PassengerDAOImpl implements PassengerDAO{
 
     private Passenger extractDetails(ResultSet resultSet) throws SQLException{
         Passenger passenger= new Passenger();
-        passenger.setPassenger_id(resultSet.getInt("passenger_id"));
-        passenger.setPassenger_fname(resultSet.getString("passenger_fname"));
-        passenger.setPassenger_lname(resultSet.getString("passenger_lname"));
-        passenger.setPassenger_email(resultSet.getString("passenger_email"));
+        passenger.setId(resultSet.getInt("passenger_id"));
+        passenger.setFirst_name(resultSet.getString("passenger_fname"));
+        passenger.setLast_name(resultSet.getString("passenger_lname"));
+        passenger.setEmail(resultSet.getString("passenger_email"));
         return passenger;
     }
 

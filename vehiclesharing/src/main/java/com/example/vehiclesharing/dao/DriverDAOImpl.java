@@ -32,10 +32,10 @@ public class DriverDAOImpl implements DriverDAO{
             Driver driver=(Driver) entity;
             query= "insert into driver values(NULL, ? ,?, ?, ?,100)";
             preparedStatement= connection.prepareStatement(query);
-            preparedStatement.setString(1, driver.getDriver_fname());
-            preparedStatement.setString(2,driver.getDriver_lname());
-            preparedStatement.setString(3, driver.getDriver_email());
-            preparedStatement.setString(4, driver.getDriver_password());
+            preparedStatement.setString(1, driver.getFirst_name());
+            preparedStatement.setString(2,driver.getLast_name());
+            preparedStatement.setString(3, driver.getEmail());
+            preparedStatement.setString(4, driver.getPassword());
             int i= preparedStatement.executeUpdate();
             preparedStatement.close();
 
@@ -175,11 +175,11 @@ public class DriverDAOImpl implements DriverDAO{
 
     private Driver extractDetails(ResultSet resultSet) throws SQLException{
         Driver driver= new Driver();
-        driver.setDriver_id(resultSet.getInt("driver_id"));
-        driver.setDriver_fname(resultSet.getString("driver_fname"));
-        driver.setDriver_lname(resultSet.getString("driver_lname"));
-        driver.setDriver_email(resultSet.getString("driver_email"));
-        driver.setDriver_credits(resultSet.getFloat("driver_credits"));
+        driver.setId(resultSet.getInt("driver_id"));
+        driver.setFirst_name(resultSet.getString("driver_fname"));
+        driver.setLast_name(resultSet.getString("driver_lname"));
+        driver.setEmail(resultSet.getString("driver_email"));
+        driver.setCredits(resultSet.getFloat("driver_credits"));
         return driver;
     }
 }

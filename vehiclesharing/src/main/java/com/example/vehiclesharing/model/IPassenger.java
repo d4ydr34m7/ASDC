@@ -2,8 +2,8 @@ package com.example.vehiclesharing.model;
 
 import java.util.List;
 
-public interface IPassenger {
-    public boolean savePassenger(User user);
+public interface IPassenger extends IUser{
+    public boolean savePassenger(IUser user);
     public Passenger getPassengerByEmail(String email);
     public Passenger getPassengerById(int id);
     public List<Passenger> viewPassengerDetails();

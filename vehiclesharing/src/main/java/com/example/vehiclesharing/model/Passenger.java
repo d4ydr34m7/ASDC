@@ -52,49 +52,69 @@ public class Passenger implements IPassenger{
     private Notification notification;
 
 
-    public int getPassenger_id() {
+    public int getId() {
         return passenger_id;
     }
 
-    public void setPassenger_id(int passenger_id) {
+    public void setId(int passenger_id) {
         this.passenger_id = passenger_id;
     }
 
-    public String getPassenger_fname() {
+    public String getFirst_name() {
         return passenger_fname;
     }
 
-    public void setPassenger_fname(String passenger_fname) {
+    public void setFirst_name(String passenger_fname) {
         this.passenger_fname = passenger_fname;
     }
 
-    public String getPassenger_lname() {
+    public String getLast_name() {
         return passenger_lname;
     }
 
-    public void setPassenger_lname(String passenger_lname) {
+    public void setLast_name(String passenger_lname) {
         this.passenger_lname = passenger_lname;
     }
 
-    public String getPassenger_email() {
+    @Override
+    public void setCredits(float credits) {
+        this.passenger_credits=credits;
+    }
+
+    @Override
+    public float getCredits() {
+        return passenger_credits;
+    }
+
+    public String getEmail() {
         return passenger_email;
     }
 
-    public void setPassenger_email(String passenger_email) {
+    public void setEmail(String passenger_email) {
         this.passenger_email = passenger_email;
     }
 
-    public String getPassenger_password() {
+    public String getPassword() {
         return passenger_password;
     }
 
-    public void setPassenger_password(String passenger_password) {
+    public void setPassword(String passenger_password) {
         this.passenger_password = passenger_password;
+    }
+
+    @Override
+    public String getUserType() {
+        return null;
+    }
+
+    @Override
+    public void setUserType(String userType) {
+
     }
 
 
     @Override
-    public boolean savePassenger(User user) {
+    public boolean savePassenger(IUser user) {
         Passenger passenger=new Passenger(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getPassword());
         boolean isPassengerSaved= passengerDAO.save(passenger);
         if(isPassengerSaved)

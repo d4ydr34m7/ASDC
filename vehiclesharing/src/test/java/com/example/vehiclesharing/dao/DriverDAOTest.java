@@ -1,7 +1,6 @@
 package com.example.vehiclesharing.dao;
-import com.example.vehiclesharing.model.Driver;
-import com.example.vehiclesharing.model.IDriver;
-import com.example.vehiclesharing.model.User;
+import com.example.vehiclesharing.constants.IAppConstants;
+import com.example.vehiclesharing.model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +21,18 @@ public class DriverDAOTest {
     @Autowired
     IDriver idriver;
 
+    @Autowired
+    UserFactory userFactory;
+
     @Test
     void testSaveDriverCorrect() {
-        User user = new User();
+        IUser user= userFactory.getInstance(IAppConstants.DRIVER);
         user.setFirst_name("test2");
         user.setLast_name("case");
         user.setEmail("test@case.com");
         user.setPassword("1234563");
         user.setCredits(220);
-        user.setUserType("DRIVER");
-        //Driver d= idriver.convertObject();
-        Driver d=new Driver(user.getFirst_name(), user.getLast_name(), user.getEmail(),user.getPassword());
-        assertTrue(driverDAO.save(d));
+        assertTrue(driverDAO.save(user));
     }
 
     @Test
@@ -73,10 +72,6 @@ public class DriverDAOTest {
     void getObjectListCorrect(){
         assertTrue(driverDAO.getObjectsList()!=null);
     }
-
-
-
-
 
 
 

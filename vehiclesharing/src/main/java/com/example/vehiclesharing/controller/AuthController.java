@@ -6,8 +6,11 @@ import com.example.vehiclesharing.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class AuthController {
@@ -22,13 +25,20 @@ public class AuthController {
     @Autowired
     Validation validation;
 
+
     @RequestMapping("/")
     public String mainPage(){
         return IAppConstants.LOGIN_PAGE;
     }
 
+    @RequestMapping("/signup")
+    public String register() {
+        return IAppConstants.REGISTER_PAGE;
+    }
+
+
     @PostMapping("/signup")
-    public String signup(User user, Model model){
+    public String signup(IUser user, Model model, BindingResult bindingResult){
         boolean isValidUser= validation.checkIfUserExists(user);
         boolean isSuccess;
         if(isValidUser)
@@ -47,14 +57,14 @@ public class AuthController {
             }
             else
             {
-                return IAppMessages.ERROR_REGISTERING_USER;
+                return IAppConstants.REGISTER_PAGE;  //registration page
             }
         }
         return IAppMessages.USER_ALREADY_EXISTS;
     }
 
     @PostMapping("/login")
-    public String login(User user, Model model){
+    public String login(IUser user, Model model){
         boolean isValidUser= validation.validateUser(user);
         if(isValidUser)
         {

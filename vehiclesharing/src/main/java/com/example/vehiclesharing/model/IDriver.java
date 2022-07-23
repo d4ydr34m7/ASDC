@@ -5,9 +5,9 @@ import java.util.List;
 import com.example.vehiclesharing.controller.DriverController;
 import com.example.vehiclesharing.model.User;
 
-public interface IDriver {
+public interface IDriver extends IUser{
 
-    public boolean saveDriver(User user);
+    public boolean saveDriver(IUser user);
     public Driver getDriverByEmail(String email);
     public Driver getDriverById(int id);
     public List<Driver> viewDriverDetails();

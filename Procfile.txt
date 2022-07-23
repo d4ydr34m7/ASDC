@@ -1,1 +1,1 @@
-web: java -jar vehiclesharing/target/*.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar vehiclesharing/target/*.jar

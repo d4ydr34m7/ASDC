@@ -1,17 +1,16 @@
 <!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/json.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/login.css">
     <title>Registration</title>
     <style type="text/css">
         .error {
@@ -36,7 +35,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#"><img src="images/logo.png" class="logo" style="width: 200px;"></a><h4 style="color: #52b2bf;"></h4>
+            <a class="navbar-brand" href="#"><img th:src="@{/images/logo.png}" class="logo" style="width: 200px;"></a><h4 style="color: #52b2bf;"></h4>
         </div>
 
     </div>
@@ -53,7 +52,7 @@
 
         <!-- Registeration Form -->
         <div class="col-md-4 col-lg-4" style="margin-top: -2%;">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form th:action="@{/login}" th:object="${user}" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <h2 class="d-flex justify-content-center">Register</h2>
                     <hr style="width: 94%;">
@@ -142,7 +141,7 @@
 
                     <!-- Already Registered -->
                     <div class="text-center w-100 mt-2">
-                        <p class="text-muted font-weight-bold">Already Registered? <a href="http://localhost:63342/ASDC/resources/Login.html?_ijt=830m4j5vlni9u8q9gumveom2mv&_ij_reload=RELOAD_ON_SAVE" class="text-primary">Login</a></p>
+                        <p class="text-muted font-weight-bold">Already Registered? <a th:href="@{/login}" class="text-primary">Login</a></p>
                     </div>
 
                 </div>

@@ -1,12 +1,11 @@
 <!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" type="text/css" href="css/json.css">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
 
@@ -20,7 +19,6 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/login.css">
     <title>Login</title>
     <style type="text/css">
       .logo {
@@ -40,7 +38,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#"><img src="images/logo.png" class="logo" style="width: 200px;"></a><h4 style="color: #52b2bf;"></h4>
+            <a class="navbar-brand" href="#"><img th:src="@{/images/logo.png}" class="logo" style="width: 200px;"></a><h4 style="color: #52b2bf;"></h4>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                 </li>
@@ -60,14 +58,14 @@
                    <p class="font-italic text-muted mb-0">We will help in providing a start you'll love, so that you will never have to work a day in your life.</p> -->
         </div>
         <div class="col-md-4">
-            <img src="images/picture.png" alt="" class="img-fluid mb-3 d-none d-md-block">
+            <img src="" alt="" class="img-fluid mb-3 d-none d-md-block">
             <h1 class="d-flex justify-content-center">Welcome to RideShare</h1>
             <p class="font-italic text-muted mb-0">See who's on the way.</p>
         </div>
 
-        <!-- Registeration Form -->
+        <!-- Login Form -->
         <div class="col-md-4 col-lg-4">
-            <form action="" method="post">
+            <form th:action= "@{/dashboard}" th:object="${user}" method="POST">
                 <div class="row">
                     <h2 class="d-flex justify-content-center">Login</h2>
                     <hr style="width: 94%;">
@@ -105,7 +103,7 @@
                             <option value="Admin" class="text-muted">Admin</option>
                         </select>
                     </div>
-                    <p style="margin-top: -20px;"><span style="float: right;"> <a href="#" class="forgot-password-link">Forgot password?</a></span></p>
+                    <p style="margin-top: -20px;"><span style="float: right;"> <a th:href="@{forgotPassword}" class="forgot-password-link">Forgot password?</a></span></p>
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
                         <input type="submit" value="Log In"  name="submit" class="btn btn-primary btn-block py-2">
@@ -113,7 +111,7 @@
 
                     <!-- Already Registered -->
                     <div class="text-center w-100 mt-2">
-                        <p class="text-muted font-weight-bold">Do not have an account? <a href="http://localhost:63342/ASDC/resources/Signup.html?_ijt=2n8e1ar6t07dmhf43knjsg8tah&_ij_reload=RELOAD_ON_SAVE#" class="text-primary">Register</a></p>
+                        <p class="text-muted font-weight-bold">Do not have an account? <a th:href="@{signup}" class="text-primary">Register</a></p>
                     </div>
 
                 </div>

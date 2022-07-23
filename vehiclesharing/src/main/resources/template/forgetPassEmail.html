@@ -1,4 +1,5 @@
 <!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -32,10 +33,26 @@
       </div>
       <!-- Reset Form -->
       <div class="col-md-4" style="margin-top: -4%;">
-        <form method="POST" action="">
+        <form method="POST" th:action="@{/forgetPassword}" th:object="${user}">
           <div class="row">
             <h2 class="d-flex justify-content-center">Password Reset</h2>
             <hr style="width: 94%;">
+
+            <!-- Role-->
+            <div class="input-group col-lg-12 mb-4">
+              <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+              </div>
+              <select required class="form-control bg-white border-left-0 border-md text-muted" name="role">
+                <option disabled="" selected="" class="text-muted">--- Select Role ---</option>
+                <option value="Owner" class="text-muted">Owner</option>
+                <option value="Passenger" class="text-muted">Passenger</option>
+                <option value="Admin" class="text-muted">Admin</option>
+              </select>
+            </div>
+
             <!-- Email Address -->
             <div class="input-group col-lg-12 mb-4">
               <div class="input-group-prepend">

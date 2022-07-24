@@ -15,8 +15,7 @@ class BookingTest {
     Booking bookingService;
     @Test
     void testGetUpcomingRidesForCorrectCustomer() {
-        //assert True here
-        assertTrue(bookingService.getUpcomingRidesForCustomer(4).size()>=0);
+        assertTrue(bookingService.getUpcomingRidesForCustomer(5).size()>=0);
     }
 
     @Test
@@ -48,7 +47,7 @@ class BookingTest {
         ride.setEnd_time("01-01-2023");
         ride.setTotal_cost(1000);
         ride.setDriver_id(1111);
-        Booking booking = new Booking(30,40,"2022-03-31",55,105,0,ride);
+        Booking booking = new Booking(30,5,"2022-03-31",55,1,0,1,ride);
         assertTrue(bookingService.saveRide(booking));
 
     }
@@ -64,7 +63,7 @@ class BookingTest {
         ride.setEnd_time("2022-04-03T16:42");
         ride.setTotal_cost(1000);
         ride.setDriver_id(1111);
-        Booking booking = new Booking(30,40,"2022-03-31",55,105,0,ride);
+        Booking booking = new Booking(30,50,"2022-03-31",5,1,1,ride);
 
         assertFalse(bookingService.saveRide(booking));
     }
@@ -82,7 +81,6 @@ class BookingTest {
         ride.setTotal_cost(1000);
         ride.setDriver_id(1111);
         Booking booking = new Booking(30,40,"2022-03-31",55,105,0,ride);
-        //Booking booking=new Booking(100, "test_source", "test_destination", 2, 4, 3, 3, "2022-01-01", 20, 23);
         assertFalse(bookingService.saveRide(booking));
     }
 
@@ -95,17 +93,5 @@ class BookingTest {
         assertTrue(bookingService.getPreviousRidesForCustomer(-1).size()<=0);
     }
 
-    @Test
-    void testpayforRideSucess() {
-        Booking booking=new Booking();
-        booking.setRide(new Ride());
-        booking.setPassenger_id(41);
-        booking.setTimestamp("2022-04-03T16:42");
-        booking.setAmount(1);
-        booking.setSeats_booked(2);
-        booking.setBooking_id(107);
-        booking.setIs_paid(1);
-        booking.setEmail_id("bookingtest@gmail.com");
-        assertEquals(bookingService.payforRide(booking),"Payment successfully done!");
-    }
+
 }

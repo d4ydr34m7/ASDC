@@ -2,44 +2,23 @@ package com.example.vehiclesharing.model;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class Trip {
 
     private int vehicle_id;
-    private String numberPlate;
-    private String phone;
-    private float amount;
-    private int availableSeats;
-    private Ride ride;
+    private int regn_no;
+    private String fname;
+    private int driverID;
+    private int seats;
+    private IRide ride;
 
-//    public Trip(Ride ride, int vehicle_id, String numberPlate, String phone, float amount, int availableSeats) {
-//        this.ride = ride;
-//        this.vehicle_id = vehicle_id;
-//        this.numberPlate = numberPlate;
-//        this.phone = phone;
-//        this.amount = amount;
-//        this.availableSeats = availableSeats;
-//    }
-
-    public Trip(int vehicle_id, String numberPlate, String phone, float amount, int availableSeats, Ride ride) {
+    public Trip(int vehicle_id, int regn_no, String fname, int driverID, int seats, IRide ride) {
         this.vehicle_id = vehicle_id;
-        this.numberPlate = numberPlate;
-        this.phone = phone;
-        this.amount = amount;
-        this.availableSeats = availableSeats;
-        this.ride = ride;
-    }
-    public Trip()
-    {
-
-    }
-
-    public Ride getRide() {
-        return ride;
-    }
-
-    public void setRide(Ride ride) {
-        this.ride = ride;
+        this.regn_no = regn_no;
+        this.fname = fname;
+        this.driverID = driverID;
+        this.seats = seats;
+        this.ride = (IRide) ride;
     }
 
     public int getVehicle_id() {
@@ -50,35 +29,43 @@ public class Trip {
         this.vehicle_id = vehicle_id;
     }
 
-    public String getNumberPlate() {
-        return numberPlate;
+    public int getRegn_no() {
+        return regn_no;
     }
 
-    public void setNumberPlate(String numberPlate) {
-        this.numberPlate = numberPlate;
+    public void setRegn_no(int regn_no) {
+        this.regn_no = regn_no;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getFname() {
+        return fname;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
-    public float getAmount() {
-        return amount;
+    public int getDriverID() {
+        return driverID;
     }
 
-    public void setAmount(float amount) {
-        this.amount = amount;
+    public void setDriverID(int driverID) {
+        this.driverID = driverID;
     }
 
-    public int getAvailableSeats() {
-        return availableSeats;
+    public int getSeats() {
+        return seats;
     }
 
-    public void setAvailableSeats(int availableSeats) {
-        this.availableSeats = availableSeats;
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    public IRide getRide() {
+        return ride;
+    }
+
+    public void setRide(IRide ride) {
+        this.ride = ride;
     }
 }

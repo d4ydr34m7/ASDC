@@ -1,6 +1,7 @@
 package com.example.vehiclesharing.dao;
 
 import com.example.vehiclesharing.model.Booking;
+import com.example.vehiclesharing.model.Driver;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -22,13 +23,16 @@ public class BookingDAOImpl implements BookingDAO{
         if(booking==null||booking.getTimestamp().isEmpty())
             return false;
         try {
-            String query = "INSERT INTO booking(booking_id, timestamp, amount,seats_booked, passenger_id)" + "VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO booking(booking_id, passenger_id, timestamp, amount,seats_booked,is_paid, ride )" + "VALUES (?, ?, ?, ?, ?,?,?)";
             preparedStatement= connection.prepareStatement(query);
             preparedStatement.setInt(1, booking.getBooking_id());
-            preparedStatement.setString(2, booking.getTimestamp());
-            preparedStatement.setFloat(3, booking.getAmount());
-            preparedStatement.setInt(4, booking.getSeats_booked());
-            preparedStatement.setInt(5, booking.getPassenger_id());
+            preparedStatement.setString(3, booking.getTimestamp());
+            preparedStatement.setFloat(4, booking.getAmount());
+            preparedStatement.setInt(5, booking.getSeats_booked());
+            preparedStatement.setInt(2, booking.getPassenger_id());
+            preparedStatement.setInt(6, booking.getIs_paid());
+            preparedStatement.setObject(2, booking.getRide());
+
             int result =preparedStatement.executeUpdate();
 
             if(result>0){
@@ -45,20 +49,24 @@ public class BookingDAOImpl implements BookingDAO{
     public List<Booking> getAllRidesForPassenger(int passenger_id) {
         List<Booking> rides = new ArrayList<>();
         try {
-            String selectBookingQuery = "select * from booking where passenger_id= ?" ;
-            preparedStatement= connection.prepareStatement(selectBookingQuery);
+            String selectBookingQuery = "select * from booking where passenger_id= ?";
+            preparedStatement = connection.prepareStatement(selectBookingQuery);
             preparedStatement.setInt(1, passenger_id);
-            resultSet=preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Booking booking = extractDetails(resultSet);
+                rides.add(booking);
 
-            if(resultSet.next()){
-                return (List<Booking>) extractDetails(resultSet);
+                }
+            return rides;
             }
+        catch(SQLException sqlException){
+                sqlException.printStackTrace();
+            }
+            return null;
         }
-        catch (SQLException sqlException){
-            sqlException.printStackTrace();
-        }
-        return null;
-    }
+
+
     public Booking extractDetails(ResultSet resultSet) throws SQLException {
         Booking booking= new Booking();
         booking.setBooking_id(resultSet.getInt("booking_id"));

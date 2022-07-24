@@ -39,19 +39,29 @@ private String timestamp;
 private float amount;
 private int seats_booked;
 private int is_paid;
-private String email_id;
+
+private int ride_id;
+
+    public int getRide_id() {
+        return ride_id;
+    }
+
+    public void setRide_id(int ride_id) {
+        this.ride_id = ride_id;
+    }
+//private String email_id;
 
     public Booking() {
 
     }
 
-    public String getEmail_id() {
-        return email_id;
-    }
-
-    public void setEmail_id(String email_id) {
-        this.email_id = email_id;
-    }
+//    public String getEmail_id() {
+//        return email_id;
+//    }
+//
+//    public void setEmail_id(String email_id) {
+//        this.email_id = email_id;
+//    }
 
     private Ride ride;
 
@@ -122,6 +132,18 @@ private String email_id;
     }
 
     Logger logger = LoggerFactory.getLogger(com.example.vehiclesharing.model.Booking.class);
+
+    public Booking(int booking_id, int passenger_id, String timestamp, float amount, int seats_booked, int is_paid, int ride_id, Ride ride) {
+        this.booking_id = booking_id;
+        this.passenger_id = passenger_id;
+        this.timestamp = timestamp;
+        this.amount = amount;
+        this.seats_booked = seats_booked;
+        this.is_paid = is_paid;
+        this.ride_id = ride_id;
+        this.ride = ride;
+    }
+
     @Override
 
     public boolean saveRide(Booking booking) {
@@ -129,7 +151,7 @@ private String email_id;
             return false;
         try {
             logger.info("Inside saveRide method of BookingServiceImpl");
-            Ride ride = rideCreationDAO.getRideDetails(booking.getRide().getRide_id());
+            Ride ride = rideCreationDAO.getRideDetails(booking.getRide_id());
             if(ride==null)
                 return false;
             if ((ride.getRemaining_seats()) - booking.getSeats_booked() >= 0) {
@@ -139,23 +161,25 @@ private String email_id;
                 logger.info("There are available seats in the vehicle, attempting to book " + booking.getSeats_booked()
                         + " seats now");
                 boolean isSuccess = bookedRidesDAO.saveRide(booking);
+                System.out.println(isSuccess);
                 if (isSuccess) {
                     logger.info("Successfully booked seats");
-                    String email = (String) passengerDAO.getObject(booking.getEmail_id());
+
                     String message = IAppMessages.RIDE_BOOKED_SUCCESSFULLY + ride.getSource() + "-->" + ride.getDestination();
-                    //notificationService.sendEmail(message, ServiceStringMessages.RIDE_BOOKED,
-                    //email);
+
                     rideCreationDAO.availableRides(ride.getSource(), ride.getDestination());
                     logger.info("Successfully sent notification");
                 }
                 return isSuccess;
             }
+
             logger.info("Seats not available");
             return false;
         } catch (Exception e) {
             logger.info("Unable to book seats", e);
             return false;
         }
+
     }
 
 
@@ -197,7 +221,7 @@ private String email_id;
                 String start_time = ride.getTimestamp().replace("T", " ");
                 String current_time = Utility.getCurrentTime();
                 ride.setTimestamp(Utility.convertDate(ride.getTimestamp()));
-                ride.setRide(rideCreationDAO.getRideDetails(ride.getBooking_id()));
+                ride.setRide(rideCreationDAO.getRideDetails(ride.getRide_id()));
                 Date end = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(start_time);
                 Date current = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(current_time);
                 if (current.compareTo(end) > 0) {

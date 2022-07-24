@@ -40,22 +40,22 @@ public class PassengerDAOImplTest {
 
         @Test
         void testGetPassenegerByCorrectEmail() {
-            assertTrue(passengerDAO.getObject("tesmailt@case.com")!=null);
+            assertTrue(passengerDAO.getObjectByEmail("testmail@case.com")!=null);
         }
 
         @Test
         void testGetPassenegerByWrongEmail() {
-            assertNull(passengerDAO.getObject("doremi.pogiso"));
+            assertNull(passengerDAO.getObjectByEmail("doremi.pogiso"));
         }
 
         @Test
         void testGetPassengerBybadEmail() {
-            assertNull(passengerDAO.getObject("hasdfik@coml"));
+            assertNull(passengerDAO.getObjectByEmail("hasdfik@coml"));
         }
 
         @Test
         void testGetPassengerByEmptyEmail() {
-            assertNull(passengerDAO.getObject(""));
+            assertNull(passengerDAO.getObjectByEmail(""));
         }
 
 

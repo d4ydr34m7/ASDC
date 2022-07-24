@@ -24,12 +24,13 @@ public class BookingDAOImplTest {
     @Test
     void testSaverideCorrect() {
         Booking booking = new Booking();
-        booking.setPassenger_id(4);
+        booking.setPassenger_id(5);
         booking.setTimestamp("2022-03-31T16:42");
         booking.setAmount(1);
-        booking.setSeats_booked(0);
+        booking.setSeats_booked(4);
         booking.setRide(new Ride());
-        booking.setIs_paid(0);
+        booking.setIs_paid(1);
+        //booking.setEmail_id("testbooking@mail.com");
         assertTrue(bookingDAO.saveRide(booking));
     }
 
@@ -44,26 +45,24 @@ public class BookingDAOImplTest {
     void testSaverideException(){
         Booking booking = new Booking();
         booking.setPassenger_id(4);
-        booking.setTimestamp("2022-04-01\'");
+        booking.setTimestamp("2022-04-01klpmkk'");
         booking.setAmount(1);
         booking.setSeats_booked(0);
         booking.setRide(new Ride());
         booking.setIs_paid(0);
+        //booking.setEmail_id("test@mail.com");
         assertFalse(bookingDAO.saveRide(booking));
     }
 
     @Test
     void testgetAllridesforCustomerCorrect() {
-        assertTrue(bookingDAO.getAllRidesForPassenger(4).size()>0);
+        assertTrue(bookingDAO.getAllRidesForPassenger(5).size()>0);
     }
     @Test
     void testgetAllridesforCustomerWrong() {
-        assertFalse(bookingDAO.getAllRidesForPassenger(-1).size()>0);
+        assertFalse(bookingDAO.getAllRidesForPassenger(0).size()>0);
     }
 
-    @Test
-    void testupdateIsPaidCorrect() {
-        assertTrue(bookingDAO.updateIsPaid(109,1));
-    }
+
 
 }

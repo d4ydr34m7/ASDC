@@ -16,7 +16,7 @@ public class Validation {
     @Autowired
     DriverDAO driverDAO;
 
-    public boolean checkIfUserExists(IUser user) {
+    public boolean checkIfUserExists(User user) {
         if(user.getUserType().equals(IAppConstants.PASSENGER)) {
             Passenger passenger = (Passenger) passengerDAO.getObjectByEmail(user.getEmail());
             if (null == passenger) {
@@ -34,7 +34,7 @@ public class Validation {
     }
 
 
-    public boolean validateUser(IUser user) {
+    public boolean validateUser(User user) {
         if(checkIfUserExists(user)) {
             if (user.getUserType().equals(IAppConstants.PASSENGER)) {
                 Passenger passenger = (Passenger) passengerDAO.getObjectByEmail(user.getEmail());

@@ -10,6 +10,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -19,12 +21,13 @@ public class DriverTest {
     @Autowired
     IDriver iDriver;
 
-    @Autowired
-    UserFactory userFactory;
+//    @Autowired
+//    UserFactory userFactory;
 
     @Test
     void testSaveDriverCorrect() {
-        IUser user= userFactory.getInstance(IAppConstants.DRIVER);
+        User user= new User();
+        //IUser user= userFactory.getInstance(IAppConstants.DRIVER);
         user.setFirst_name("test2p");
         user.setLast_name("case");
         user.setEmail("test3@case.com");
@@ -32,8 +35,6 @@ public class DriverTest {
         user.setCredits(220);
         assertTrue(iDriver.saveDriver(user));
     }
-
-
 
 
 
@@ -59,7 +60,7 @@ public class DriverTest {
 
     @Test
     void deleteDriverTest(){
-        assertTrue(iDriver.deleteDriver(3));
+        assertFalse(iDriver.deleteDriver(00));
     }
 
     @Test

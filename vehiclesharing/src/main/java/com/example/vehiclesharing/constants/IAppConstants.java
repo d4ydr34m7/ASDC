@@ -8,8 +8,8 @@ public interface IAppConstants {
     public static final String ADMIN_DASHBOARD="dashboardAdmin";
     public static final String SUCCESS_PAGE="SUCCESS";
     public static final String FAILURE_PAGE="FAILURE";
-    public static final String DRIVER="driver";
-    public static final String PASSENGER="passenger";   //check
+    public static final String DRIVER="Driver";
+    public static final String PASSENGER="Passenger";   //check
     public static final String ADMIN="ADMIN";
     public static final String PASSWORD_RESET_PAGE= "passwordReset";
 

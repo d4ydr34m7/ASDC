@@ -21,6 +21,7 @@ public class Driver implements IDriver{
     private String driver_email;
     private String driver_password;
     private float driver_credits;
+    private String userType;
 
 
     @Autowired
@@ -86,13 +87,15 @@ public class Driver implements IDriver{
 
     @Override
     public String getUserType() {
-        return null;
+        return userType;
     }
 
     @Override
     public void setUserType(String userType) {
+        this.userType=userType;
 
     }
+
 
     public float getCredits() {
         return driver_credits;
@@ -104,7 +107,7 @@ public class Driver implements IDriver{
 
 
     @Override
-    public boolean saveDriver(IUser user) {
+    public boolean saveDriver(User user) {
         Driver driver=new Driver(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getPassword());
         boolean isDriverSaved=driverDAO.save(driver);
         if(isDriverSaved)
@@ -174,11 +177,11 @@ public class Driver implements IDriver{
         return isUpdated;
     }
 
-    @Override
-    public Driver convertObject(){
-        Driver driver = new Driver(getFirst_name(), getLast_name(), getEmail(), getPassword());
-        return driver;
-    }
+//    @Override
+//    public Driver convertObject(){
+//        Driver driver = new Driver(getFirst_name(), getLast_name(), getEmail(), getPassword());
+//        return driver;
+//    }
 
     @Override
     public boolean resetPassword(String email, String newPassword) {

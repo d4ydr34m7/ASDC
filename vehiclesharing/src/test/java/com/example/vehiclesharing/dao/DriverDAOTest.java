@@ -21,18 +21,20 @@ public class DriverDAOTest {
     @Autowired
     IDriver idriver;
 
-    @Autowired
-    UserFactory userFactory;
+    //@Autowired
+    //UserFactory userFactory;
 
     @Test
     void testSaveDriverCorrect() {
-        IUser user= userFactory.getInstance(IAppConstants.DRIVER);
+        User user= new User();
+        //IUser user= userFactory.getInstance(IAppConstants.DRIVER);
         user.setFirst_name("test2");
         user.setLast_name("case");
         user.setEmail("test@case.com");
         user.setPassword("1234563");
         user.setCredits(220);
-        assertTrue(driverDAO.save(user));
+        Driver d= new Driver(user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword());
+        assertTrue(driverDAO.save(d));
     }
 
     @Test
@@ -47,7 +49,7 @@ public class DriverDAOTest {
 
     @Test
     void testExtractDriverCorrectById(){
-        assertNotNull(driverDAO.getObjectById(1));
+        assertNotNull(driverDAO.getObjectById(4));
     }
 
     @Test
@@ -64,7 +66,7 @@ public class DriverDAOTest {
 
     @Test
     void removeByIdCorrect(){
-        assertTrue(driverDAO.removeObject(1));
+        assertTrue(driverDAO.removeObject(6));
 
     }
 

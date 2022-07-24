@@ -3,7 +3,7 @@ package com.example.vehiclesharing.model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class User implements IUser{
+public class User{
 
     public User() {
     }

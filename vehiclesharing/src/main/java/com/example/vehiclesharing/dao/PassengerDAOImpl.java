@@ -96,7 +96,7 @@ public class PassengerDAOImpl implements PassengerDAO{
             return false;
         }
         try{
-            query= "update passenger set "+columnName+"="+value+"where passenger_email='"+queryParam+"'";
+            query= "update passenger set "+columnName+"="+value+" where passenger_email='"+queryParam+"'";
             preparedStatement= connection.prepareStatement(query);
             int i= preparedStatement.executeUpdate();
             preparedStatement.close();
@@ -188,6 +188,7 @@ public class PassengerDAOImpl implements PassengerDAO{
         passenger.setFirst_name(resultSet.getString("passenger_fname"));
         passenger.setLast_name(resultSet.getString("passenger_lname"));
         passenger.setEmail(resultSet.getString("passenger_email"));
+        passenger.setCredits(resultSet.getFloat("passenger_credits"));
         return passenger;
     }
 

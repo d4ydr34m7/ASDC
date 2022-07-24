@@ -1,4 +1,5 @@
 package com.example.vehiclesharing.dao;
+
 import com.example.vehiclesharing.model.Driver;
 import com.example.vehiclesharing.model.IPassenger;
 import com.example.vehiclesharing.model.Passenger;
@@ -33,50 +34,87 @@ public class PassengerDAOTest {
         user.setPassword("123456");
         user.setCredits(220);
         user.setUserType("PASSENGER");
-        //Passenger p= iPassenger.convertObject();
-        Passenger p=new Passenger(user.getFirst_name(), user.getLast_name(), user.getEmail(),user.getPassword());
+        // Passenger p= iPassenger.convertObject();
+        Passenger p = new Passenger(user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword());
         assertTrue(passengerDAO.save(p));
     }
 
     @Test
-    void testExtractPassengerCorrectByEmail(){
+    void testSavePassengerInCorrect() {
+        User user = new User();
+        // Passenger p= iPassenger.convertObject();
+        Passenger p = new Passenger(user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword());
+        assertFalse(passengerDAO.save(p));
+    }
+
+    @Test
+    void testSavePassengerNull() {
+        assertFalse(passengerDAO.save(null));
+    }
+
+    @Test
+    void testExtractPassengerCorrectByEmail() {
         assertNotNull(passengerDAO.getObjectByEmail("pass@case.com"));
     }
 
     @Test
-    void testExtractPassengerByEmailIncorrect(){
+    void testExtractPassengerByEmailIncorrect() {
         assertNull(passengerDAO.getObjectByEmail("test2@case.com"));
     }
 
     @Test
-    void testExtractPassengerCorrectById(){
+    void testExtractPassengerByEmailNull() {
+        assertNull(passengerDAO.getObjectByEmail(null));
+    }
+
+    @Test
+    void testExtractPassengerByEmailEmpty() {
+        assertNull(passengerDAO.getObjectByEmail(""));
+    }
+
+    @Test
+    void testExtractPassengerCorrectById() {
         assertNotNull(passengerDAO.getObjectById(1));
     }
 
     @Test
-    void testExtractPassengerByIdIncorrect(){
+    void testExtractPassengerByIdIncorrect() {
         assertNull(passengerDAO.getObjectById(100));
     }
 
     @Test
-    void testUpdatePassengerCorrect(){
+    void testUpdatePassengerCorrect() {
         assertTrue(passengerDAO.updateObject("pass@case.com", "passenger_credits", 50));
 
     }
 
     @Test
-    void removeByIdCorrect(){
+    void testUpdatePassengerInCorrect() {
+        assertFalse(passengerDAO.updateObject("pass@case.com", "passenger_cred", 50));
+
+    }
+
+    @Test
+    void testUpdatePassengerNull() {
+        assertFalse(passengerDAO.updateObject(null, "passenger_credits", 50));
+
+    }
+
+    @Test
+    void testUpdatePassengerEmpty() {
+        assertFalse(passengerDAO.updateObject("", "passenger_credits", 50));
+
+    }
+
+    @Test
+    void removeByIdCorrect() {
         assertTrue(passengerDAO.removeObject(2));
 
     }
 
     @Test
-    void getObjectListCorrect(){
-        assertTrue(passengerDAO.getObjectsList()!=null);
+    void getObjectListCorrect() {
+        assertTrue(passengerDAO.getObjectsList() != null);
     }
 
-
 }
-
-
-

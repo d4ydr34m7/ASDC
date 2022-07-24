@@ -52,7 +52,7 @@
 
         <!-- Registration Form -->
         <div class="col-md-4 col-lg-4" style="margin-top: -2%;">
-            <form th:action="@{/login}" th:object="${user}" method="post" enctype="multipart/form-data">
+            <form th:action="@{/signup}" th:object="${user}" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <h2 class="d-flex justify-content-center">Register</h2>
                     <hr style="width: 94%;">
@@ -83,10 +83,10 @@
                                 <i class="fa fa-user-circle text-muted"></i>
                             </span>
                         </div>
-                        <select class="form-control bg-white border-left-0 border-md text-muted" name="role" required>
+                        <select class="form-control bg-white border-left-0 border-md text-muted" name="userType" required>
                             <option disabled="" selected="" class="text-muted form-control">--- Select Role ---</option>
-                            <option value="driver" class="form-control">Driver</option>
-                            <option value="passenger" class="form-control">Passenger</option>
+                            <option value="Driver" class="form-control">Driver</option>
+                            <option value="Passenger" class="form-control">Passenger</option>
                         </select>
                     </div>
                     <!-- Email Address -->

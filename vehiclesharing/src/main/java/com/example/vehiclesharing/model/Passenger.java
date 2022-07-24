@@ -20,15 +20,7 @@ public class Passenger implements IPassenger{
     private String passenger_email;
     private String passenger_password;
     private float passenger_credits;
-
-    public float getPassenger_credits() {
-        return passenger_credits;
-    }
-
-    public void setPassenger_credits(float passenger_credits) {
-        this.passenger_credits = passenger_credits;
-    }
-
+    private String userType;
 
     //private String passenger_contact;
 
@@ -76,12 +68,12 @@ public class Passenger implements IPassenger{
         this.passenger_lname = passenger_lname;
     }
 
-    @Override
+
     public void setCredits(float credits) {
         this.passenger_credits=credits;
     }
 
-    @Override
+
     public float getCredits() {
         return passenger_credits;
     }
@@ -104,17 +96,21 @@ public class Passenger implements IPassenger{
 
     @Override
     public String getUserType() {
-        return null;
+        return userType;
     }
 
     @Override
     public void setUserType(String userType) {
+        this.userType=userType;
 
     }
 
 
     @Override
-    public boolean savePassenger(IUser user) {
+    public boolean savePassenger(User user) {
+        if(user==null) {
+            return false;
+        }
         Passenger passenger=new Passenger(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getPassword());
         boolean isPassengerSaved= passengerDAO.save(passenger);
         if(isPassengerSaved)
@@ -159,25 +155,29 @@ public class Passenger implements IPassenger{
     @Override
     public boolean addCredits(String passenger_email, String columnName, float value) {
         Passenger passenger=getPassengerByEmail(passenger_email);
-        float passenger_credits= passenger.getPassenger_credits()+value;
+        if(passenger==null){
+            return false;
+        }
+        float passenger_credits= passenger.getCredits()+value;
         boolean isUpdated= passengerDAO.updateObject(passenger_email, IAppConstants.PASSENGER_CREDITS,passenger_credits);
         return isUpdated;    }
 
     @Override
     public boolean debitCreditsFromPassenger(String passenger_email, String columnName, float value) {
         Passenger passenger=getPassengerByEmail(passenger_email);
-        if(passenger.getPassenger_credits()<value)
+        if(passenger==null || passenger.getCredits()<value)
         {
             return false;
         }
-        float passenger_credits= passenger.getPassenger_credits()+value;
+        float passenger_credits= passenger.getCredits()-value;
         boolean isUpdated= passengerDAO.updateObject(passenger_email, IAppConstants.PASSENGER_CREDITS,passenger_credits);
+        System.out.println(isUpdated);
         return isUpdated;
     }
 
     @Override
     public boolean resetPassword(String email, String newPassword) {
-        if (email == null) {
+        if (email == null ||newPassword==null|| email.isEmpty()|| newPassword.isEmpty()) {
             return false;
         }
         else{
@@ -187,12 +187,12 @@ public class Passenger implements IPassenger{
 
     }
 
-    @Override
-    public Passenger convertObject(){
-        Passenger passenger= new Passenger(this.passenger_fname, this.passenger_lname, this.passenger_email, this.passenger_password);
-        return passenger;
-    }
-
+//    @Override
+//    public Passenger convertObject(){
+//        Passenger passenger= new Passenger(this.passenger_fname, this.passenger_lname, this.passenger_email, this.passenger_password);
+//        return passenger;
+//    }
+//
 
 
 

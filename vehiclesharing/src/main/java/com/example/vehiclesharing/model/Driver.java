@@ -21,6 +21,7 @@ public class Driver implements IDriver{
     private String driver_email;
     private String driver_password;
     private float driver_credits;
+    private String userType;
 
 
     @Autowired
@@ -44,51 +45,63 @@ public class Driver implements IDriver{
     }
 
 
-    public int getDriver_id() {
+    public int getId() {
         return driver_id;
     }
 
-    public void setDriver_id(int driver_id) {
+    public void setId(int driver_id) {
         this.driver_id = driver_id;
     }
 
-    public String getDriver_fname() {
+    public String getFirst_name() {
         return driver_fname;
     }
 
-    public void setDriver_fname(String driver_fname) {
+    public void setFirst_name(String driver_fname) {
         this.driver_fname = driver_fname;
     }
 
-    public String getDriver_lname() {
+    public String getLast_name() {
         return driver_lname;
     }
 
-    public void setDriver_lname(String driver_lname) {
+    public void setLast_name(String driver_lname) {
         this.driver_lname = driver_lname;
     }
 
-    public String getDriver_email() {
+    public String getEmail() {
         return driver_email;
     }
 
-    public void setDriver_email(String driver_email) {
+    public void setEmail(String driver_email) {
         this.driver_email = driver_email;
     }
 
-    public String getDriver_password() {
+    public String getPassword() {
         return driver_password;
     }
 
-    public void setDriver_password(String driver_password) {
+    public void setPassword(String driver_password) {
         this.driver_password = driver_password;
     }
 
-    public float getDriver_credits() {
+    @Override
+    public String getUserType() {
+        return userType;
+    }
+
+    @Override
+    public void setUserType(String userType) {
+        this.userType=userType;
+
+    }
+
+
+    public float getCredits() {
         return driver_credits;
     }
 
-    public void setDriver_credits(float driver_credits) {
+    public void setCredits(float driver_credits) {
         this.driver_credits = driver_credits;
     }
 
@@ -150,7 +163,7 @@ public class Driver implements IDriver{
     @Override
     public boolean addCredits(String driver_email, String columnName, float value) {
         Driver driver=getDriverByEmail(driver_email);
-        float driver_credits= driver.getDriver_credits()+value;
+        float driver_credits= driver.getCredits()+value;
         boolean isUpdated= driverDAO.updateObject(driver_email, IAppConstants.DRIVER_CREDITS,driver_credits);
         return isUpdated;
     }
@@ -159,16 +172,16 @@ public class Driver implements IDriver{
     @Override
     public boolean depositCreditsToDriver(String driver_email, String columnName, float value) {
         Driver driver=getDriverByEmail(driver_email);
-        float driver_credits= driver.getDriver_credits()+value;
+        float driver_credits= driver.getCredits()+value;
         boolean isUpdated= driverDAO.updateObject(driver_email, IAppConstants.DRIVER_CREDITS,driver_credits);
         return isUpdated;
     }
 
-    @Override
-    public Driver convertObject(){
-        Driver driver = new Driver(getDriver_fname(), getDriver_lname(), getDriver_email(), getDriver_password());
-        return driver;
-    }
+//    @Override
+//    public Driver convertObject(){
+//        Driver driver = new Driver(getFirst_name(), getLast_name(), getEmail(), getPassword());
+//        return driver;
+//    }
 
     @Override
     public boolean resetPassword(String email, String newPassword) {

@@ -38,14 +38,14 @@ public class Validation {
         if(checkIfUserExists(user)) {
             if (user.getUserType().equals(IAppConstants.PASSENGER)) {
                 Passenger passenger = (Passenger) passengerDAO.getObjectByEmail(user.getEmail());
-                if(passenger.getPassenger_password().equals(user.getPassword())){
+                if(passenger.getPassword().equals(user.getPassword())){
                     return true;
                 }
             }
             else if(user.getUserType().equals(IAppConstants.DRIVER))
             {
                 Driver driver=(Driver) driverDAO.getObjectByEmail(user.getEmail());
-                if(driver.getDriver_password().equals(user.getPassword()))
+                if(driver.getPassword().equals(user.getPassword()))
                 {
                     return true;
                 }

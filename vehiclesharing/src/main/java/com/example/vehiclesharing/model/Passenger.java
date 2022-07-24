@@ -20,15 +20,7 @@ public class Passenger implements IPassenger{
     private String passenger_email;
     private String passenger_password;
     private float passenger_credits;
-
-    public float getPassenger_credits() {
-        return passenger_credits;
-    }
-
-    public void setPassenger_credits(float passenger_credits) {
-        this.passenger_credits = passenger_credits;
-    }
-
+    private String userType;
 
     //private String passenger_contact;
 
@@ -52,49 +44,73 @@ public class Passenger implements IPassenger{
     private Notification notification;
 
 
-    public int getPassenger_id() {
+    public int getId() {
         return passenger_id;
     }
 
-    public void setPassenger_id(int passenger_id) {
+    public void setId(int passenger_id) {
         this.passenger_id = passenger_id;
     }
 
-    public String getPassenger_fname() {
+    public String getFirst_name() {
         return passenger_fname;
     }
 
-    public void setPassenger_fname(String passenger_fname) {
+    public void setFirst_name(String passenger_fname) {
         this.passenger_fname = passenger_fname;
     }
 
-    public String getPassenger_lname() {
+    public String getLast_name() {
         return passenger_lname;
     }
 
-    public void setPassenger_lname(String passenger_lname) {
+    public void setLast_name(String passenger_lname) {
         this.passenger_lname = passenger_lname;
     }
 
-    public String getPassenger_email() {
+
+    public void setCredits(float credits) {
+        this.passenger_credits=credits;
+    }
+
+
+    public float getCredits() {
+        return passenger_credits;
+    }
+
+    public String getEmail() {
         return passenger_email;
     }
 
-    public void setPassenger_email(String passenger_email) {
+    public void setEmail(String passenger_email) {
         this.passenger_email = passenger_email;
     }
 
-    public String getPassenger_password() {
+    public String getPassword() {
         return passenger_password;
     }
 
-    public void setPassenger_password(String passenger_password) {
+    public void setPassword(String passenger_password) {
         this.passenger_password = passenger_password;
+    }
+
+    @Override
+    public String getUserType() {
+        return userType;
+    }
+
+    @Override
+    public void setUserType(String userType) {
+        this.userType=userType;
+
     }
 
 
     @Override
     public boolean savePassenger(User user) {
+        if(user==null) {
+            return false;
+        }
         Passenger passenger=new Passenger(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getPassword());
         boolean isPassengerSaved= passengerDAO.save(passenger);
         if(isPassengerSaved)
@@ -139,25 +155,29 @@ public class Passenger implements IPassenger{
     @Override
     public boolean addCredits(String passenger_email, String columnName, float value) {
         Passenger passenger=getPassengerByEmail(passenger_email);
-        float passenger_credits= passenger.getPassenger_credits()+value;
+        if(passenger==null){
+            return false;
+        }
+        float passenger_credits= passenger.getCredits()+value;
         boolean isUpdated= passengerDAO.updateObject(passenger_email, IAppConstants.PASSENGER_CREDITS,passenger_credits);
         return isUpdated;    }
 
     @Override
     public boolean debitCreditsFromPassenger(String passenger_email, String columnName, float value) {
         Passenger passenger=getPassengerByEmail(passenger_email);
-        if(passenger.getPassenger_credits()<value)
+        if(passenger==null || passenger.getCredits()<value)
         {
             return false;
         }
-        float passenger_credits= passenger.getPassenger_credits()+value;
+        float passenger_credits= passenger.getCredits()-value;
         boolean isUpdated= passengerDAO.updateObject(passenger_email, IAppConstants.PASSENGER_CREDITS,passenger_credits);
+        System.out.println(isUpdated);
         return isUpdated;
     }
 
     @Override
     public boolean resetPassword(String email, String newPassword) {
-        if (email == null) {
+        if (email == null ||newPassword==null|| email.isEmpty()|| newPassword.isEmpty()) {
             return false;
         }
         else{
@@ -167,12 +187,12 @@ public class Passenger implements IPassenger{
 
     }
 
-    @Override
-    public Passenger convertObject(){
-        Passenger passenger= new Passenger(this.passenger_fname, this.passenger_lname, this.passenger_email, this.passenger_password);
-        return passenger;
-    }
-
+//    @Override
+//    public Passenger convertObject(){
+//        Passenger passenger= new Passenger(this.passenger_fname, this.passenger_lname, this.passenger_email, this.passenger_password);
+//        return passenger;
+//    }
+//
 
 
 

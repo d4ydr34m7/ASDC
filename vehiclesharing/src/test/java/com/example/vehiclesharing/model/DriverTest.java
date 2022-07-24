@@ -1,5 +1,6 @@
 package com.example.vehiclesharing.model;
 
+import com.example.vehiclesharing.constants.IAppConstants;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,19 +21,22 @@ public class DriverTest {
     @Autowired
     IDriver iDriver;
 
+//    @Autowired
+//    UserFactory userFactory;
+
     @Test
     void testSaveDriverCorrect() {
-        User user = new User();
+        User user= new User();
+        //IUser user= userFactory.getInstance(IAppConstants.DRIVER);
         user.setFirst_name("test2p");
         user.setLast_name("case");
-        user.setEmail("test@case.com");
+        user.setEmail("test3@case.com");
         user.setPassword("1234563");
         user.setCredits(220);
-        user.setUserType("DRIVER");
-        //Driver d= idriver.convertObject();
-        //Driver d = new Driver(user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword());
         assertTrue(iDriver.saveDriver(user));
     }
+
+
 
     @Test
     void getDriverByEmailCorrect(){
@@ -54,7 +60,7 @@ public class DriverTest {
 
     @Test
     void deleteDriverTest(){
-        assertTrue(iDriver.deleteDriver(3));
+        assertFalse(iDriver.deleteDriver(00));
     }
 
     @Test

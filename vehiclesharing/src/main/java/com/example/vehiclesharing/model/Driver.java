@@ -85,12 +85,12 @@ public class Driver implements IDriver{
         this.driver_password = driver_password;
     }
 
-    @Override
+
     public String getUserType() {
         return userType;
     }
 
-    @Override
+
     public void setUserType(String userType) {
         this.userType=userType;
 

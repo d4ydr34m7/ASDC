@@ -96,11 +96,11 @@
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <select required class="form-control bg-white border-left-0 border-md text-muted" name="role">
+                        <select required class="form-control bg-white border-left-0 border-md text-muted" name="userType">
                             <option disabled="" selected="" class="text-muted">--- Select Role ---</option>
-                            <option value="Owner" class="text-muted">Owner</option>
-                            <option value="Passenger" class="text-muted">Passenger</option>
-                            <option value="Admin" class="text-muted">Admin</option>
+                            <option value="Driver" id="Driver" class="text-muted">Driver</option>
+                            <option value="Passenger" id="Passenger" class="text-muted">Passenger</option>
+                            <option value="Admin" id="Admin" class="text-muted">Admin</option>
                         </select>
                     </div>
                     <p style="margin-top: -20px;"><span style="float: right;"> <a th:href="@{forgotPassword}" class="forgot-password-link">Forgot password?</a></span></p>

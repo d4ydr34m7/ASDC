@@ -37,6 +37,10 @@ public class AuthController {
         return IAppConstants.REGISTER_PAGE;
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return IAppConstants.LOGIN_PAGE;
+    }
 
     @PostMapping("/signup")
     public String signupUser(@ModelAttribute User user, Model model){
@@ -68,15 +72,15 @@ public class AuthController {
     }
 
 
-    @PostMapping("/login")
+    @PostMapping("/dashboard")
     public String login(User user, Model model){
         boolean isValidUser= validation.validateUser(user);
         if(isValidUser)
         {
-            if(user.getUserType()==IAppConstants.PASSENGER){
+            if(user.getUserType().equals(IAppConstants.PASSENGER)){
                 return IAppConstants.PASSENGER_DASHBOARD;
             }
-            else if(user.getUserType()==IAppConstants.DRIVER){
+            else if(user.getUserType().equals(IAppConstants.DRIVER)){
                 return IAppConstants.DRIVER_DASHBOARD;
             }
             else{

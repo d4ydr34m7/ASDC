@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.example.vehiclesharing.constants.IAppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,7 @@ import com.example.vehiclesharing.model.IRide;
 import com.example.vehiclesharing.model.IVehicle;
 import com.example.vehiclesharing.model.Ride;
 
+@Controller
 public class DriverController {
 	@Autowired
 	Driver driver;
@@ -62,13 +65,23 @@ public class DriverController {
 		return "dashboardOwner.html";
 	}
 
-	@RequestMapping("/ride-history")
+	@RequestMapping("/rideHistory")
 	public String showRideHistory(HttpSession session, Model model) {
-		return "ride-history";
+		return IAppConstants.DRIVER_RIDE_HISTORY ;
 	}
 
-	@RequestMapping("/dashboard_owner")
-	public String showOwnerDashboard(HttpSession session, Model model) {
-		return "dashboardOwner.html";
+	@RequestMapping("/createRide")
+	public String showCreateRide(HttpSession session, Model model) {
+		return IAppConstants.DRIVER_CREATE_RIDE ;
+	}
+
+	@RequestMapping("/vehicleDetails")
+	public String showVehicleDetails(HttpSession session, Model model) {
+		return IAppConstants.DRIVER_VEHICLE_DETAILS ;
+	}
+
+	@RequestMapping("/addVehicle")
+	public String showAddVehicle(HttpSession session, Model model) {
+		return IAppConstants.DRIVER_ADD_VEHICLE ;
 	}
 }

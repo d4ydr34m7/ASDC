@@ -170,7 +170,7 @@ public class Driver implements IDriver{
 
 
     @Override
-    public boolean addCredits(String driver_email, String columnName, float value) {
+    public boolean addCredits(String driver_email, float value) {
         Driver driver=getDriverByEmail(driver_email);
         float driver_credits= driver.getCredits()+value;
         boolean isUpdated= driverDAO.updateObject(driver_email, IAppConstants.DRIVER_CREDITS,driver_credits);
@@ -179,7 +179,7 @@ public class Driver implements IDriver{
 
 
     @Override
-    public boolean depositCreditsToDriver(String driver_email, String columnName, float value) {
+    public boolean depositCreditsToDriver(String driver_email, float value) {
         Driver driver=getDriverByEmail(driver_email);
         float driver_credits= driver.getCredits()+value;
         boolean isUpdated= driverDAO.updateObject(driver_email, IAppConstants.DRIVER_CREDITS,driver_credits);

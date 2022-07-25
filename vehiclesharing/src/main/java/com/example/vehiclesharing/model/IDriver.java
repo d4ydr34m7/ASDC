@@ -9,7 +9,7 @@ public interface IDriver extends IUser{
     public Driver getDriverById(int id);
     public List<Driver> viewDriverDetails();
     public boolean deleteDriver(int driver_id);
-    public boolean addCredits(String driver_email, String columnName, float value);
-    public boolean depositCreditsToDriver(String driver_email, String columnName, float value);
+    public boolean addCredits(String driver_email,  float value);
+    public boolean depositCreditsToDriver(String driver_email, float value);
     public boolean resetPassword(String email, String newPassword);
 }

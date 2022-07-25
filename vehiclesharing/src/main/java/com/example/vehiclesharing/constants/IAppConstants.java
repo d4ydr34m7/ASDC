@@ -11,7 +11,10 @@ public interface IAppConstants {
     public static final String DRIVER="Driver";
     public static final String PASSENGER="Passenger";   //check
     public static final String ADMIN="Admin";
-    public static final String PASSWORD_RESET_PAGE= "passwordReset";
+    public static final String PASSWORD_RESET_PAGE= "forgetPassEmail";
+    public static final String RESET_PASSWORD= "forgetPassword";
+
+
 
     public static final String EMAIL_SENDER="vehiclesharingapp@gmail.com";
     public static final String APP_RUN_PATH= "vehiclesharing/src/main/resources/application.properties";

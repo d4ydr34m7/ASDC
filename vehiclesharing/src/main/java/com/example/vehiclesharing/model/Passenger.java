@@ -164,7 +164,7 @@ public class Passenger implements IPassenger{
         return isUpdated;    }
 
     @Override
-    public boolean debitCreditsFromPassenger(String passenger_email, String columnName, float value) {
+    public boolean debitCreditsFromPassenger(String passenger_email, float value) {
         Passenger passenger=getPassengerByEmail(passenger_email);
         if(passenger==null || passenger.getCredits()<value)
         {

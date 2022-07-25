@@ -9,7 +9,7 @@ public interface IPassenger extends IUser{
     public List<Passenger> viewPassengerDetails();
     public boolean deletePassenger(int passenger_id);
     public boolean addCredits(String passenger_email, String columnName, float value);
-    public boolean debitCreditsFromPassenger(String passenger_email, String columnName, float value);
+    public boolean debitCreditsFromPassenger(String passenger_email, float value);
     public boolean resetPassword(String email, String newPassword);
 
 }

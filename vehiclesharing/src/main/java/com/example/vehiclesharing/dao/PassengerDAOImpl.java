@@ -189,6 +189,7 @@ public class PassengerDAOImpl implements PassengerDAO{
         passenger.setLast_name(resultSet.getString("passenger_lname"));
         passenger.setEmail(resultSet.getString("passenger_email"));
         passenger.setCredits(resultSet.getFloat("passenger_credits"));
+        passenger.setPassword(resultSet.getString("passenger_password"));
         return passenger;
     }
 

@@ -12,6 +12,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Registration</title>
+    <script>
+        function matchPassword() {
+          var pw1 = document.getElementById("password");
+          var pw2 = document.getElementById("cpassword");
+          if(pw1 != pw2)
+          {
+            alert("Passwords did not match");
+          }
+          else {
+            return true;
+          }
+        }
+    </script>
     <style type="text/css">
         .error {
             color: red;
@@ -52,7 +65,7 @@
 
         <!-- Registration Form -->
         <div class="col-md-4 col-lg-4" style="margin-top: -2%;">
-            <form th:action="@{/signup}" th:object="${user}" method="post" enctype="multipart/form-data">
+            <form th:action="@{/signup}" th:object="${userType}" onsubmit="return matchPassword()" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <h2 class="d-flex justify-content-center">Register</h2>
                     <hr style="width: 94%;">
@@ -83,10 +96,10 @@
                                 <i class="fa fa-user-circle text-muted"></i>
                             </span>
                         </div>
-                        <select class="form-control bg-white border-left-0 border-md text-muted" name="userType" required>
+                        <select class="form-control bg-white border-left-0 border-md text-muted" name="userType" id="userType" required>
                             <option disabled="" selected="" class="text-muted form-control">--- Select Role ---</option>
-                            <option value="Driver" class="form-control">Driver</option>
-                            <option value="Passenger" class="form-control">Passenger</option>
+                            <option value="Driver" id="Driver" class="form-control">Driver</option>
+                            <option value="Passenger" id="Passenger" class="form-control">Passenger</option>
                         </select>
                     </div>
                     <!-- Email Address -->

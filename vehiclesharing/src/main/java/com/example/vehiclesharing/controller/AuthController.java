@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class AuthController {
@@ -26,21 +28,34 @@ public class AuthController {
     @Autowired
     Validation validation;
 
+    Logger logger = LoggerFactory.getLogger(AuthController.class);
+
 
     @RequestMapping("/")
     public String mainPage(){
         return IAppConstants.LOGIN_PAGE;
     }
 
-    @GetMapping("/signup")
+    @RequestMapping("/signup")
     public String signupUser() {
         return IAppConstants.REGISTER_PAGE;
     }
 
+    @RequestMapping("/login")
+    public String login(HttpSession httpSession) {
+        System.out.println("********************HII***************************************");
+        System.out.println(httpSession.getAttribute("userType"));
+        //clear here
+        httpSession.invalidate();
+        return IAppConstants.LOGIN_PAGE;
+    }
 
     @PostMapping("/signup")
-    public String signupUser(@ModelAttribute User user, Model model){
+    public String signupUser(User user, Model model){
+        //user.getEmail();
         boolean userExists= validation.checkIfUserExists(user);
+        //logger.debug(user.getUserType());
+        //logger.info("hi");
         boolean isSuccess;
         if(userExists==false) {
             if (user.getUserType().equalsIgnoreCase(IAppConstants.PASSENGER)) {
@@ -68,40 +83,65 @@ public class AuthController {
     }
 
 
-    @PostMapping("/login")
-    public String login(User user, Model model){
+    @PostMapping("/dashboard")
+    public String login(User user, Model model, HttpSession httpSession){
         boolean isValidUser= validation.validateUser(user);
         if(isValidUser)
         {
-            if(user.getUserType()==IAppConstants.PASSENGER){
+            //httpSession.setAttribute("userType", user);
+            if(user.getUserType().equals(IAppConstants.PASSENGER)){
+                Passenger passenger= iPassenger.getPassengerByEmail(user.getEmail());
+                httpSession.setAttribute("userType",passenger);
                 return IAppConstants.PASSENGER_DASHBOARD;
             }
-            else if(user.getUserType()==IAppConstants.DRIVER){
+            else if(user.getUserType().equals(IAppConstants.DRIVER)){
+                Driver driver= iDriver.getDriverByEmail(user.getEmail());
+                httpSession.setAttribute("userType", driver);
                 return IAppConstants.DRIVER_DASHBOARD;
             }
-            else{
+            else if(user.getUserType().equals(IAppConstants.ADMIN)){
+                List<Driver> listDriver= iDriver.viewDriverDetails();
+                httpSession.setAttribute("driverDetails",listDriver);
+                List<Passenger> listPassenger= iPassenger.viewPassengerDetails();
+                httpSession.setAttribute("passengerDetails",listDriver);
                 return IAppConstants.ADMIN_DASHBOARD;
             }
         }
-            return IAppMessages.INVALID_CREDENTIALS;
+            return IAppMessages.INVALID_CREDENTIALS;      //check page
     }
 
-//    @PostMapping("/forgotpassword")      //will need to ask user type
-//    public String forgotPassword(User user){
-//        boolean isUserExist= validation.checkIfUserExists(user);
-//        if(isUserExist){
-//            if(user.getUserType()==IAppConstants.PASSENGER){
-//                iPassenger.resetPassword(user.getEmail(), user)
-//                        return
-//            }
-//            else if(user.getUserType()==IAppConstants.DRIVER){
-//                iDriver.resetPassword(user.getEmail(), )
-//                return IAppConstants.DRIVER_DASHBOARD;
-//            }
-//        }
-//        return IAppMessages.NO_USER;
-//
-//    }
+    @RequestMapping("/forgetPassEmail")
+    public String forgotPassword() {
+        return IAppConstants.PASSWORD_RESET_PAGE;
+    }
+
+
+    @PostMapping("/forgetPassword")
+    public String forgotPassword(User user, HttpSession httpSession){
+        boolean isUserExist= validation.checkIfUserExists(user);
+        if(isUserExist){
+            httpSession.setAttribute("userPass",user.getUserType());
+            httpSession.setAttribute("userMail", user.getEmail());
+            return IAppConstants.RESET_PASSWORD;
+        }
+        return IAppMessages.NO_USER;
+
+    }
+
+    @PostMapping("/login")
+    public String setNewPassword(User user, HttpSession httpSession){
+        if(httpSession.getAttribute("userPass").toString().equals(IAppConstants.PASSENGER)){
+            iPassenger.resetPassword(httpSession.getAttribute("userMail").toString(), user.getPassword());
+
+        }
+       if(httpSession.getAttribute("userPass").toString().equals(IAppConstants.DRIVER)){
+            iDriver.resetPassword(httpSession.getAttribute("userMail").toString(), user.getPassword());
+
+        }
+        return IAppConstants.LOGIN_PAGE;
+    }
+
+
 
 
 }

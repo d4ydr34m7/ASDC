@@ -65,7 +65,7 @@ public class DriverTest {
 
     @Test
     void addCreditsTest(){
-        assertTrue(iDriver.addCredits("test@case.com", "driver_credits", 50));
+        assertTrue(iDriver.addCredits("test@case.com", 50));
     }
 
     @Test

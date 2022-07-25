@@ -180,6 +180,7 @@ public class DriverDAOImpl implements DriverDAO{
         driver.setLast_name(resultSet.getString("driver_lname"));
         driver.setEmail(resultSet.getString("driver_email"));
         driver.setCredits(resultSet.getFloat("driver_credits"));
+        driver.setPassword(resultSet.getString("driver_password"));
         return driver;
     }
 }

@@ -21,26 +21,21 @@ public class PassengerTest {
     @Autowired
     IPassenger iPassenger;
 
-//    @Autowired
-//    UserFactory userFactory;
 
     @Test
     void testSavePassengerCorrect() {
         User user= new User();
-        //User user = userFactory.getInstance(IAppConstants.PASSENGER);
-        user.setFirst_name("test2p");
+        user.setFirst_name("test");
         user.setLast_name("case");
         user.setEmail("test3@case.com");
         user.setPassword("1234563");
         user.setCredits(220);
-       // Passenger p = new Passenger(user.getFirst_name(), user.getLast_name(),  user.getEmail(), user.getPassword());
         assertTrue(iPassenger.savePassenger(user));
     }
 
     @Test
     void testSavePassengerIInCorrect() {
         User user= new User();
-        //IUser user = userFactory.getInstance(IAppConstants.PASSENGER);
         assertTrue(iPassenger.savePassenger(user));
     }
 
@@ -116,16 +111,16 @@ public class PassengerTest {
 
     @Test
     void testdebitCreditsFromPassenger() {
-        assertTrue(iPassenger.debitCreditsFromPassenger("pass@case.com", "passenger_credits", 10));
+        assertTrue(iPassenger.debitCreditsFromPassenger("pass@case.com", 10));
     }
 
     @Test
     void testdebitCreditsFromPassengerInCorrect() {
-        assertFalse(iPassenger.debitCreditsFromPassenger("", "passenger_credis", 2));
+        assertFalse(iPassenger.debitCreditsFromPassenger("", 2));
     }
 
     @Test
     void testdebitCreditsFromPassengerInNull() {
-        assertFalse(iPassenger.debitCreditsFromPassenger(null, "passenger_credits", 2));
+        assertFalse(iPassenger.debitCreditsFromPassenger(null, 2));
     }
 }

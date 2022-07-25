@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+import com.example.vehiclesharing.model.Driver;
+import com.example.vehiclesharing.model.IDriver;
+import com.example.vehiclesharing.model.IPassenger;
+import com.example.vehiclesharing.model.Passenger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 public class PassengerController {
 
 
@@ -68,6 +75,21 @@ public class PassengerController {
     @RequestMapping("/customer-dashboard")
     public String showOwnerDashboard(HttpSession session, Model model){
         return "customer-dashboard";
+    }
+
+    @Autowired
+    IDriver iDriver;
+
+    @Autowired
+    IPassenger iPassenger;
+
+    @RequestMapping("/payment")
+    public String makePayment(){
+        Driver driver= iDriver.getDriverByEmail("");
+        Passenger passenger= iPassenger.getPassengerByEmail("");
+        iPassenger.debitCreditsFromPassenger(passenger.getEmail(),20);
+        iDriver.addCredits(driver.getEmail(), 20);
+        return "payment-confirm";
     }
 }
 

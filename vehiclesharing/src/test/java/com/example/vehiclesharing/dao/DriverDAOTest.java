@@ -28,10 +28,10 @@ public class DriverDAOTest {
     void testSaveDriverCorrect() {
         User user= new User();
         //IUser user= userFactory.getInstance(IAppConstants.DRIVER);
-        user.setFirst_name("test2");
-        user.setLast_name("case");
-        user.setEmail("test@case.com");
-        user.setPassword("1234563");
+        user.setFirst_name("Aneri");
+        user.setLast_name("Shah");
+        user.setEmail("shreya7187@gmail.com");
+        user.setPassword("qwerty");
         user.setCredits(220);
         Driver d= new Driver(user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword());
         assertTrue(driverDAO.save(d));

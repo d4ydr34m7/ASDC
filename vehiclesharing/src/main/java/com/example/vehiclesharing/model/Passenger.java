@@ -44,6 +44,7 @@ public class Passenger implements IPassenger{
     private Notification notification;
 
 
+
     public int getId() {
         return passenger_id;
     }
@@ -94,12 +95,12 @@ public class Passenger implements IPassenger{
         this.passenger_password = passenger_password;
     }
 
-    @Override
+
     public String getUserType() {
         return userType;
     }
 
-    @Override
+
     public void setUserType(String userType) {
         this.userType=userType;
 
@@ -163,7 +164,7 @@ public class Passenger implements IPassenger{
         return isUpdated;    }
 
     @Override
-    public boolean debitCreditsFromPassenger(String passenger_email, String columnName, float value) {
+    public boolean debitCreditsFromPassenger(String passenger_email, float value) {
         Passenger passenger=getPassengerByEmail(passenger_email);
         if(passenger==null || passenger.getCredits()<value)
         {

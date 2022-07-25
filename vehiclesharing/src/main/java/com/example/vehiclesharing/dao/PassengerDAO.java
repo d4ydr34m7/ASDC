@@ -1,11 +1,27 @@
 package com.example.vehiclesharing.dao;
 
-import com.example.vehiclesharing.model.Passenger;
+import java.util.List;
 
-public interface PassengerDAO extends IPersistence{
+public interface PassengerDAO {
 
-//
-//    public boolean savePassenger(Passenger passenger);
-//
-//    public Passenger getPassengerByEmail(String email);
+
+    boolean save(Object entity);
+
+
+    //public boolean updateAvaialableCredits(int customer_id, int available_credits);
+
+
+
+    Object getObjectByEmail(String queryParamEmail);
+
+    Object getObjectById(int id);
+
+    boolean updateObject(String passenger_email, String passengerCredits, float passenger_credits);
+
+    //admin
+    boolean removeObject(int id);
+
+    List<Object> getObjectsList();
+
+    boolean resetPassword(String email, String newPassword);
 }

@@ -32,15 +32,17 @@ public class AuthController {
         return IAppConstants.LOGIN_PAGE;
     }
 
-    @GetMapping("/signup")
+    @RequestMapping("/signup")
     public String signupUser() {
         return IAppConstants.REGISTER_PAGE;
     }
 
 
     @PostMapping("/signup")
-    public String signupUser(@ModelAttribute User user, Model model){
+    public String signupUser(User user, Model model){
+        //user.getEmail();
         boolean userExists= validation.checkIfUserExists(user);
+        System.out.println(user.getUserType());
         boolean isSuccess;
         if(userExists==false) {
             if (user.getUserType().equalsIgnoreCase(IAppConstants.PASSENGER)) {
@@ -70,6 +72,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public String login(User user, Model model){
+        user.getEmail();
         boolean isValidUser= validation.validateUser(user);
         if(isValidUser)
         {

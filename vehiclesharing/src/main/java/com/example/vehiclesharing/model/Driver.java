@@ -49,48 +49,57 @@ public class Driver implements IDriver{
         return driver_id;
     }
 
+
     public void setId(int driver_id) {
         this.driver_id = driver_id;
     }
+
 
     public String getFirst_name() {
         return driver_fname;
     }
 
+
     public void setFirst_name(String driver_fname) {
         this.driver_fname = driver_fname;
     }
+
 
     public String getLast_name() {
         return driver_lname;
     }
 
+
     public void setLast_name(String driver_lname) {
         this.driver_lname = driver_lname;
     }
+
 
     public String getEmail() {
         return driver_email;
     }
 
+
     public void setEmail(String driver_email) {
         this.driver_email = driver_email;
     }
+
 
     public String getPassword() {
         return driver_password;
     }
 
+
     public void setPassword(String driver_password) {
         this.driver_password = driver_password;
     }
 
-    @Override
+
     public String getUserType() {
         return userType;
     }
 
-    @Override
+
     public void setUserType(String userType) {
         this.userType=userType;
 

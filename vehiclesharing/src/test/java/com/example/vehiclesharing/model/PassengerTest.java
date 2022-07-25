@@ -28,7 +28,7 @@ public class PassengerTest {
     void testSavePassengerCorrect() {
         User user= new User();
         //User user = userFactory.getInstance(IAppConstants.PASSENGER);
-        user.setFirst_name("test2p");
+        user.setFirst_name("test");
         user.setLast_name("case");
         user.setEmail("test3@case.com");
         user.setPassword("1234563");

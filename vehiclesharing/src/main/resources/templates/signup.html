@@ -52,7 +52,14 @@
 
         <!-- Registration Form -->
         <div class="col-md-4 col-lg-4" style="margin-top: -2%;">
-            <form th:action="@{/signup}" th:object="${user}" method="post" enctype="multipart/form-data">
+            <div th:if="!${status==null}">
+                <div style="width:400px; position: absolute; top: 70px;right: 5px;" id="alertDiv" class="alert alert-cyan alert-solid"
+                     th:classappend="${status=='UserExists'?'alert-pink':'alert-cyan'}"
+                     th:text="${status}" role="alert">
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            <form th:action="@{/}" th:object="${user}" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <h2 class="d-flex justify-content-center">Register</h2>
                     <hr style="width: 94%;">
@@ -85,8 +92,8 @@
                         </div>
                         <select class="form-control bg-white border-left-0 border-md text-muted" name="userType" required>
                             <option disabled="" selected="" class="text-muted form-control">--- Select Role ---</option>
-                            <option value="Driver" class="form-control">Driver</option>
-                            <option value="Passenger" class="form-control">Passenger</option>
+                            <option value="Driver" name="Driver" class="form-control">Driver</option>
+                            <option value="Passenger" name="Passenger" class="form-control">Passenger</option>
                         </select>
                     </div>
                     <!-- Email Address -->
@@ -127,12 +134,12 @@
                         </a>
                     </div> -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
-                        <input type="submit" value="Create Your Account"  name="submit" class="btn btn-primary btn-block py-2">
+                        <input type="submit" value="Create Your Account" onsubmit="" name="submit" class="btn btn-primary btn-block py-2">
                     </div>
 
                     <!-- Already Registered -->
                     <div class="text-center w-100 mt-2">
-                        <p class="text-muted font-weight-bold">Already Registered? <a th:href="@{/}" class="text-primary">Login</a></p>
+                        <p class="text-muted font-weight-bold">Already Registered? <a th:href="@{/login}" class="text-primary">Login</a></p>
                     </div>
 
                 </div>

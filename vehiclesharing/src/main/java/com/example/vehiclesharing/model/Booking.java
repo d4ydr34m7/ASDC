@@ -56,7 +56,14 @@ private int ride_id;
         this.ride = ride;
         this.ride_id = ride_id;
     }
-
+    public Booking(IBookingBuilder iBookingBuilder) {
+        this.booking_id = iBookingBuilder.getBooking_id();
+        this.passenger_id = iBookingBuilder.getPassenger_id();
+        this.timestamp = iBookingBuilder.getTimestamp();
+        this.amount = iBookingBuilder.getAmount();
+        this.seats_booked = iBookingBuilder.getSeats_booked();
+        this.ride_id = iBookingBuilder.getRide_id();
+    }
     public IRide getRide() {
         return ride;
     }

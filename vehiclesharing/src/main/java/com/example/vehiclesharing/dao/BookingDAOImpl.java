@@ -1,6 +1,8 @@
 package com.example.vehiclesharing.dao;
 
 import com.example.vehiclesharing.model.Booking;
+import com.example.vehiclesharing.model.IBookingBuilder;
+import com.example.vehiclesharing.model.ModelFactory;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -68,14 +70,26 @@ public class BookingDAOImpl implements IBookingDAO {
 
 
     public Booking extractDetails(ResultSet resultSet) throws SQLException {
-        Booking booking= new Booking();
-        booking.setBooking_id(resultSet.getInt("booking_id"));
-        booking.setTimestamp(resultSet.getString("timestamp"));
-        booking.setAmount(resultSet.getFloat("amount"));
-        booking.setSeats_booked(resultSet.getInt("seats_booked"));
-        booking.setPassenger_id(resultSet.getInt("passenger_id"));
-        booking.setRide_id(resultSet.getInt("ride_id"));
-        return booking;
+        Booking bookingObject = null;
+        IBookingBuilder iBookingBuilder = ModelFactory.instance().createBookingBuilder();
+
+                bookingObject = iBookingBuilder
+        .addBooking_id(resultSet.getInt("booking_id"))
+                        .addTimestamp(resultSet.getString("timestamp"))
+                        .addAmount(resultSet.getFloat("amount"))
+                        .addSeats_booked(resultSet.getInt("seats_booked"))
+                        .addPassenger_id(resultSet.getInt("passenger_id"))
+                        .addRide_id(resultSet.getInt("ride_id"))
+                        .build();
+                return bookingObject;
+//        Booking booking= new Booking();
+//        booking.setBooking_id(resultSet.getInt("booking_id"));
+//        booking.setTimestamp(resultSet.getString("timestamp"));
+//        booking.setAmount(resultSet.getFloat("amount"));
+//        booking.setSeats_booked(resultSet.getInt("seats_booked"));
+//        booking.setPassenger_id(resultSet.getInt("passenger_id"));
+//        booking.setRide_id(resultSet.getInt("ride_id"));
+//        return booking;
     }
 
 

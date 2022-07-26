@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class BookingDAOTest {
+class BookingDAOTest {
 
     @Autowired
     IBookingDAO bookingDAO;

@@ -13,6 +13,7 @@ public interface IAppConstants {
     public static final String ADMIN="Admin";
     public static final String PASSWORD_RESET_PAGE= "forgetPassEmail";
     public static final String RESET_PASSWORD= "forgetPassword";
+    public static final String NO_USER = "noUser";
 
     public static final String ERROR_REGISTERING_USER = "errorRegisteringUser";
 

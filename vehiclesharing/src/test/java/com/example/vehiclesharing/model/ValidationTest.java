@@ -5,17 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
-
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class ValidationTest {
+ class ValidationTest {
 
     @Autowired
     Validation validation;
@@ -34,7 +30,6 @@ public class ValidationTest {
         assertTrue(validation.checkIfUserExists(user));
     }
 
-
     @Test
     void validateUserTest(){
         User user=new User();
@@ -43,8 +38,5 @@ public class ValidationTest {
         user.setUserType("Admin");
         assertTrue(validation.validateUser(user));
     }
-
-
-
 
 }

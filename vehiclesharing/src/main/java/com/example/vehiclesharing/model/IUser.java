@@ -1,7 +1,6 @@
 package com.example.vehiclesharing.model;
 
 public interface IUser {
-
     public void setCredits(float credits);
     public float getCredits();
     public String getEmail();

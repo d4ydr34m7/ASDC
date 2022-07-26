@@ -23,7 +23,6 @@ public class Driver implements IDriver{
     private float driver_credits;
     private String userType;
 
-
     @Autowired
     private DriverDAO driverDAO;
 
@@ -33,7 +32,6 @@ public class Driver implements IDriver{
     @Autowired
     private Notification notification;
 
-
     public Driver(){}
 
     public Driver( String driver_fname, String driver_lname, String driver_email, String driver_password) {
@@ -41,7 +39,6 @@ public class Driver implements IDriver{
         this.driver_lname = driver_lname;
         this.driver_email = driver_email;
         this.driver_password = driver_password;
-        //this.driver_contact = driver_contact;
     }
 
 
@@ -105,7 +102,6 @@ public class Driver implements IDriver{
 
     }
 
-
     public float getCredits() {
         return driver_credits;
     }
@@ -117,11 +113,11 @@ public class Driver implements IDriver{
 
     @Override
     public boolean saveDriver(User user) {
-        if(null==user){
+        if(null == user){
             return false;
         }
-        Driver driver=new Driver(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getPassword());
-        boolean isDriverSaved=driverDAO.save(driver);
+        Driver driver = new Driver(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getPassword());
+        boolean isDriverSaved = driverDAO.save(driver);
         if(isDriverSaved)
         {
             notification.sendEmail(IAppMessages.USER_REGISTERED_NOTIFY_MESSAGE,IAppMessages.USER_REGISTERED_NOTIFY_SUBJECT,user.getEmail());
@@ -132,27 +128,24 @@ public class Driver implements IDriver{
 
     @Override
     public Driver getDriverByEmail(String email) {
-        if(email==null){
+        if(email == null){
             return null;
         }
-        Driver driver=(Driver) driverDAO.getObjectByEmail(email);
+        Driver driver = (Driver) driverDAO.getObjectByEmail(email);
         return driver;
     }
 
     @Override
     public Driver getDriverById(int id) {
-        Driver driver=(Driver) driverDAO.getObjectById(id);  //check null cond
+        Driver driver = (Driver) driverDAO.getObjectById(id);  //check null cond
         return driver;
     }
-
-
-    //admin
 
     @Override
     public List<Driver> viewDriverDetails() {
         try{
-            List<Object> driverObjList=  driverDAO.getObjectsList();
-            List<Driver> driverList= new ArrayList<>();
+            List<Object> driverObjList = driverDAO.getObjectsList();
+            List<Driver> driverList = new ArrayList<>();
             for(Object o:driverObjList)
             {
                 driverList.add((Driver)o);
@@ -168,9 +161,7 @@ public class Driver implements IDriver{
     @Override
     public boolean deleteDriver(int driver_id) {
         return driverDAO.removeObject(driver_id);
-
     }
-
 
     @Override
     public boolean addCredits(String driver_email, float value) {
@@ -178,11 +169,10 @@ public class Driver implements IDriver{
             return false;
         }
         Driver driver=getDriverByEmail(driver_email);
-        float driver_credits= driver.getCredits()+value;
-        boolean isUpdated= driverDAO.updateObject(driver_email, IAppConstants.DRIVER_CREDITS,driver_credits);
+        float driver_credits = driver.getCredits()+value;
+        boolean isUpdated = driverDAO.updateObject(driver_email, IAppConstants.DRIVER_CREDITS,driver_credits);
         return isUpdated;
     }
-
 
     @Override
     public boolean depositCreditsToDriver(String driver_email, float value) {
@@ -190,20 +180,19 @@ public class Driver implements IDriver{
             return false;
         }
         Driver driver=getDriverByEmail(driver_email);
-        float driver_credits= driver.getCredits()+value;
-        boolean isUpdated= driverDAO.updateObject(driver_email, IAppConstants.DRIVER_CREDITS,driver_credits);
+        float driver_credits = driver.getCredits()+value;
+        boolean isUpdated = driverDAO.updateObject(driver_email, IAppConstants.DRIVER_CREDITS,driver_credits);
         return isUpdated;
     }
 
     @Override
     public boolean resetPassword(String email, String newPassword) {
-            if (null == email|| email.isEmpty() || null== newPassword || newPassword.isEmpty()) {
+            if (null == email|| email.isEmpty() || null == newPassword || newPassword.isEmpty()) {
                 return false;
             }
             else{
                 return driverDAO.resetPassword(email, newPassword);
             }
-
 
     }
 

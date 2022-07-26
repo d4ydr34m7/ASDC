@@ -20,7 +20,6 @@ public class vehicleDAO implements IVehicleDAO {
 	Logger log = LoggerFactory.getLogger(Vehicle.class);
 	PreparedStatement statement;
 
-	// Add new vehicle
 	@Override
 	public boolean NewVehicle(IVehicle vehicle) {
 		if (vehicle == null || vehicle.getVehicle_model() == null)
@@ -46,7 +45,6 @@ public class vehicleDAO implements IVehicleDAO {
 		return false;
 	}
 
-	// This method searches for the vehicle using the vehicle id.
 	@Override
 	public IVehicle getVehicleDetails(int vehicle_id) {
 		try {
@@ -64,7 +62,6 @@ public class vehicleDAO implements IVehicleDAO {
 		return null;
 	}
 
-	// This method searches for the list of vehicles under a driver id.
 	@Override
 	public List<IVehicle> getVehicles(int driverId) {
 		List<IVehicle> vehicles = new ArrayList<IVehicle>();
@@ -83,7 +80,6 @@ public class vehicleDAO implements IVehicleDAO {
 		return null;
 	}
 
-	// Remove a vehicle
 	@Override
 	public boolean removeVehicle(int vehicleId) {
 		try {

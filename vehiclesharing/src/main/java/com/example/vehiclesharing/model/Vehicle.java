@@ -10,6 +10,7 @@ import com.example.vehiclesharing.dao.vehicleDAO;
 
 @Component
 public class Vehicle implements IVehicle {
+
 	@Autowired
 	vehicleDAO VehicleDAO;
 
@@ -24,8 +25,7 @@ public class Vehicle implements IVehicle {
 	public Vehicle() {
 	}
 
-	public Vehicle(int vehicle_id, String vehicle_brand, String vehicle_model, String regn_no, float KMs_driven,
-			int capacity, int driver_id) {
+	public Vehicle(int vehicle_id, String vehicle_brand, String vehicle_model, String regn_no, float KMs_driven, int capacity, int driver_id) {
 		this.vehicle_brand = vehicle_brand;
 		this.vehicle_model = vehicle_model;
 		this.regn_no = regn_no;
@@ -90,7 +90,7 @@ public class Vehicle implements IVehicle {
 		this.driver_id = driver_id;
 	}
 
-	// Method to add a new vehicle
+
 	public boolean NewVehicle(IVehicle vehicle) {
 		if (vehicle == null || vehicle.getVehicle_model() == null) {
 			return false;
@@ -99,7 +99,6 @@ public class Vehicle implements IVehicle {
 		return true;
 	}
 
-	// This method searches for the vehicle using the vehicle id.
 	public IVehicle getVehicleDetails(int vehicle_id) {
 		try {
 			IVehicle vehicle = VehicleDAO.getVehicleDetails(vehicle_id);
@@ -109,7 +108,6 @@ public class Vehicle implements IVehicle {
 		}
 	}
 
-	// This method searches for the list of vehicles under a driver id.
 	public List<IVehicle> getVehicles(int driverId) {
 		try {
 			List<IVehicle> vehicles = VehicleDAO.getVehicles(driverId);
@@ -119,7 +117,6 @@ public class Vehicle implements IVehicle {
 		}
 	}
 
-	// Method to remove a vehicle
 	public boolean removeVehicle(int vehicleId) {
 		try {
 			return VehicleDAO.removeVehicle(vehicleId);

@@ -1,6 +1,5 @@
 package com.example.vehiclesharing;
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,7 +11,7 @@ public class dateTime {
 	{
 		date_time = date_time.replace("T", " ");
         SimpleDateFormat sformat = new SimpleDateFormat("MMMM dd, HH:mm");
-        Date date=new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(date_time);
+        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(date_time);
 		return  sformat.format(date);
 	}
     

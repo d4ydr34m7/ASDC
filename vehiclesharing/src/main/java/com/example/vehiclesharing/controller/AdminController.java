@@ -18,14 +18,9 @@ public class AdminController {
     @Autowired
     IDriver iDriver;
 
-//    @RequestMapping("/dashboardAdmin")
-//    public String showAdmin(HttpSession httpSession){
-//        return IAppConstants.ADMIN_DASHBOARD;
-//    }
-
     @RequestMapping("/showDrivers")
     public String showListOfDrivers(HttpSession httpSession, Model model){
-        List<Driver> listDriver= iDriver.viewDriverDetails();
+        List<Driver> listDriver = iDriver.viewDriverDetails();
         model.addAttribute("driverDetails", listDriver);
         return IAppConstants.LIST_OF_DRIVERS;
     }

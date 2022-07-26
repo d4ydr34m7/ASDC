@@ -1,5 +1,5 @@
 package com.example.vehiclesharing.dao;
-import com.example.vehiclesharing.constants.IAppConstants;
+
 import com.example.vehiclesharing.model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class DriverDAOTest {
+ class DriverDAOTest {
 
     @Autowired
     DriverDAO driverDAO;
@@ -21,17 +21,15 @@ public class DriverDAOTest {
     @Autowired
     IDriver idriver;
 
-
     @Test
     void testSaveDriverCorrect() {
         User user= new User();
-        //IUser user= userFactory.getInstance(IAppConstants.DRIVER);
         user.setFirst_name("Aneri");
         user.setLast_name("Shah");
         user.setEmail("shreya7187@gmail.com");
         user.setPassword("qwerty");
         user.setCredits(220);
-        Driver d= new Driver(user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword());
+        Driver d = new Driver(user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword());
         assertTrue(driverDAO.save(d));
     }
 
@@ -102,21 +100,18 @@ public class DriverDAOTest {
 
     @Test
     void removeByIdCorrect() {
-        assertTrue(driverDAO.removeObject(1));
+        assertTrue(driverDAO.removeObject(92));
 
     }
 
     @Test
     void removeByIdInCorrect() {
-        assertFalse(driverDAO.removeObject(100));
+        assertFalse(driverDAO.removeObject(1));
 
     }
     @Test
     void getObjectListCorrect() {
         assertTrue(driverDAO.getObjectsList() != null);
     }
-
-
-
 
 }

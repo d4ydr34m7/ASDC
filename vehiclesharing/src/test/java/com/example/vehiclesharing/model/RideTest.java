@@ -9,12 +9,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.sql.Date;
-
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class RideTest {
+ class RideTest {
 
 	@Autowired
 	IRide iride;
@@ -29,7 +27,7 @@ public class RideTest {
 		ride.setAvailable_seats(4);
 		ride.setKMs_travelled(18);
 		ride.setTotal_cost(35);
-		ride.setDriver_id(11);
+		ride.setDriver_id(79);
 		ride.setVehicle_id(1020);
 		assertTrue(iride.createRide(ride));
 	}
@@ -41,7 +39,7 @@ public class RideTest {
 
     @Test
     void getRideByIdTest(){
-        assertTrue(iride.getRideDetails(2)!=null);
+        assertTrue(iride.getRideDetails(46)!=null);
     }
     
     @Test

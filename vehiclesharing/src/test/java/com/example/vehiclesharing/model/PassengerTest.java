@@ -1,13 +1,11 @@
 package com.example.vehiclesharing.model;
 
-import com.example.vehiclesharing.constants.IAppConstants;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -16,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class PassengerTest {
+ class PassengerTest {
 
     @Autowired
     IPassenger iPassenger;
@@ -46,7 +44,7 @@ public class PassengerTest {
 
     @Test
     void getPassengerByEmailCorrect() {
-        assertTrue(iPassenger.getPassengerByEmail("pass@case.com") != null);
+        assertTrue(iPassenger.getPassengerByEmail("shjayan@gmail.com") != null);
     }
 
     @Test
@@ -71,12 +69,12 @@ public class PassengerTest {
 
     @Test
     void deletePassengerTest() {
-        assertTrue(iPassenger.deletePassenger(3));
+        assertTrue(iPassenger.deletePassenger(43));
     }
 
     @Test
     void addCreditsTest() {
-        assertTrue(iPassenger.addCredits("pass@case.com", "passenger_credits", 50));
+        assertTrue(iPassenger.addCredits("shjayan@gmail.com", "passenger_credits", 50));
     }
 
     @Test
@@ -111,7 +109,7 @@ public class PassengerTest {
 
     @Test
     void testdebitCreditsFromPassenger() {
-        assertTrue(iPassenger.debitCreditsFromPassenger("pass@case.com", 10));
+        assertTrue(iPassenger.debitCreditsFromPassenger("shjayan@gmail.com", 10));
     }
 
     @Test

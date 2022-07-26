@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -18,12 +17,12 @@ class BookingTest {
     Booking bookingService;
     @Test
     void testGetUpcomingRidesForCorrectCustomer() {
-        assertTrue(bookingService.getUpcomingRidesForCustomer(5).size()>=0);
+        assertTrue(bookingService.getUpcomingRidesForPassenger(5).size()>=0);
     }
 
     @Test
     void testGetUpcomingRidesForWrongCustomer() {
-        assertTrue(bookingService.getUpcomingRidesForCustomer(00).size()<=0);
+        assertTrue(bookingService.getUpcomingRidesForPassenger(00).size()<=0);
     }
 
     @Test
@@ -41,7 +40,6 @@ class BookingTest {
     @Test
     void testSaveCorrectRide() {
         IRide ride=new Ride();
-        //IRide ride = new Ride();
         ride.setSource("testSource1");
         ride.setDestination("testDestination1");
         ride.setStart_time("2022-07-26 01:00:00");
@@ -51,10 +49,11 @@ class BookingTest {
         ride.setTotal_cost(35);
         ride.setDriver_id(11);
         ride.setVehicle_id(1020);
-        Booking booking = new Booking(2,5,"2022-03-31",55,2,6,ride);
+        Booking booking = new Booking(65,29,"2022-03-31",55,2,46,ride);
         assertTrue(bookingService.saveRide(booking));
 
     }
+
     @Test
     void testSaveinCorrectRide() {
         Ride ride=new Ride();
@@ -91,11 +90,11 @@ class BookingTest {
 
     @Test
     void testgetPreviousTripsForCorrectCustomer() {
-        assertTrue(bookingService.getPreviousRidesForCustomer(4).size()>=0);
+        assertTrue(bookingService.getPreviousRidesForPassenger(4).size()>=0);
     }
     @Test
     void testgetPreviousTripsForWrongCustomer() {
-        assertTrue(bookingService.getPreviousRidesForCustomer(-1).size()<=0);
+        assertTrue(bookingService.getPreviousRidesForPassenger(-1).size()<=0);
     }
 
 

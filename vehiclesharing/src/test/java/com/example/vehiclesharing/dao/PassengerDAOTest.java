@@ -1,6 +1,5 @@
 package com.example.vehiclesharing.dao;
 
-import com.example.vehiclesharing.model.Driver;
 import com.example.vehiclesharing.model.IPassenger;
 import com.example.vehiclesharing.model.Passenger;
 import com.example.vehiclesharing.model.User;
@@ -8,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.security.core.parameters.P;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -17,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class PassengerDAOTest {
+ class PassengerDAOTest {
 
     @Autowired
     PassengerDAO passengerDAO;
@@ -36,8 +34,6 @@ public class PassengerDAOTest {
         Passenger p = new Passenger(user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword());
         assertTrue(passengerDAO.save(p));
     }
-
-
 
     @Test
     void testSavePassengerNull() {
@@ -106,7 +102,7 @@ public class PassengerDAOTest {
 
     @Test
     void removeByIdCorrect() {
-        assertTrue(passengerDAO.removeObject(28));
+        assertTrue(passengerDAO.removeObject(38));
 
     }
 

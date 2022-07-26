@@ -3,7 +3,6 @@ package com.example.vehiclesharing.model;
 import java.util.List;
 
 public interface IDriver extends IUser{
-
     public boolean saveDriver(User user);
     public Driver getDriverByEmail(String email);
     public Driver getDriverById(int id);

@@ -12,10 +12,14 @@ public class Notification {
     private JavaMailSender javaMailSender;
 
     public boolean sendEmail(String message, String subject, String email) {
-        if(email==null||subject==null)
+        if(email==null||subject==null) {
             return false;
-        if(message==null)
+        }
+
+        if(message == null){
             return false;
+        }
+
         try{
             SimpleMailMessage msg = new SimpleMailMessage();
             msg.setFrom(IAppConstants.EMAIL_SENDER);
@@ -27,7 +31,6 @@ public class Notification {
         }
         catch(Exception e)
         {
-           
             return false;
         }
     }

@@ -20,7 +20,6 @@ public class RideCreationDAO implements IRideCreationDAO {
 	Logger log = LoggerFactory.getLogger(Ride.class);
 	PreparedStatement statement;
 
-	// Ride creation
 	public boolean createRide(IRide ride) {
 		if (ride == null || ride.getSource() == null || ride.getDestination() == null) {
 			return false;
@@ -49,7 +48,6 @@ public class RideCreationDAO implements IRideCreationDAO {
 		return false;
 	}
 
-	// Ride deletion
 	public boolean removeRide(int ride_id) {
 		try {
 			String remove = "delete from ride where ride_id=" + ride_id;
@@ -62,7 +60,6 @@ public class RideCreationDAO implements IRideCreationDAO {
 		}
 	}
 
-	// List of rides available based on specific source and destination
 	public List<IRide> availableRides(String source, String destination, String timeStamp) {
 		List<IRide> rides = new ArrayList<IRide>();
 		if (source == null || destination == null) {
@@ -84,7 +81,6 @@ public class RideCreationDAO implements IRideCreationDAO {
 		return null;
 	}
 
-	// ride id specific ride details
 	public IRide getRideDetails(int ride_id) {
 		try {
 			String query = "select * from ride where ride_id=" + ride_id;
@@ -100,7 +96,6 @@ public class RideCreationDAO implements IRideCreationDAO {
 		return null;
 	}
 
-	// all rides of driver
 	public List<IRide> getRidesOfDriver(int driverId) {
 		List<IRide> ride = new ArrayList<>();
 		try {
@@ -114,7 +109,6 @@ public class RideCreationDAO implements IRideCreationDAO {
 			return ride;
 		} catch (Exception e) {
 			log.error("Error getting rides for Driver", e);
-
 		}
 		return null;
 	}

@@ -4,12 +4,10 @@ import com.example.vehiclesharing.constants.AdminCredentials;
 import com.example.vehiclesharing.constants.IAppConstants;
 import com.example.vehiclesharing.dao.DriverDAO;
 import com.example.vehiclesharing.dao.PassengerDAO;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 
 @Component
 public class Validation {
@@ -23,7 +21,7 @@ public class Validation {
     Logger logger = LoggerFactory.getLogger(Validation.class);
 
     public boolean checkIfUserExists(User user) {
-        if(null==user)
+        if(null == user)
         {
             return false;
         }
@@ -36,18 +34,16 @@ public class Validation {
         }
         else if(user.getUserType().equals(IAppConstants.DRIVER))
         {
-            Driver driver=(Driver) driverDAO.getObjectByEmail(user.getEmail());
-            if(null==driver) {
+            Driver driver = (Driver) driverDAO.getObjectByEmail(user.getEmail());
+            if(null == driver) {
                 return false;
             }
         }
         else if(user.getUserType().equals(IAppConstants.ADMIN) && user.getEmail().equals(AdminCredentials.ADMIN_EMAIL)){    //changes
             return true;
         }
-
         return true;
     }
-
 
     public boolean validateUser(User user) {
         if(checkIfUserExists(user)) {
@@ -59,7 +55,7 @@ public class Validation {
             }
             else if(user.getUserType().equals(IAppConstants.DRIVER))
             {
-                Driver driver=(Driver) driverDAO.getObjectByEmail(user.getEmail());
+                Driver driver = (Driver) driverDAO.getObjectByEmail(user.getEmail());
                 if(driver.getPassword().equals(user.getPassword()))
                 {
                     return true;

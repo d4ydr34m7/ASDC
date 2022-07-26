@@ -1,15 +1,11 @@
 package com.example.vehiclesharing.model;
 
-import com.example.vehiclesharing.constants.AdminCredentials;
 import com.example.vehiclesharing.constants.IAppConstants;
 import com.example.vehiclesharing.constants.IAppMessages;
 import com.example.vehiclesharing.dao.DriverDAO;
 import com.example.vehiclesharing.dao.PassengerDAO;
-import com.example.vehiclesharing.model.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
@@ -22,8 +18,6 @@ public class Passenger implements IPassenger{
     private float passenger_credits;
     private String userType;
 
-    //private String passenger_contact;
-
     public Passenger( String passenger_fname, String passenger_lname, String passenger_email, String passenger_password) {
         this.passenger_fname = passenger_fname;
         this.passenger_lname = passenger_lname;
@@ -33,7 +27,6 @@ public class Passenger implements IPassenger{
 
     public Passenger(){}
 
-
     @Autowired
     PassengerDAO passengerDAO;
 
@@ -42,8 +35,6 @@ public class Passenger implements IPassenger{
 
     @Autowired
     private Notification notification;
-
-
 
     public int getId() {
         return passenger_id;
@@ -106,14 +97,13 @@ public class Passenger implements IPassenger{
 
     }
 
-
     @Override
     public boolean savePassenger(User user) {
-        if(user==null) {
+        if(user == null) {
             return false;
         }
-        Passenger passenger=new Passenger(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getPassword());
-        boolean isPassengerSaved= passengerDAO.save(passenger);
+        Passenger passenger = new Passenger(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getPassword());
+        boolean isPassengerSaved = passengerDAO.save(passenger);
         if(isPassengerSaved)
         {
             notification.sendEmail(IAppMessages.USER_REGISTERED_NOTIFY_MESSAGE,IAppMessages.USER_REGISTERED_NOTIFY_SUBJECT,user.getEmail());
@@ -123,23 +113,22 @@ public class Passenger implements IPassenger{
 
     @Override
     public Passenger getPassengerByEmail(String email) {
-        Passenger passenger= (Passenger) passengerDAO.getObjectByEmail(email);
+        Passenger passenger = (Passenger) passengerDAO.getObjectByEmail(email);
         return passenger;
     }
 
     @Override
     public Passenger getPassengerById(int id) {
-        Passenger passenger= (Passenger) passengerDAO.getObjectById(id);
+        Passenger passenger = (Passenger) passengerDAO.getObjectById(id);
         return passenger;
     }
 
 
-    //admin
     @Override
     public List<Passenger> viewPassengerDetails() {
         try{
-            List<Object> passenger=  passengerDAO.getObjectsList();
-            List<Passenger> passengerList= (List<Passenger>) (List) passenger;
+            List<Object> passenger =  passengerDAO.getObjectsList();
+            List<Passenger> passengerList = (List<Passenger>) (List) passenger;
             return passengerList;
         }
         catch(Exception exception){
@@ -155,39 +144,36 @@ public class Passenger implements IPassenger{
 
     @Override
     public boolean addCredits(String passenger_email, String columnName, float value) {
-        Passenger passenger=getPassengerByEmail(passenger_email);
-        if(passenger==null){
+        Passenger passenger = getPassengerByEmail(passenger_email);
+        if(passenger == null){
             return false;
         }
-        float passenger_credits= passenger.getCredits()+value;
-        boolean isUpdated= passengerDAO.updateObject(passenger_email, IAppConstants.PASSENGER_CREDITS,passenger_credits);
+        float passenger_credits = passenger.getCredits()+value;
+        boolean isUpdated = passengerDAO.updateObject(passenger_email, IAppConstants.PASSENGER_CREDITS,passenger_credits);
         return isUpdated;    }
 
     @Override
     public boolean debitCreditsFromPassenger(String passenger_email, float value) {
-        Passenger passenger=getPassengerByEmail(passenger_email);
-        if(passenger==null || passenger.getCredits()<value)
+        Passenger passenger = getPassengerByEmail(passenger_email);
+        if(passenger == null || passenger.getCredits()<value)
         {
             return false;
         }
-        float passenger_credits= passenger.getCredits()-value;
-        boolean isUpdated= passengerDAO.updateObject(passenger_email, IAppConstants.PASSENGER_CREDITS,passenger_credits);
+        float passenger_credits = passenger.getCredits()-value;
+        boolean isUpdated = passengerDAO.updateObject(passenger_email, IAppConstants.PASSENGER_CREDITS,passenger_credits);
         System.out.println(isUpdated);
         return isUpdated;
     }
 
     @Override
     public boolean resetPassword(String email, String newPassword) {
-        if (email == null ||newPassword==null|| email.isEmpty()|| newPassword.isEmpty()) {
+        if (email == null ||newPassword == null|| email.isEmpty()|| newPassword.isEmpty()) {
             return false;
         }
         else{
             return passengerDAO.resetPassword(email, newPassword);
         }
 
-
     }
-
-
 
 }

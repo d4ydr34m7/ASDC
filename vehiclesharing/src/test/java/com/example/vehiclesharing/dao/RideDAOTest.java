@@ -3,9 +3,7 @@ package com.example.vehiclesharing.dao;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.sql.Date;
-
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,7 @@ import com.example.vehiclesharing.model.*;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class RideDAOTest {
+ class RideDAOTest {
 
 	@Autowired
 	IRideCreationDAO iride;
@@ -44,7 +42,7 @@ public class RideDAOTest {
 		ride.setAvailable_seats(4);
 		ride.setKMs_travelled(15);
 		ride.setTotal_cost(25);
-		ride.setDriver_id(10);
+		ride.setDriver_id(79);
 		ride.setVehicle_id(1010);
 		assertTrue(iride.createRide(ride));
 	}
@@ -56,7 +54,7 @@ public class RideDAOTest {
 
 	@Test
 	void getRideDetailsTest() {
-		assertTrue(iride.getRideDetails(2) != null);
+		assertTrue(iride.getRideDetails(46) != null);
 	}
 
 	@Test
@@ -91,7 +89,7 @@ public class RideDAOTest {
 
 	@Test
     void getRidesOfCorrectDriverTest(){
-        assertTrue(iride.getRidesOfDriver(10).size()>0);
+        assertTrue(iride.getRidesOfDriver(79).size()>0);
     }
     
 	@Test

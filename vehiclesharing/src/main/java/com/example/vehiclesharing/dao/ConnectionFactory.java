@@ -9,9 +9,9 @@ import java.util.Properties;
 
 public class ConnectionFactory {
     private static ConnectionFactory instance;
-    static String configFilePath= IAppConstants.APP_RUN_PATH;
+    static String configFilePath = IAppConstants.APP_RUN_PATH;
     static Properties prop = new Properties();
-    private Connection connection=null;
+    private Connection connection = null;
 
     private ConnectionFactory() throws SQLException {
         try{
@@ -19,7 +19,6 @@ public class ConnectionFactory {
             FileInputStream configfile = new FileInputStream(configFilePath);
             prop.load(configfile);
             this.connection= DriverManager.getConnection(prop.getProperty("connectionURL"), prop.getProperty("uname"), prop.getProperty("pwd"));
-
         }
         catch(Exception ex){
             ex.getMessage();
@@ -35,6 +34,5 @@ public class ConnectionFactory {
             instance = new ConnectionFactory();
         }
             return instance;
-
     }
 }

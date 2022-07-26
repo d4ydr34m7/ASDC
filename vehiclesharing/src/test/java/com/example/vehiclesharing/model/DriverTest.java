@@ -1,6 +1,5 @@
 package com.example.vehiclesharing.model;
 
-import com.example.vehiclesharing.constants.IAppConstants;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class DriverTest {
+ class DriverTest {
 
     @Autowired
     IDriver iDriver;
-
 
     @Test
     void testSaveDriverCorrect() {
@@ -71,7 +68,7 @@ public class DriverTest {
 
     @Test
     void deleteDriverTest() {
-        assertTrue(iDriver.deleteDriver(81));
+        assertTrue(iDriver.deleteDriver(111));
     }
 
     @Test
@@ -83,7 +80,6 @@ public class DriverTest {
     void addCreditsInCorrectTest() {
         assertFalse(iDriver.addCredits("",  50));
     }
-
 
     @Test
     void checkIfPasswordUpdated() {
@@ -112,7 +108,7 @@ public class DriverTest {
 
     @Test
     void testDepositCreditsToDriverEmpty() {
-        assertTrue(iDriver.depositCreditsToDriver("", 30));
+        assertFalse(iDriver.depositCreditsToDriver("", 30));
     }
 
     @Test

@@ -32,7 +32,6 @@ public class User{
         this.credits = credits;
     }
 
-
     public String getEmail() {
         return email;
     }

@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class VehicleTest {
+ class VehicleTest {
 
 	@Autowired
 	IVehicle ivehicle;
@@ -41,7 +41,7 @@ public class VehicleTest {
 
 	@Test
 	void getVehicleDetailsTest() {
-		assertTrue(ivehicle.getVehicleDetails(2) != null);
+		assertTrue(ivehicle.getVehicleDetails(16) != null);
 	}
 
 	@Test

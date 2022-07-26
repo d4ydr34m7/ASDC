@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class UserTest {
+ class UserTest {
 
     @Autowired
     User user;
@@ -40,7 +40,6 @@ public class UserTest {
     void testGetId() {
         user.setId(2);
         assertEquals(user.getId(), 2);
-
     }
 
     @Test
@@ -78,7 +77,6 @@ public class UserTest {
     void testSetFirst_name() {
         user.setFirst_name("test");
         assertEquals(user.getFirst_name(), "test");
-
     }
 
     @Test
@@ -92,7 +90,6 @@ public class UserTest {
     void testSetLast_name() {
         user.setLast_name("test");
         assertEquals(user.getLast_name(), "test");
-
     }
 
     @Test

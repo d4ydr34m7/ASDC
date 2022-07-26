@@ -9,9 +9,7 @@ import com.example.vehiclesharing.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.example.vehiclesharing.dao.DriverDAO;
-import com.example.vehiclesharing.dao.DriverDAOImpl;
 import com.example.vehiclesharing.dao.IRideCreationDAO;
 import com.example.vehiclesharing.dao.IVehicleDAO;
 
@@ -161,7 +159,6 @@ public class Ride implements IRide {
 		return cost;
 	}
 
-	// Method to remove a ride
 	public boolean removeRide(int ride_id) {
 		try {
 			return iride.removeRide(ride_id);
@@ -170,7 +167,6 @@ public class Ride implements IRide {
 		}
 	}
 
-	// Method to get all ride details
 	public IRide getRideDetails(int ride_id) {
 		try {
 			IRide ride = iride.getRideDetails(ride_id);
@@ -195,7 +191,7 @@ public class Ride implements IRide {
 				int driver_id = iVehicleDao.getVehicleDetails(ride.getVehicle_id()).getDriver_id();
 				Driver driver = (Driver) driverDao.getObjectById(driver_id);
 				String start_time = ride.getEnd_time().replace("T", " ");
-				//Float value
+
 				ride.setStart_time(dateTime.convertDate(ride.getStart_time()));
 				ride.setEnd_time(dateTime.convertDate(ride.getEnd_time()));
 				int vehicleid = vehicle.getVehicle_id();
@@ -206,11 +202,11 @@ public class Ride implements IRide {
 				Trip trip = new Trip(vehicleid, regn_no, fname, driverId, seats, ride);
 				if(ride.getAvailable_seats()>0)
 				{
-				String current_time = dateTime.getCurrentTime();
-				Date start = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(start_time);
-				Date current = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(current_time);
-				if (current.compareTo(start) < 0) {
-					tripList.add(trip);
+					String current_time = dateTime.getCurrentTime();
+					Date start = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(start_time);
+					Date current = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(current_time);
+					if (current.compareTo(start) < 0) {
+						tripList.add(trip);
 				}
 				}
 			}
@@ -221,7 +217,6 @@ public class Ride implements IRide {
 		}
 	}
 
-	// List of upcoming rides
 	public List<Ride> upcomingRidesOfDriver(int driverId) {
 		try {
 			List<IRide> allRides = iride.getRidesOfDriver(driverId);
@@ -245,7 +240,6 @@ public class Ride implements IRide {
 		}
 	}
 
-	// List of Past rides
 	public List<Ride> pastRidesOfDriver(int driverId) {
 		try {
 			List<IRide> allRides = iride.getRidesOfDriver(driverId);

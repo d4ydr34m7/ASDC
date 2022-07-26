@@ -8,12 +8,11 @@ import java.util.TimeZone;
 
 public class Utility {
 
-
     public static String convertDate(String datetime) throws ParseException
     {
         datetime = datetime.replace("T", " ");
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, HH:mm");
-        Date date=new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(datetime);
+        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(datetime);
         return  sdf.format(date);
     }
 

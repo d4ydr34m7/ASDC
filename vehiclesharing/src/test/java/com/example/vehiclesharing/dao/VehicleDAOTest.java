@@ -13,7 +13,7 @@ import com.example.vehiclesharing.model.*;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class VehicleDAOTest {
+ class VehicleDAOTest {
 
 	@Autowired
 	IVehicleDAO ivehicle;
@@ -26,7 +26,7 @@ public class VehicleDAOTest {
 		vehicle.setRegn_no("TEST01");
 		vehicle.setKMs_driven(125);
 		vehicle.setCapacity(4);
-		vehicle.setDriver_id(10);
+		vehicle.setDriver_id(79);
 		assertTrue(ivehicle.NewVehicle(vehicle));
 	}
 	
@@ -37,7 +37,7 @@ public class VehicleDAOTest {
 	
 	@Test
 	void getVehicleDetailsTest() {
-		assertTrue(ivehicle.getVehicleDetails(2) != null);
+		assertTrue(ivehicle.getVehicleDetails(16) != null);
 	}
 	
 	@Test
@@ -47,7 +47,7 @@ public class VehicleDAOTest {
 	
 	@Test
 	void getVehiclesOfCorrectDriverTest(){
-		assertTrue(ivehicle.getVehicles(10).size()>0);
+		assertTrue(ivehicle.getVehicles(79).size()>0);
   }
 	
 	@Test

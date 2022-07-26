@@ -22,7 +22,6 @@ public class DriverDAOImpl implements DriverDAO{
     public DriverDAOImpl() throws SQLException {
     }
 
-
     @Override
     public boolean save(Object entity) {
         if(entity == null){
@@ -73,14 +72,14 @@ public class DriverDAOImpl implements DriverDAO{
 
     @Override
     public Object getObjectById(int id){
-        if(id==0){
+        if(id == 0){
             return null;
         }
         try{
-            query= "select * from driver where driver_id= ?";
-            preparedStatement= connection.prepareStatement(query);
+            query = "select * from driver where driver_id= ?";
+            preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
-            resultSet=preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()){
                 return extractDetails(resultSet);
@@ -95,11 +94,11 @@ public class DriverDAOImpl implements DriverDAO{
 
     @Override
     public boolean updateObject(String queryParam, String columnName, float value) {
-        if(queryParam == null|| columnName==null || queryParam.isEmpty() || columnName.isEmpty()){
+        if(queryParam == null|| columnName == null || queryParam.isEmpty() || columnName.isEmpty()){
             return false;
         }
         try{
-            query= "update driver set "+columnName+"="+value+" where driver_email='"+queryParam+"'";
+            query = "update driver set "+columnName+"="+value+" where driver_email='"+queryParam+"'";
             preparedStatement= connection.prepareStatement(query);
             preparedStatement.executeUpdate();
             preparedStatement.close();
@@ -111,18 +110,16 @@ public class DriverDAOImpl implements DriverDAO{
         return false;
     }
 
-
-    //admin
     @Override
     public boolean removeObject(int id) {
-        if(id==0){
+        if(id == 0){
             return false;
         }
         try{
             statement= connection.createStatement();
-            int i= statement.executeUpdate("delete from driver where driver_id=" +id);
+            int i = statement.executeUpdate("delete from driver where driver_id=" +id);
 
-            if(i==1){
+            if(i == 1){
                 return true;
             }
         }
@@ -132,15 +129,14 @@ public class DriverDAOImpl implements DriverDAO{
         return false;
     }
 
-
     @Override
     public List<Object> getObjectsList() {
-        List<Object> driverList= new ArrayList<>();
+        List<Object> driverList = new ArrayList<>();
         try{
-            statement= connection.createStatement();
-            resultSet= statement.executeQuery("select * from driver");
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from driver");
             while(resultSet.next()){
-                Driver driver= extractDetails(resultSet);
+                Driver driver = extractDetails(resultSet);
                 driverList.add(driver);
 
             }
@@ -155,12 +151,12 @@ public class DriverDAOImpl implements DriverDAO{
 
     @Override
     public boolean resetPassword(String email, String newPassword) {
-        if(email==null){
+        if(email == null){
             return false;
         }
         try{
-            query= "update driver set driver_password='"+newPassword+"' where driver_email='"+email+"'";
-            preparedStatement= connection.prepareStatement(query);
+            query = "update driver set driver_password='"+newPassword+"' where driver_email='"+email+"'";
+            preparedStatement = connection.prepareStatement(query);
             preparedStatement.executeUpdate();
             preparedStatement.close();
             return true;
@@ -169,12 +165,10 @@ public class DriverDAOImpl implements DriverDAO{
             sqlException.printStackTrace();
         }
         return false;
-
     }
 
-
     private Driver extractDetails(ResultSet resultSet) throws SQLException{
-        Driver driver= new Driver();
+        Driver driver = new Driver();
         driver.setId(resultSet.getInt("driver_id"));
         driver.setFirst_name(resultSet.getString("driver_fname"));
         driver.setLast_name(resultSet.getString("driver_lname"));

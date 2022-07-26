@@ -81,12 +81,12 @@ public class RideDAOTest {
 
     @Test
     public void availableRidesTestEmptySource() {
-        assertNull(iride.availableRides("","testDestination",Date.valueOf("2022-07-23").toString()));
+        assertTrue(iride.availableRides("","testDestination",Date.valueOf("2022-07-23").toString()).size()<=0);
     }
 
     @Test
     public void availableRidesTestEmptyDestination() {
-        assertNull(iride.availableRides("testSource","",Date.valueOf("2022-07-23").toString()));
+        assertTrue(iride.availableRides("testSource","",Date.valueOf("2022-07-23").toString()).size()<=0);
     }
 
 	@Test

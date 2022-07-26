@@ -2,7 +2,9 @@ package com.example.vehiclesharing.model;
 
 import com.example.vehiclesharing.Utility;
 import com.example.vehiclesharing.constants.IAppMessages;
-import com.example.vehiclesharing.dao.IBookingDAO;
+import com.example.vehiclesharing.dao.BookingDAO;
+import com.example.vehiclesharing.dao.DriverDAO;
+import com.example.vehiclesharing.dao.PassengerDAO;
 import com.example.vehiclesharing.dao.RideCreationDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +21,17 @@ import java.util.Locale;
 public class Booking implements IBooking{
 
     @Autowired
-    IBookingDAO bookedRidesDAO;
+    BookingDAO bookedRidesDAO;
 
     @Autowired
     RideCreationDAO rideCreationDAO;
+
+    @Autowired
+    PassengerDAO passengerDAO;
+
+    @Autowired
+    DriverDAO driverDAO;
+
 
     private int booking_id;
 private int passenger_id;
@@ -40,10 +49,19 @@ private int ride_id;
     public void setRide_id(int ride_id) {
         this.ride_id = ride_id;
     }
+//private String email_id;
 
     public Booking() {
 
     }
+
+//    public String getEmail_id() {
+//        return email_id;
+//    }
+//
+//    public void setEmail_id(String email_id) {
+//        this.email_id = email_id;
+//    }
 
     private IRide ride;
 
@@ -53,6 +71,7 @@ private int ride_id;
         this.timestamp = timestamp;
         this.amount = amount;
         this.seats_booked = seats_booked;
+//        this.is_paid = is_paid;
         this.ride = ride;
         this.ride_id = ride_id;
     }
@@ -115,6 +134,16 @@ private int ride_id;
 
     Logger logger = LoggerFactory.getLogger(Booking.class);
 
+//    public Booking(int booking_id, int passenger_id, String timestamp, float amount, int seats_booked,Ride ride) {
+//        this.booking_id = booking_id;
+//        this.passenger_id = passenger_id;
+//        this.timestamp = timestamp;
+//        this.amount = amount;
+//        this.seats_booked = seats_booked;
+////        this.is_paid = is_paid;
+////        this.ride_id = ride_id;
+//        this.ride = ride;
+//    }
 
     @Override
 
@@ -156,11 +185,14 @@ private int ride_id;
 
 
     @Override
-    public List<Booking> getUpcomingRidesForPassenger(int passenger_id) {
+
+    public List<Booking> getUpcomingRidesForCustomer(int passenger_id) {
         try {
             List<Booking> bookingList = bookedRidesDAO.getAllRidesForPassenger(passenger_id);
             List<Booking> upcomingBookings = new ArrayList<>();
             for (Booking booking : bookingList) {
+//                    float cost = 0;
+//                    cost = (float) Math.ceil(booking.getAmount());
                 booking.getAmount();
                 String start_time = booking.getTimestamp().replace("T", " ");
                 booking.setTimestamp(Utility.convertDate(booking.getTimestamp()));
@@ -180,7 +212,7 @@ private int ride_id;
     }
 
     @Override
-    public List<Booking> getPreviousRidesForPassenger(int passenger_id) {
+    public List<Booking> getPreviousRidesForCustomer(int passenger_id) {
         try {
             List<Booking> allRides = bookedRidesDAO.getAllRidesForPassenger(passenger_id);
             List<Booking> previousRides = new ArrayList<>();
@@ -205,5 +237,9 @@ private int ride_id;
 
     }
 
+    @Override
+        public String payforRide(Booking booking) {
+            return null;
+        }
 
 }

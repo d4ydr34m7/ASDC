@@ -124,7 +124,7 @@ public class AuthController {
             httpSession.setAttribute("userMail", user.getEmail());
             return IAppConstants.RESET_PASSWORD;
         }
-        return IAppMessages.NO_USER;
+        return IAppConstants.NO_USER;
 
     }
 

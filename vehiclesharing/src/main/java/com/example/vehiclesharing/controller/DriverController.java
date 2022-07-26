@@ -29,7 +29,27 @@ public class DriverController {
 	@Autowired
 	IRide ride;
 
-	@PostMapping("/create-ride")
+	@RequestMapping("/rideHistory")
+	public String showRideHistory(HttpSession session, Model model) {
+		return IAppConstants.DRIVER_RIDE_HISTORY ;
+	}
+
+	@RequestMapping("/vehicleDetails")
+	public String showVehicleDetails(HttpSession session, Model model) {
+		return IAppConstants.DRIVER_VEHICLE_DETAILS ;
+	}
+
+	@RequestMapping("/addVehicle")
+	public String showAddVehicle(HttpSession session, Model model) {
+		return IAppConstants.DRIVER_ADD_VEHICLE ;
+	}
+
+	@RequestMapping("/createRide")
+	public String showCreateRide(HttpSession session, Model model) {
+		return IAppConstants.DRIVER_CREATE_RIDE ;
+	}
+
+	@PostMapping("/createRide")
 	public String createNewRide(IRide rideData, BindingResult result, Model model, HttpSession httpSession) {
 		if (ride.createRide(rideData)) {
 			model.addAttribute("messageStatus", VehicleStringMessage.SUCCESSFUL);
@@ -46,11 +66,11 @@ public class DriverController {
 		httpSession.setAttribute("previousRides", previousridesFordriver);
 		List<Ride> upcomingridesFordriver = ride.upcomingRidesOfDriver(dr.getId());
 		httpSession.setAttribute("upcomingRides", upcomingridesFordriver);
-		return "dashboardOwner.html";
+		return IAppConstants.DRIVER_CREATE_RIDE ;
 
 	}
 
-	@PostMapping("/add-vehicle")
+	@PostMapping("/addVehicle")
 	public String addVehicle(IVehicle vehicle, Model model, HttpSession session) {
 		if (vehicle.NewVehicle(vehicle)) {
 			model.addAttribute("messageStatus", VehicleStringMessage.SUCCESSFUL);
@@ -62,26 +82,7 @@ public class DriverController {
 		Driver dr = driver.getDriverById(vehicle.getDriver_id());
 		session.setAttribute("driver", dr);
 		session.setAttribute("listOfVehicle", vehicle.getVehicles(dr.getId()));
-		return "dashboardOwner.html";
-	}
-
-	@RequestMapping("/rideHistory")
-	public String showRideHistory(HttpSession session, Model model) {
-		return IAppConstants.DRIVER_RIDE_HISTORY ;
-	}
-
-	@RequestMapping("/createRide")
-	public String showCreateRide(HttpSession session, Model model) {
-		return IAppConstants.DRIVER_CREATE_RIDE ;
-	}
-
-	@RequestMapping("/vehicleDetails")
-	public String showVehicleDetails(HttpSession session, Model model) {
-		return IAppConstants.DRIVER_VEHICLE_DETAILS ;
-	}
-
-	@RequestMapping("/addVehicle")
-	public String showAddVehicle(HttpSession session, Model model) {
 		return IAppConstants.DRIVER_ADD_VEHICLE ;
 	}
+
 }

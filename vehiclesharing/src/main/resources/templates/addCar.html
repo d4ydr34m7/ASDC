@@ -53,23 +53,23 @@
             <div class="col">
                 <div class="card w-50 m-auto">
                     <div class="purchase">
-                        <input type="text" class="form-control" placeholder="Brand">
-                        <br>
-                        <input type="text" class="form-control" placeholder="Model">
-                        <br>
-                        <input type="text" class="form-control" placeholder="Car Type">
-                        <br>
-                        <input type="text" class="form-control" placeholder="Registration Number">
-                        <br>
-                        <input type="text" class="form-control" placeholder="KMs Driven">
-                        <br>
-                        <input type="number" class="form-control" placeholder="Number of Seats">
-                        <br>
-                        <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary" style="padding-left: 50px; padding-right: 50px;">Submit</button>
-                            &emsp;
-                            <button type="button" class="btn btn-secondary" style="padding-left: 50px; padding-right: 50px;">Cancel</button>
-                        </div>
+                        <form th:action="@{/addVehicle}" method="post">
+                            <input type="text" class="form-control" placeholder="Brand">
+                            <br>
+                            <input type="text" class="form-control" placeholder="Model">
+                            <br>
+                            <input type="text" class="form-control" placeholder="Registration Number">
+                            <br>
+                            <input type="text" class="form-control" placeholder="KMs Driven">
+                            <br>
+                            <input type="number" class="form-control" placeholder="Number of Seats">
+                            <br>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" name="submit" class="btn btn-primary" style="padding-left: 50px; padding-right: 50px;">Submit</button>
+                                &emsp;
+                                <button type="submit" name="cancel" class="btn btn-secondary" style="padding-left: 50px; padding-right: 50px;">Cancel</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

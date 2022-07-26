@@ -2,6 +2,8 @@ package com.example.vehiclesharing.dao;
 
 
 import com.example.vehiclesharing.model.Booking;
+import com.example.vehiclesharing.model.IRide;
+import com.example.vehiclesharing.model.Ride;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestPropertySource("/application-test.properties")
-public class BookingDAOTest {
+public class BookingDAOImplTest {
 
     @Autowired
-    IBookingDAO bookingDAO;
+    BookingDAO bookingDAO;
 
     @Test
     void testSaverideCorrect() {
@@ -28,7 +30,9 @@ public class BookingDAOTest {
         booking.setTimestamp("2022-03-31T16:42");
         booking.setAmount(1);
         booking.setSeats_booked(4);
+        booking.setRide(new Ride());
         booking.setRide_id(6);
+        //booking.setEmail_id("testbooking@mail.com");
         assertTrue(bookingDAO.saveRide(booking));
     }
 
@@ -40,14 +44,15 @@ public class BookingDAOTest {
     }
 
     @Test
-    void testSaverideEmptyTimestamp(){
+    void testSaverideException(){
         Booking booking = new Booking();
         booking.setPassenger_id(4);
-        booking.setBooking_id(2);
-        booking.setTimestamp("");
+        booking.setTimestamp("2022-04-01klpmkk'");
         booking.setAmount(1);
         booking.setSeats_booked(0);
-        booking.setRide_id(6);
+        booking.setRide(new Ride());
+        booking.setIs_paid(0);
+        //booking.setEmail_id("test@mail.com");
         assertFalse(bookingDAO.saveRide(booking));
     }
 
@@ -58,18 +63,6 @@ public class BookingDAOTest {
     @Test
     void testgetAllridesforCustomerWrong() {
         assertFalse(bookingDAO.getAllRidesForPassenger(0).size()>0);
-    }
-
-    @Test
-    void testSaverideMissingParameter()
-    {
-        Booking booking = new Booking();
-        booking.setPassenger_id(4);
-        booking.setBooking_id(2);
-        booking.setTimestamp("2022-04-01");
-        booking.setSeats_booked(0);
-        booking.setRide_id(6);
-        assertFalse(bookingDAO.saveRide(booking));
     }
 
 

@@ -1,6 +1,5 @@
-
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/profile.css">
@@ -30,8 +29,7 @@
             </ul>
             <form th:action="@{/create-ride}" class="d-flex" style="margin-left: -2%;">
                 <div class="btn-group">
-                    <a class="nav-link" role="button" aria-haspopup="true" href="listfetch.php">Profile</a>
-                    <a class="nav-link" role="button" aria-haspopup="true" href="blog.php">Logout</a>
+                    <a class="nav-link" role="button" aria-haspopup="true" href="/login">Logout</a>
                 </div>
             </form>
         </div>

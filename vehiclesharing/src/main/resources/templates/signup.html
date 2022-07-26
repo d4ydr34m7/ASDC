@@ -12,19 +12,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Registration</title>
-    <script>
-        function matchPassword() {
-          var pw1 = document.getElementById("password");
-          var pw2 = document.getElementById("cpassword");
-          if(pw1 != pw2)
-          {
-            alert("Passwords did not match");
-          }
-          else {
-            return true;
-          }
-        }
-    </script>
     <style type="text/css">
         .error {
             color: red;
@@ -65,7 +52,7 @@
 
         <!-- Registration Form -->
         <div class="col-md-4 col-lg-4" style="margin-top: -2%;">
-            <form th:action="@{/signup}" th:object="${userType}" onsubmit="return matchPassword()" method="post" enctype="multipart/form-data">
+            <form th:action="@{/signup}" th:object="${userType}" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <h2 class="d-flex justify-content-center">Register</h2>
                     <hr style="width: 94%;">
@@ -123,16 +110,8 @@
                         </div>
                         <input required id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
                     </div>
-                    <!-- Confirm Password -->
-                    <span class="error"></span>
-                    <div class="input-group col-lg-12 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
-                            </span>
-                        </div>
-                        <input required id="cpassword" type="password" name="cpassword" placeholder="Confirm - Password" class="form-control bg-white border-left-0 border-md">
-                    </div>
+
+
                     <!-- Submit Button -->
                     <!-- <div class="form-group col-lg-12 mx-auto mb-0">
                         <a href="" class="btn btn-primary btn-block py-2" name="submit">
@@ -157,7 +136,7 @@
 <section>
     <footer>
         <div class="container-fluid text-center bg-dark" style="margin-top: 1%;margin-bottom: unset;width: 100%;">
-            <p style="padding:1%;font-size: 14px;margin-bottom: unset;">2021 Copyright &copy; InternPath</p>
+            <p style="padding:1%;font-size: 14px;margin-bottom: unset;">2022 Copyright &copy; RideShare</p>
         </div>
     </footer>
 </section>

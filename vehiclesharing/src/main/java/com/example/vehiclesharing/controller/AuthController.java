@@ -71,15 +71,17 @@ public class AuthController {
                 return IAppConstants.LOGIN_PAGE;
             }
 
-            else {
-                return IAppMessages.ERROR_REGISTERING_USER;
-            }
+//            else {
+//                return IAppConstants.ERROR_REGISTERING_USER;
+//            }
         }
         else {
             model.addAttribute("status", IAppMessages.USER_EXISTS_STATUS);
             model.addAttribute("message", IAppMessages.USER_ALREADY_EXISTS);
-            return IAppConstants.REGISTER_PAGE;
+            return IAppConstants.ERROR_REGISTERING_USER;
         }
+        return IAppMessages.USER_REGISTERED_SUCCESSFULLY;
+
     }
 
 
@@ -107,7 +109,7 @@ public class AuthController {
                 return IAppConstants.ADMIN_DASHBOARD;
             }
         }
-            return IAppMessages.INVALID_CREDENTIALS;      //check page
+            return IAppConstants.INVALID_CREDENTIALS;      //check page
     }
 
     @RequestMapping("/forgetPassEmail")
@@ -124,7 +126,7 @@ public class AuthController {
             httpSession.setAttribute("userMail", user.getEmail());
             return IAppConstants.RESET_PASSWORD;
         }
-        return IAppMessages.NO_USER;
+        return IAppConstants.NO_USER;
 
     }
 
@@ -141,6 +143,10 @@ public class AuthController {
         return IAppConstants.LOGIN_PAGE;
     }
 
+//    @RequestMapping("/showDrivers")
+//    public String showListOfDrivers(HttpSession httpSession){
+//        return IAppConstants.LIST_OF_DRIVERS;
+//    }
 
 
 

@@ -1,4 +1,5 @@
 <!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
@@ -11,7 +12,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel=”stylesheet” href=”css/bootstrap.css”>
     <link rel=”stylesheet” href=”css/bootstrap-responsive.css”>
-    <link rel="stylesheet" href="css/mystyle.css" >
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -36,8 +36,7 @@
             </ul>
             <form th:action="@{/add-new-vehicle}" class="d-flex" style="margin-left: -2%;">
                 <div class="btn-group">
-                    <a class="nav-link" role="button" aria-haspopup="true" href="listfetch.php">Profile</a>
-                    <a class="nav-link" role="button" aria-haspopup="true" href="blog.php">Logout</a>
+                    <a class="nav-link" role="button" aria-haspopup="true" href="/login">Logout</a>
                 </div>
             </form>
         </div>
@@ -54,23 +53,23 @@
             <div class="col">
                 <div class="card w-50 m-auto">
                     <div class="purchase">
-                        <input type="text" class="form-control" placeholder="Brand">
-                        <br>
-                        <input type="text" class="form-control" placeholder="Model">
-                        <br>
-                        <input type="text" class="form-control" placeholder="Car Type">
-                        <br>
-                        <input type="text" class="form-control" placeholder="Registration Number">
-                        <br>
-                        <input type="text" class="form-control" placeholder="KMs Driven">
-                        <br>
-                        <input type="number" class="form-control" placeholder="Number of Seats">
-                        <br>
-                        <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary" style="padding-left: 50px; padding-right: 50px;">Submit</button>
-                            &emsp;
-                            <button type="button" class="btn btn-secondary" style="padding-left: 50px; padding-right: 50px;">Cancel</button>
-                        </div>
+                        <form th:action="@{/addVehicle}" method="post">
+                            <input type="text" class="form-control" placeholder="Brand">
+                            <br>
+                            <input type="text" class="form-control" placeholder="Model">
+                            <br>
+                            <input type="text" class="form-control" placeholder="Registration Number">
+                            <br>
+                            <input type="text" class="form-control" placeholder="KMs Driven">
+                            <br>
+                            <input type="number" class="form-control" placeholder="Number of Seats">
+                            <br>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" name="submit" class="btn btn-primary" style="padding-left: 50px; padding-right: 50px;">Submit</button>
+                                &emsp;
+                                <button type="submit" name="cancel" class="btn btn-secondary" style="padding-left: 50px; padding-right: 50px;">Cancel</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -79,62 +78,6 @@
 </section>
 
 <section class="s4">
-    <footer class="container-fluid">
-        <div class="container-fluid first">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6 ">
-                            <div class="logo-part">
-                                <img src="images/logo.png" class="logo-footer" >
-                                <br />
-                                <center><i>See who's on the way.</i></center>
-                            </div>
-                        </div>
-                        <div class="col-md-6 px-4">
-                            <h6> About RideShare</h6>
-                            <p>Share the Fuel, Share the Load</p>
-                            <a href="http://localhost/intern/indexs.php" class="btn-footer"> Terms & Privacy </a><br>
-                            <a href="http://localhost/intern/contact.php" class="btn-footer"> Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6 px-4">
-                            <h6> Explore</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <ul>
-                                        <li> <a href="http://localhost/intern/listfetch.php"> Create Ride</a> </li>
-                                        <li> <a href="http://localhost/intern/sregister.php"> Ride History</a> </li>
-                                        <li> <a href="http://localhost/intern/blog.php"> Add Vehicle</a> </li>
-                                        <li> <a href="http://localhost/intern/listfetch.php"> Vehicle Details</a> </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h6> Newsletter</h6>
-                            <div class="social">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            </div>
-                            <!-- <form class="form-footer my-3">
-                               <input type="text"  placeholder="Subscribe" name="subscribe">
-                               <button><i class="fa fa-paper-plane"></i></button>
-                            </form> -->
-                            <br>
-                            <p>Welcome to the world of Sharing</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </footer>
     <footer class="footer2">
         <div class="container-fluid text-center bg-dark">
             <p>2022 Copyright &copy; RideShare</p>

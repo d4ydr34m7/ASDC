@@ -103,7 +103,7 @@ public class AuthController {
                 List<Driver> listDriver= iDriver.viewDriverDetails();
                 httpSession.setAttribute("driverDetails",listDriver);
                 List<Passenger> listPassenger= iPassenger.viewPassengerDetails();
-                httpSession.setAttribute("passengerDetails",listDriver);
+                httpSession.setAttribute("passengerDetails",listPassenger);
                 return IAppConstants.ADMIN_DASHBOARD;
             }
         }

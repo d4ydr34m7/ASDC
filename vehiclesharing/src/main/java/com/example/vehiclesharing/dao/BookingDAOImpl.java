@@ -10,10 +10,13 @@ import java.util.List;
 @Component
 public class BookingDAOImpl implements BookingDAO{
 
-    Connection connection= ConnectionFactory.getConnection();
+    Connection connection= ConnectionFactory.getInstance().getConnection();
     Statement statement;
     PreparedStatement preparedStatement;
     ResultSet resultSet;
+
+    public BookingDAOImpl() throws SQLException {
+    }
 
 
     //This method is used to insert booking object into the database

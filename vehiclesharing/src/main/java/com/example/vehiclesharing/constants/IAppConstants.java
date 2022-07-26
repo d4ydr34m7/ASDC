@@ -15,8 +15,7 @@ public interface IAppConstants {
     public static final String RESET_PASSWORD= "forgetPassword";
 
 
-
-    public static final String EMAIL_SENDER="vehiclesharingapp@gmail.com";
+    public static final String EMAIL_SENDER="tripmanagementasdc@gmail.com";
     public static final String APP_RUN_PATH= "vehiclesharing/src/main/resources/application.properties";
     public static final String TEST_RUN_PATH="src/main/resources/application.properties";
 

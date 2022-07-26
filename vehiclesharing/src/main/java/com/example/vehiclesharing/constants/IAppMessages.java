@@ -13,6 +13,7 @@ public interface IAppMessages {
     Object SUCCESS_STATUS = "Successfull";
     Object FAILURE_STATUS = "Unsuccessfull";
     Object NO_RIDES = "there are no rides";
+    String NO_USER="There are no users";
     String RIDES_AVAILABLE = " there are available rides";
 
     //Notification messages

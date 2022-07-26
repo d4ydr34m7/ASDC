@@ -14,7 +14,6 @@ build:
     tags:
         - dalfcs_gitlab_docker_ci
     script:
-        #- cd vehiclesharing
         - mvn clean package -DskipTests=true
     artifacts:
         paths:
@@ -22,6 +21,11 @@ build:
     only:
         refs:
             - shreya_dev
+            - aneri_dev
+            - shravya_dev
+            - subham_dev
+            - develop
+            - main
             
 
 
@@ -40,8 +44,13 @@ test:
                 - vehiclesharing/target/failsafe-reports/TEST-*.xml
 
     only:
-        - main
-        - shreya_dev
+        refs:
+            - main
+            - develop
+            - shreya_dev
+            - subham_dev
+            - shravya_dev
+
 
 
 deploy:
@@ -63,4 +72,3 @@ deploy:
         - dpl --provider=heroku --app=$HEROKU_PROD_APP_NAME --api-key=$HEROKU_API_KEY
     only:
         - main
-        - shreya_dev

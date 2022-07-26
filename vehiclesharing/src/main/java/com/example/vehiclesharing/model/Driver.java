@@ -117,6 +117,9 @@ public class Driver implements IDriver{
 
     @Override
     public boolean saveDriver(User user) {
+        if(null==user){
+            return false;
+        }
         Driver driver=new Driver(user.getFirst_name(),user.getLast_name(),user.getEmail(),user.getPassword());
         boolean isDriverSaved=driverDAO.save(driver);
         if(isDriverSaved)
@@ -171,6 +174,9 @@ public class Driver implements IDriver{
 
     @Override
     public boolean addCredits(String driver_email, float value) {
+        if(driver_email.isEmpty() || null==driver_email){
+            return false;
+        }
         Driver driver=getDriverByEmail(driver_email);
         float driver_credits= driver.getCredits()+value;
         boolean isUpdated= driverDAO.updateObject(driver_email, IAppConstants.DRIVER_CREDITS,driver_credits);
@@ -180,21 +186,18 @@ public class Driver implements IDriver{
 
     @Override
     public boolean depositCreditsToDriver(String driver_email, float value) {
+        if(null == driver_email || driver_email.isEmpty()){
+            return false;
+        }
         Driver driver=getDriverByEmail(driver_email);
         float driver_credits= driver.getCredits()+value;
         boolean isUpdated= driverDAO.updateObject(driver_email, IAppConstants.DRIVER_CREDITS,driver_credits);
         return isUpdated;
     }
 
-//    @Override
-//    public Driver convertObject(){
-//        Driver driver = new Driver(getFirst_name(), getLast_name(), getEmail(), getPassword());
-//        return driver;
-//    }
-
     @Override
     public boolean resetPassword(String email, String newPassword) {
-            if (email == null) {
+            if (null == email|| email.isEmpty() || null== newPassword || newPassword.isEmpty()) {
                 return false;
             }
             else{

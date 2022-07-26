@@ -16,26 +16,26 @@ import com.example.vehiclesharing.model.*;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource("/application.properties")
+@TestPropertySource("/application-test.properties")
 public class RideDAOTest {
 
 	@Autowired
 	IRideCreationDAO iride;
 
 	@Test
-	public void NullRideTest() {
+	void NullRideTest() {
 		IRide ride = null;
 		assertFalse(iride.createRide(ride));
 	}
 
 	@Test
-	public void EmptyRideTest() {
+	 void EmptyRideTest() {
 		IRide ride = new Ride();
 		assertFalse(iride.createRide(ride));
 	}
 
 	@Test
-	public void CorrectRideCreationTest() {
+	 void CorrectRideCreationTest() {
 		IRide ride = new Ride();
 		ride.setSource("testSource");
 		ride.setDestination("testDestination");
@@ -50,52 +50,52 @@ public class RideDAOTest {
 	}
 
 	@Test
-	public void removeRideTest() {
+	void removeRideTest() {
 		assertTrue(iride.removeRide(15));
 	}
 
 	@Test
-	public void getRideDetailsTest() {
+	void getRideDetailsTest() {
 		assertTrue(iride.getRideDetails(2) != null);
 	}
 
 	@Test
-	public void WrongRideDetailsTest() {
+	void WrongRideDetailsTest() {
 		assertNull(iride.getRideDetails(00));
 	}
 	
 	@Test
-    public void availableRidesTest() {
+    void availableRidesTest() {
         assertTrue(iride.availableRides("testSource","testDestination",Date.valueOf("2022-07-23").toString()).size()>=0);
     }
 
     @Test
-    public void availableRidesTestNullSource() {
+    void availableRidesTestNullSource() {
         assertNull(iride.availableRides(null,"testDestination",Date.valueOf("2022-07-23").toString()));
     }
 
     @Test
-    public void availableRidesTestNullDestination() {
+    void availableRidesTestNullDestination() {
         assertNull(iride.availableRides("testSource",null,Date.valueOf("2022-07-23").toString()));
     }
 
     @Test
-    public void availableRidesTestEmptySource() {
-        assertNull(iride.availableRides("","testDestination",Date.valueOf("2022-07-23").toString()));
+    void availableRidesTestEmptySource() {
+        assertTrue(iride.availableRides("","testDestination",Date.valueOf("2022-07-23").toString()).size()<=0);
     }
 
     @Test
-    public void availableRidesTestEmptyDestination() {
-        assertNull(iride.availableRides("testSource","",Date.valueOf("2022-07-23").toString()));
+    void availableRidesTestEmptyDestination() {
+        assertTrue(iride.availableRides("testSource","",Date.valueOf("2022-07-23").toString()).size()<=0);
     }
 
 	@Test
-    public void getRidesOfCorrectDriverTest(){
+    void getRidesOfCorrectDriverTest(){
         assertTrue(iride.getRidesOfDriver(10).size()>0);
     }
     
 	@Test
-    public void getRidesOfIncorrectDriverTest(){
+    void getRidesOfIncorrectDriverTest(){
         assertTrue(iride.getRidesOfDriver(999).size()<=0);
     }
 }

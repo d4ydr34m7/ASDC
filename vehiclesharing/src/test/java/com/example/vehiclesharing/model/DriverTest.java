@@ -15,19 +15,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource("/application.properties")
+@TestPropertySource("/application-test.properties")
 public class DriverTest {
 
     @Autowired
     IDriver iDriver;
 
-//    @Autowired
-//    UserFactory userFactory;
 
     @Test
     void testSaveDriverCorrect() {
         User user= new User();
-        //IUser user= userFactory.getInstance(IAppConstants.DRIVER);
         user.setFirst_name("test2p");
         user.setLast_name("case");
         user.setEmail("test3@case.com");
@@ -36,44 +33,92 @@ public class DriverTest {
         assertTrue(iDriver.saveDriver(user));
     }
 
-
-
     @Test
-    void getDriverByEmailCorrect(){
-        assertTrue(iDriver.getDriverByEmail("test@case.com")!=null);
+    void testSaveDriverIInCorrect() {
+        User user= new User();
+        assertTrue(iDriver.saveDriver(user));
     }
 
     @Test
-    void getNullDriverByEmail(){
+    void testSaveDriverNull() {
+        assertFalse(iDriver.saveDriver(null));
+    }
+
+    @Test
+    void getDriverByEmailCorrect() {
+        assertTrue(iDriver.getDriverByEmail("test3@case.com") != null);
+    }
+
+    @Test
+    void getNullDriverByEmail() {
         assertNull(iDriver.getDriverByEmail(null));
     }
 
     @Test
-    void getDriverByIdCorrect(){
-        assertTrue(iDriver.getDriverById(2)!=null);
+    void getDriverByEmailEmpty() {
+        assertNull(iDriver.getDriverByEmail(""));
     }
 
     @Test
-    void viewDriverDetailsTest(){
-        assertTrue(iDriver.viewDriverDetails()!=null);
+    void getDriverByIdCorrect() {
+        assertTrue(iDriver.getDriverById(80) != null);
     }
 
     @Test
-    void deleteDriverTest(){
-        assertFalse(iDriver.deleteDriver(00));
+    void viewDriverDetailsTest() {
+        assertTrue(iDriver.viewDriverDetails() != null);
     }
 
     @Test
-    void addCreditsTest(){
-        assertTrue(iDriver.addCredits("test@case.com", 50));
+    void deleteDriverTest() {
+        assertTrue(iDriver.deleteDriver(81));
     }
 
     @Test
-    void checkIfPasswordUpdated(){
-        assertTrue(iDriver.resetPassword("test@case.com", "xxxyyyzz"));
+    void addCreditsTest() {
+        assertTrue(iDriver.addCredits("test3@case.com", 50));
+    }
+
+    @Test
+    void addCreditsInCorrectTest() {
+        assertFalse(iDriver.addCredits("",  50));
     }
 
 
+    @Test
+    void checkIfPasswordUpdated() {
+        assertTrue(iDriver.resetPassword("test3@case.com", "xxxyyyzz"));
+    }
+
+    @Test
+    void checkIfPasswordUpdatedInCorrect() {
+        assertFalse(iDriver.resetPassword("", "xxxyyyzz"));
+    }
+
+    @Test
+    void checkIfPasswordUpdatedNull() {
+        assertFalse(iDriver.resetPassword("test3@case.com", null));
+    }
+
+    @Test
+    void checkIfPasswordUpdatedEmpty() {
+        assertFalse(iDriver.resetPassword("test3@case.com", ""));
+    }
+
+    @Test
+    void testDepositCreditsToDriver() {
+        assertTrue(iDriver.depositCreditsToDriver("test3@case.com", 30));
+    }
+
+    @Test
+    void testDepositCreditsToDriverEmpty() {
+        assertTrue(iDriver.depositCreditsToDriver("", 30));
+    }
+
+    @Test
+    void testDepositCreditsToDriverNull() {
+        assertFalse(iDriver.depositCreditsToDriver(null, 30));
+    }
 
 
 }

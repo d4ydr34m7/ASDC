@@ -95,7 +95,7 @@ public class DriverDAOImpl implements DriverDAO{
 
     @Override
     public boolean updateObject(String queryParam, String columnName, float value) {
-        if(queryParam == null|| columnName==null){
+        if(queryParam == null|| columnName==null || queryParam.isEmpty() || columnName.isEmpty()){
             return false;
         }
         try{

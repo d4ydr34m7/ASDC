@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource("/application.properties")
+@TestPropertySource("/application-test.properties")
 public class PassengerTest {
 
     @Autowired
@@ -81,7 +81,7 @@ public class PassengerTest {
 
     @Test
     void addCreditsInCorrectTest() {
-        assertFalse(iPassenger.addCredits("test@case.com", "passenger_credi", 50));
+        assertFalse(iPassenger.addCredits("test@case.com", "passenger_credits", 50));
     }
 
     @Test

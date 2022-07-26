@@ -92,7 +92,7 @@ public class PassengerDAOImpl implements PassengerDAO{
 
     @Override
     public boolean updateObject(String queryParam, String columnName, float value) {
-        if(queryParam == null|| columnName==null){
+        if(queryParam == null|| columnName==null || queryParam.isEmpty() || columnName.isEmpty()){
             return false;
         }
         try{
@@ -167,20 +167,6 @@ public class PassengerDAOImpl implements PassengerDAO{
         }
         return false;
     }
-//
-//    @Override
-//    public List<Object> getObjectsList() {
-//        return null;
-//    }
-//    @Override
-//    public boolean savePassenger(Passenger passenger) {
-//        return false;
-//    }
-//
-//    @Override
-//    public Passenger getPassengerByEmail(String email) {
-//        return null;
-//    }
 
     private Passenger extractDetails(ResultSet resultSet) throws SQLException{
         Passenger passenger= new Passenger();

@@ -30,7 +30,6 @@ public class AuthController {
 
     Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-
     @RequestMapping("/")
     public String mainPage(){
         return IAppConstants.LOGIN_PAGE;

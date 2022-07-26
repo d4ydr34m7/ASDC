@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource("/application.properties")
+@TestPropertySource("/application-test.properties")
 public class ValidationTest {
 
     @Autowired
@@ -29,7 +29,7 @@ public class ValidationTest {
     @Test
     void checkIfUserExistsTest(){
         User user=new User();
-        user.setEmail("test@case.com");
+        user.setEmail("test3@case.com");
         user.setUserType("Driver");
         assertTrue(validation.checkIfUserExists(user));
     }

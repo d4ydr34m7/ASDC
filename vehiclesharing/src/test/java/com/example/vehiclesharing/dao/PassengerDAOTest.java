@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource("/application.properties")
+@TestPropertySource("/application-test.properties")
 public class PassengerDAOTest {
 
     @Autowired
@@ -28,24 +28,16 @@ public class PassengerDAOTest {
     @Test
     void testSavePassengerCorrect() {
         User user = new User();
-        user.setFirst_name("pass");
-        user.setLast_name("case");
-        user.setEmail("pass@case.com");
+        user.setFirst_name("Shreya");
+        user.setLast_name("J");
+        user.setEmail("shjayan@gmail.com");
         user.setPassword("123456");
         user.setCredits(220);
-        user.setUserType("PASSENGER");
-        // Passenger p= iPassenger.convertObject();
         Passenger p = new Passenger(user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword());
         assertTrue(passengerDAO.save(p));
     }
 
-    @Test
-    void testSavePassengerInCorrect() {
-        User user = new User();
-        // Passenger p= iPassenger.convertObject();
-        Passenger p = new Passenger(user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword());
-        assertFalse(passengerDAO.save(p));
-    }
+
 
     @Test
     void testSavePassengerNull() {
@@ -54,7 +46,7 @@ public class PassengerDAOTest {
 
     @Test
     void testExtractPassengerCorrectByEmail() {
-        assertNotNull(passengerDAO.getObjectByEmail("pass@case.com"));
+        assertNotNull(passengerDAO.getObjectByEmail("shjayan@gmail.com"));
     }
 
     @Test
@@ -74,7 +66,7 @@ public class PassengerDAOTest {
 
     @Test
     void testExtractPassengerCorrectById() {
-        assertNotNull(passengerDAO.getObjectById(1));
+        assertNotNull(passengerDAO.getObjectById(29));
     }
 
     @Test
@@ -84,7 +76,7 @@ public class PassengerDAOTest {
 
     @Test
     void testUpdatePassengerCorrect() {
-        assertTrue(passengerDAO.updateObject("pass@case.com", "passenger_credits", 50));
+        assertTrue(passengerDAO.updateObject("shjayan@gmail.com", "passenger_credits", 70));
 
     }
 
@@ -101,14 +93,26 @@ public class PassengerDAOTest {
     }
 
     @Test
-    void testUpdatePassengerEmpty() {
+    void testUpdatePassengerEmptyEmail() {
         assertFalse(passengerDAO.updateObject("", "passenger_credits", 50));
 
     }
 
     @Test
+    void testUpdatePassengerEmptyCredits() {
+        assertFalse(passengerDAO.updateObject("", "", 50));
+
+    }
+
+    @Test
     void removeByIdCorrect() {
-        assertTrue(passengerDAO.removeObject(2));
+        assertTrue(passengerDAO.removeObject(28));
+
+    }
+
+    @Test
+    void removeByIdInCorrect() {
+        assertFalse(passengerDAO.removeObject(100));
 
     }
 

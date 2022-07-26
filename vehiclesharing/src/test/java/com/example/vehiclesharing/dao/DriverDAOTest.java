@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource("/application.properties")
+@TestPropertySource("/application-test.properties")
 public class DriverDAOTest {
 
     @Autowired
@@ -21,8 +21,6 @@ public class DriverDAOTest {
     @Autowired
     IDriver idriver;
 
-    //@Autowired
-    //UserFactory userFactory;
 
     @Test
     void testSaveDriverCorrect() {
@@ -38,42 +36,86 @@ public class DriverDAOTest {
     }
 
     @Test
-    void testExtractDriverCorrectByEmail(){
-        assertNotNull(driverDAO.getObjectByEmail("test@case.com"));
+    void testSaveDriverNull() {
+        assertFalse(driverDAO.save(null));
+    }
+
+
+    @Test
+    void testExtractDriverCorrectByEmail() {
+        assertNotNull(driverDAO.getObjectByEmail("shreya7187@gmail.com"));
     }
 
     @Test
-    void testExtractDriverByEmailIncorrect(){
+    void testExtractDriverByEmailIncorrect() {
         assertNull(driverDAO.getObjectByEmail("test2@case.com"));
     }
 
     @Test
-    void testExtractDriverCorrectById(){
-        assertNotNull(driverDAO.getObjectById(4));
+    void testExtractDriverByEmailNull() {
+        assertNull(driverDAO.getObjectByEmail(null));
     }
 
     @Test
-    void testExtractDriverByIdIncorrect(){
+    void testExtractDriverByEmailEmpty() {
+        assertNull(driverDAO.getObjectByEmail(""));
+    }
+
+    @Test
+    void testExtractDriverCorrectById() {
+        assertNotNull(driverDAO.getObjectById(79));
+    }
+
+    @Test
+    void testExtractDriverByIdIncorrect() {
         assertNull(driverDAO.getObjectById(100));
     }
 
+    @Test
+    void testExtractDriverByIdNull() {
+        assertNull(driverDAO.getObjectById(00));
+    }
 
     @Test
-    void testUpdateDriverCorrect(){
+    void testUpdateDriverCorrect() {
         assertTrue(driverDAO.updateObject("test@case.com", "driver_credits", 100));
 
     }
 
     @Test
-    void removeByIdCorrect(){
-        assertTrue(driverDAO.removeObject(6));
+    void testUpdateDriverInCorrect() {
+        assertFalse(driverDAO.updateObject("test@case.com", "driver_credi", 100));
 
     }
 
     @Test
-    void getObjectListCorrect(){
-        assertTrue(driverDAO.getObjectsList()!=null);
+    void testUpdateDriverNull() {
+        assertFalse(driverDAO.updateObject(null, "driver_credits", 100));
+
     }
+
+    @Test
+    void testUpdateDriverEmpty() {
+        assertFalse(driverDAO.updateObject("", "", 100));
+
+    }
+
+    @Test
+    void removeByIdCorrect() {
+        assertTrue(driverDAO.removeObject(1));
+
+    }
+
+    @Test
+    void removeByIdInCorrect() {
+        assertFalse(driverDAO.removeObject(100));
+
+    }
+    @Test
+    void getObjectListCorrect() {
+        assertTrue(driverDAO.getObjectsList() != null);
+    }
+
 
 
 

@@ -13,14 +13,14 @@ import java.sql.Date;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource("/application.properties")
+@TestPropertySource("/application-test.properties")
 public class RideTest {
 
 	@Autowired
 	IRide iride;
 
 	@Test
-	public void CorrectRideCreationTest() {
+	void CorrectRideCreationTest() {
 		IRide ride = new Ride();
 		ride.setSource("testSource1");
 		ride.setDestination("testDestination1");
@@ -35,7 +35,7 @@ public class RideTest {
 	}
 
 	@Test
-	public void removeRideTest() {
+	void removeRideTest() {
 		assertTrue(iride.removeRide(1));
 	}
 
@@ -50,47 +50,47 @@ public class RideTest {
     }
     
     @Test
-    public void upcomingRidesTest() {
+    void upcomingRidesTest() {
         assertTrue(iride.upcomingRidesOfDriver(11).size()>=0);
     }
     
     @Test
-    public void upcomingRidesTestFail() {
+    void upcomingRidesTestFail() {
         assertTrue(iride.upcomingRidesOfDriver(0).size()<=0);
     }
 
     @Test
-    public void pastRidesTest() {
+    void pastRidesTest() {
         assertTrue(iride.pastRidesOfDriver(11).size()>=0);
     }
     
     @Test
-    public void pastRidesTestFail() {
+    void pastRidesTestFail() {
         assertTrue(iride.pastRidesOfDriver(0).size()>=0);
     }
     
     @Test
-    public void availableRidesTest() {
+    void availableRidesTest() {
         assertTrue(iride.getAvailableRides("testSource","testDestination").size()>=0);
     }
 
     @Test
-    public void availableRidesTestNullSource() {
+    void availableRidesTestNullSource() {
         assertNull(iride.getAvailableRides(null,"testDestination"));
     }
 
     @Test
-    public void availableRidesTestNullDestination() {
+    void availableRidesTestNullDestination() {
         assertNull(iride.getAvailableRides("testSource",null));
     }
 
     @Test
-    public void availableRidesTestEmptySource() {
+    void availableRidesTestEmptySource() {
         assertNull(iride.getAvailableRides("","testDestination"));
     }
 
     @Test
-    public void availableRidesTestEmptyDestination() {
+    void availableRidesTestEmptyDestination() {
         assertNull(iride.getAvailableRides("testSource",""));
     }
 }

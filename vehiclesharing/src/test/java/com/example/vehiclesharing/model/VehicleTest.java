@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource("/application.properties")
+@TestPropertySource("/application-test.properties")
 public class VehicleTest {
 
 	@Autowired
 	IVehicle ivehicle;
 
 	@Test
-	public void NewVehicleTest() {
+	void NewVehicleTest() {
 		IVehicle vehicle = new Vehicle();
 		vehicle.setVehicle_brand("testBrand1");
 		vehicle.setVehicle_model("testModel1");
@@ -30,22 +30,22 @@ public class VehicleTest {
 	}
 
 	@Test
-	public void NewVehicleTestFail() {
+	void NewVehicleTestFail() {
 		assertFalse(ivehicle.NewVehicle(null));
 	}
 
 	@Test
-	public void removeVehicleTest() {
+	void removeVehicleTest() {
 		assertTrue(ivehicle.removeVehicle(1));
 	}
 
 	@Test
-	public void getVehicleDetailsTest() {
+	void getVehicleDetailsTest() {
 		assertTrue(ivehicle.getVehicleDetails(2) != null);
 	}
 
 	@Test
-	public void getVehicleDetailsTestFail() {
+	void getVehicleDetailsTestFail() {
 		assertTrue(ivehicle.getVehicleDetails(0) == null);
 	}
 }

@@ -188,13 +188,6 @@ public class Passenger implements IPassenger{
 
     }
 
-//    @Override
-//    public Passenger convertObject(){
-//        Passenger passenger= new Passenger(this.passenger_fname, this.passenger_lname, this.passenger_email, this.passenger_password);
-//        return passenger;
-//    }
-//
-
 
 
 }

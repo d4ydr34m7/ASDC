@@ -12,14 +12,14 @@ import com.example.vehiclesharing.model.*;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource("/application.properties")
+@TestPropertySource("/application-test.properties")
 public class VehicleDAOTest {
 
 	@Autowired
 	IVehicleDAO ivehicle;
 	
 	@Test
-	public void NewVehicleTest() {
+	void NewVehicleTest() {
 		IVehicle vehicle = new Vehicle();
 		vehicle.setVehicle_brand("testBrand");
 		vehicle.setVehicle_model("testModel");
@@ -31,27 +31,27 @@ public class VehicleDAOTest {
 	}
 	
 	@Test
-	public void removeVehicleTest() {
+	void removeVehicleTest() {
 		assertTrue(ivehicle.removeVehicle(1));
 	}
 	
 	@Test
-	public void getVehicleDetailsTest() {
+	void getVehicleDetailsTest() {
 		assertTrue(ivehicle.getVehicleDetails(2) != null);
 	}
 	
 	@Test
-	public void getVehicleDetailsTestFail() {
+	void getVehicleDetailsTestFail() {
 		assertNull(ivehicle.getVehicleDetails(0));
 	}
 	
 	@Test
-	public void getVehiclesOfCorrectDriverTest(){
+	void getVehiclesOfCorrectDriverTest(){
 		assertTrue(ivehicle.getVehicles(10).size()>0);
   }
 	
 	@Test
-	public void getVehiclesOfIncorrectDriverTest(){
+	void getVehiclesOfIncorrectDriverTest(){
 		assertTrue(ivehicle.getVehicles(0).size()<=0);
   }
 }

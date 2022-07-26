@@ -8,29 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class BookingDAOImpl implements BookingDAO{
+public class BookingDAOImpl implements IBookingDAO {
 
-    Connection connection= ConnectionFactory.getConnection();
+    Connection connection= ConnectionFactory.getInstance().getConnection();
     Statement statement;
     PreparedStatement preparedStatement;
     ResultSet resultSet;
+
+    public BookingDAOImpl() throws SQLException {
+    }
 
 
     //This method is used to insert booking object into the database
     @Override
     public boolean saveRide(Booking booking) {
-        if(booking==null||booking.getTimestamp().isEmpty())
+        if(booking==null||booking.getTimestamp().isEmpty()||booking.getAmount()==0)
             return false;
         try {
             String query = "INSERT INTO booking(booking_id, passenger_id, timestamp, amount,seats_booked, ride_id )" + "VALUES (NULL, ?, ?, ?, ?,?)";
             preparedStatement= connection.prepareStatement(query);
-            //preparedStatement.setInt(1, booking.getBooking_id());
             preparedStatement.setString(2, booking.getTimestamp());
             preparedStatement.setFloat(4, booking.getAmount());
             preparedStatement.setInt(3, booking.getSeats_booked());
             preparedStatement.setInt(1, booking.getPassenger_id());
             preparedStatement.setInt(5, booking.getRide_id());
-            //preparedStatement.setObject(6, booking.getRide());
 
             int result =preparedStatement.executeUpdate();
 
@@ -39,7 +40,7 @@ public class BookingDAOImpl implements BookingDAO{
             }
 
         } catch (Exception e) {
-
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -77,25 +78,5 @@ public class BookingDAOImpl implements BookingDAO{
         return booking;
     }
 
-    //This method is used to update the IsPaid field to 1 when the passenger pays for the ride
-    @Override
-    public boolean updateIsPaid(int passenger_id, int booked_ride_id) {
-        try{
-            String sql = "update booking set isPaid=1 where passenger_id= ? and booked_ride_id= ?";
-            preparedStatement= connection.prepareStatement(sql);
-            preparedStatement.setInt(1, passenger_id);
-            preparedStatement.setInt(2, booked_ride_id);
-            int result1 =preparedStatement.executeUpdate();
-            if(result1>0){
-                return true;
-            }
-
-        }
-        catch(Exception e)
-        {
-
-        }
-        return false;
-    }
 
 }

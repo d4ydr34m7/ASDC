@@ -1,6 +1,5 @@
 package com.example.vehiclesharing.model;
 
-//@Component
 public class Trip {
 
     private int vehicle_id;

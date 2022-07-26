@@ -27,7 +27,7 @@ public class VehicleController {
 	            model.addAttribute("message",VehicleStringMessage.ERROR);
 	        }
 	        session.setAttribute("listOfVehicle", vehicle.getVehicles(vehicles.getDriver_id()));
-	        return "cars.html";
+	        return "cars";
 	    }
 
 }

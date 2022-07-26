@@ -26,6 +26,7 @@ build:
             - subham_dev
             - develop
             - main
+            - release
             
 
 
@@ -50,6 +51,7 @@ test:
             - shreya_dev
             - subham_dev
             - shravya_dev
+            - release
 
 
 
@@ -72,3 +74,4 @@ deploy:
         - dpl --provider=heroku --app=$HEROKU_PROD_APP_NAME --api-key=$HEROKU_API_KEY
     only:
         - main
+

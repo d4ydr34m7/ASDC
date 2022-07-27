@@ -2,7 +2,6 @@ package com.example.vehiclesharing.model;
 
 import com.example.vehiclesharing.constants.IAppConstants;
 import com.example.vehiclesharing.constants.IAppMessages;
-import com.example.vehiclesharing.dao.DriverDAO;
 import com.example.vehiclesharing.dao.PassengerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,9 +28,6 @@ public class Passenger implements IPassenger{
 
     @Autowired
     PassengerDAO passengerDAO;
-
-    @Autowired
-    DriverDAO driverDAO;
 
     @Autowired
     private Notification notification;

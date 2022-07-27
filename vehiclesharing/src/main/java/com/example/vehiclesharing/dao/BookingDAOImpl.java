@@ -4,7 +4,6 @@ import com.example.vehiclesharing.model.Booking;
 import com.example.vehiclesharing.model.IBookingBuilder;
 import com.example.vehiclesharing.model.ModelFactory;
 import org.springframework.stereotype.Component;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,18 +12,15 @@ import java.util.List;
 public class BookingDAOImpl implements IBookingDAO {
 
     Connection connection= ConnectionFactory.getInstance().getConnection();
-    Statement statement;
     PreparedStatement preparedStatement;
     ResultSet resultSet;
 
     public BookingDAOImpl() throws SQLException {
     }
 
-
-    //This method is used to insert booking object into the database
     @Override
     public boolean saveRide(Booking booking) {
-        if(booking==null||booking.getTimestamp().isEmpty()||booking.getAmount()==0)
+        if(booking == null||booking.getTimestamp().isEmpty()||booking.getAmount()==0)
             return false;
         try {
             String query = "INSERT INTO booking(booking_id, passenger_id, timestamp, amount,seats_booked, ride_id )" + "VALUES (NULL, ?, ?, ?, ?,?)";
@@ -82,15 +78,7 @@ public class BookingDAOImpl implements IBookingDAO {
                         .addRide_id(resultSet.getInt("ride_id"))
                         .build();
                 return bookingObject;
-//        Booking booking= new Booking();
-//        booking.setBooking_id(resultSet.getInt("booking_id"));
-//        booking.setTimestamp(resultSet.getString("timestamp"));
-//        booking.setAmount(resultSet.getFloat("amount"));
-//        booking.setSeats_booked(resultSet.getInt("seats_booked"));
-//        booking.setPassenger_id(resultSet.getInt("passenger_id"));
-//        booking.setRide_id(resultSet.getInt("ride_id"));
-//        return booking;
-    }
 
+    }
 
 }

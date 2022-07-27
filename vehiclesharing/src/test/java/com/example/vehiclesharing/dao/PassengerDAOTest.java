@@ -20,9 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
     @Autowired
     PassengerDAO passengerDAO;
 
-    @Autowired
-    IPassenger iPassenger;
-
     @Test
     void testSavePassengerCorrect() {
         User user = new User();

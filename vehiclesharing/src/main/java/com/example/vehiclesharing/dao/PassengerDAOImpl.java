@@ -23,8 +23,8 @@ public class PassengerDAOImpl implements PassengerDAO{
             return false;
         }
         try{
-            Passenger passenger=(Passenger) entity;
-            query= "insert into passenger values(NULL, ? ,?, ?, ?, 100)";
+            Passenger passenger = (Passenger) entity;
+            query = "insert into passenger values(NULL, ? ,?, ?, ?, 100)";
             preparedStatement= connection.prepareStatement(query);
             preparedStatement.setString(1, passenger.getFirst_name());
             preparedStatement.setString(2,passenger.getLast_name());
@@ -127,7 +127,7 @@ public class PassengerDAOImpl implements PassengerDAO{
 
     @Override
     public List<Object> getObjectsList() {
-        List<Object> driverList= new ArrayList<>();
+        List<Object> driverList = new ArrayList<>();
         try{
             statement= connection.createStatement();
             resultSet= statement.executeQuery("select * from passenger");

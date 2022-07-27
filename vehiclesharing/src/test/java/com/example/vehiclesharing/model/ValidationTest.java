@@ -1,4 +1,5 @@
 package com.example.vehiclesharing.model;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
     @Test
     void checkIfUserExistsTest(){
-        User user=new User();
-        user.setEmail("test3@case.com");
+        User user = new User();
+        user.setEmail("subham@gmail.com");
         user.setUserType("Driver");
         assertTrue(validation.checkIfUserExists(user));
     }
 
     @Test
     void validateUserTest(){
-        User user=new User();
+        User user = new User();
         user.setEmail("admin@gmail.com");
         user.setPassword("admin@1234");
         user.setUserType("Admin");

@@ -1,14 +1,12 @@
 package com.example.vehiclesharing.model;
 
 import com.example.vehiclesharing.Utility;
-import com.example.vehiclesharing.constants.IAppMessages;
 import com.example.vehiclesharing.dao.IBookingDAO;
 import com.example.vehiclesharing.dao.RideCreationDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,13 +23,12 @@ public class Booking implements IBooking{
     RideCreationDAO rideCreationDAO;
 
     private int booking_id;
-private int passenger_id;
-private String timestamp;
-private float amount;
-private int seats_booked;
-private int is_paid;
+    private int passenger_id;
+    private String timestamp;
+    private float amount;
+    private int seats_booked;
+    private int ride_id;
 
-private int ride_id;
 
     public int getRide_id() {
         return ride_id;
@@ -47,15 +44,16 @@ private int ride_id;
 
     private IRide ride;
 
-    public Booking(int booking_id, int passenger_id, String timestamp, float amount, int seats_booked,int ride_id,IRide ride) {
+    public Booking(int booking_id, int passenger_id, String timestamp, float amount, int seats_booked, int ride_id, IRide ride) {
         this.booking_id = booking_id;
         this.passenger_id = passenger_id;
         this.timestamp = timestamp;
         this.amount = amount;
         this.seats_booked = seats_booked;
-        this.ride = ride;
         this.ride_id = ride_id;
+        this.ride = ride;
     }
+
     public Booking(IBookingBuilder iBookingBuilder) {
         this.booking_id = iBookingBuilder.getBooking_id();
         this.passenger_id = iBookingBuilder.getPassenger_id();
@@ -63,6 +61,7 @@ private int ride_id;
         this.amount = iBookingBuilder.getAmount();
         this.seats_booked = iBookingBuilder.getSeats_booked();
         this.ride_id = iBookingBuilder.getRide_id();
+        this.ride = iBookingBuilder.getRide();
     }
     public IRide getRide() {
         return ride;
@@ -112,40 +111,28 @@ private int ride_id;
         this.seats_booked = seats_booked;
     }
 
-    public int getIs_paid() {
-        return is_paid;
-    }
-
-    public void setIs_paid(int is_paid) {
-        this.is_paid = is_paid;
-    }
 
     Logger logger = LoggerFactory.getLogger(Booking.class);
 
 
     @Override
-
     public boolean saveRide(Booking booking) {
         if(booking==null)
             return false;
         try {
             logger.info("Inside saveRide method of BookingServiceImpl");
             IRide ride = rideCreationDAO.getRideDetails(booking.getRide_id());
-            if(ride==null)
+            if(ride == null)
                 return false;
             if ((ride.getAvailable_seats()) - booking.getSeats_booked() >= 0) {
                 booking.setAmount(ride.getTotal_cost()*booking.getSeats_booked());
                 booking.setTimestamp(ride.getStart_time());
-                booking.setIs_paid(0);
                 logger.info("There are available seats in the vehicle, attempting to book " + booking.getSeats_booked()
                         + " seats now");
                 boolean isSuccess = bookedRidesDAO.saveRide(booking);
                 System.out.println(isSuccess);
                 if (isSuccess) {
                     logger.info("Successfully booked seats");
-
-                    String message = IAppMessages.RIDE_BOOKED_SUCCESSFULLY + ride.getSource() + "-->" + ride.getDestination();
-
                     rideCreationDAO.availableRides(ride.getSource(), ride.getDestination(),booking.getTimestamp());
                     logger.info("Successfully sent notification");
                 }

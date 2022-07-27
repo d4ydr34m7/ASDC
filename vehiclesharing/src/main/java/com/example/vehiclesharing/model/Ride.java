@@ -130,7 +130,7 @@ public class Ride implements IRide {
 		this.driver_id = driver_id;
 	}
 
-	// Method to create a new ride
+
 	public boolean createRide(IRide ride) {
 		if (ride == null || ride.getSource() == null || ride.getDestination() == null) {
 			return false;

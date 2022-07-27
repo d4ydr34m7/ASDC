@@ -17,18 +17,15 @@ public interface IBookingBuilder {
 
     public IBookingBuilder addTimestamp(String timestamp) ;
 
-
     public float getAmount();
 
     public IBookingBuilder addAmount(float amount) ;
 
     public int getSeats_booked();
 
-    public IBookingBuilder addSeats_booked(int seats_booked) ;
-
-    public int getIs_paid();
-
-    public IBookingBuilder addIs_paid(int is_paid) ;
+    public IBookingBuilder addSeats_booked(int seats_booked);
 
     public Booking build();
+
+    public IRide getRide();
 }

@@ -2,13 +2,9 @@ package com.example.vehiclesharing.dao;
 
 import com.example.vehiclesharing.model.Driver;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Component
 public class DriverDAOImpl implements DriverDAO{

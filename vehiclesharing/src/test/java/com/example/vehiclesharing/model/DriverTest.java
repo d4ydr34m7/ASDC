@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -21,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
     @Test
     void testSaveDriverCorrect() {
-        User user= new User();
+        User user = new User();
         user.setFirst_name("test2p");
         user.setLast_name("case");
         user.setEmail("test3@case.com");
@@ -115,6 +114,5 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
     void testDepositCreditsToDriverNull() {
         assertFalse(iDriver.depositCreditsToDriver(null, 30));
     }
-
 
 }

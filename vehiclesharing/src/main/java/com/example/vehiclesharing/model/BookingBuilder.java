@@ -1,15 +1,13 @@
 package com.example.vehiclesharing.model;
 
 public class BookingBuilder implements IBookingBuilder{
-
-
     private int booking_id;
     private int passenger_id;
     private String timestamp;
     private float amount;
     private int seats_booked;
-    private int is_paid;
     private int ride_id;
+    private IRide ride;
 
 
     @Override
@@ -79,19 +77,13 @@ public class BookingBuilder implements IBookingBuilder{
     }
 
     @Override
-    public int getIs_paid() {
-        return is_paid;
-    }
-
-    @Override
-    public IBookingBuilder addIs_paid(int is_paid) {
-        this.is_paid = is_paid;
-        return this;
-    }
-
-    @Override
     public Booking build() {
 
         return null;
+    }
+
+    @Override
+    public IRide getRide() {
+        return ride;
     }
 }

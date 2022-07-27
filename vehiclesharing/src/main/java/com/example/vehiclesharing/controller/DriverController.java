@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.example.vehiclesharing.constants.VehicleStringMessage;
 import com.example.vehiclesharing.model.Driver;
 import com.example.vehiclesharing.model.IRide;
@@ -67,7 +66,6 @@ public class DriverController {
 		List<Ride> upcomingridesFordriver = ride.upcomingRidesOfDriver(dr.getId());
 		httpSession.setAttribute("upcomingRides", upcomingridesFordriver);
 		return IAppConstants.DRIVER_CREATE_RIDE ;
-
 	}
 
 	@PostMapping("/addVehicle")

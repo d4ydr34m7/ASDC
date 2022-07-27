@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
     @Test
     void testSaveDriverCorrect() {
-        User user= new User();
+        User user = new User();
         user.setFirst_name("Aneri");
         user.setLast_name("Shah");
         user.setEmail("shreya7187@gmail.com");
@@ -101,7 +101,6 @@ import static org.junit.jupiter.api.Assertions.*;
     @Test
     void removeByIdCorrect() {
         assertTrue(driverDAO.removeObject(92));
-
     }
 
     @Test

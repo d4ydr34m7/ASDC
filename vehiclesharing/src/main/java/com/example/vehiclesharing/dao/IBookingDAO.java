@@ -1,7 +1,6 @@
 package com.example.vehiclesharing.dao;
 
 import com.example.vehiclesharing.model.Booking;
-
 import java.util.List;
 
 public interface IBookingDAO {

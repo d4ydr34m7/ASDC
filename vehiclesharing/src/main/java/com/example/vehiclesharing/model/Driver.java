@@ -1,15 +1,10 @@
 package com.example.vehiclesharing.model;
 
-import com.example.vehiclesharing.constants.AdminCredentials;
 import com.example.vehiclesharing.constants.IAppConstants;
 import com.example.vehiclesharing.constants.IAppMessages;
 import com.example.vehiclesharing.dao.DriverDAO;
-import com.example.vehiclesharing.dao.PassengerDAO;
-import com.example.vehiclesharing.model.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.example.vehiclesharing.model.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +20,6 @@ public class Driver implements IDriver{
 
     @Autowired
     private DriverDAO driverDAO;
-
-    @Autowired
-    PassengerDAO passengerDAO;
 
     @Autowired
     private Notification notification;
@@ -110,7 +102,6 @@ public class Driver implements IDriver{
         this.driver_credits = driver_credits;
     }
 
-
     @Override
     public boolean saveDriver(User user) {
         if(null == user){
@@ -124,7 +115,6 @@ public class Driver implements IDriver{
         }
         return isDriverSaved;
     }
-
 
     @Override
     public Driver getDriverByEmail(String email) {

@@ -19,10 +19,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
     @Autowired
     IPassenger iPassenger;
 
-
     @Test
     void testSavePassengerCorrect() {
-        User user= new User();
+        User user = new User();
         user.setFirst_name("test");
         user.setLast_name("case");
         user.setEmail("test3@case.com");
@@ -33,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
     @Test
     void testSavePassengerIInCorrect() {
-        User user= new User();
+        User user = new User();
         assertTrue(iPassenger.savePassenger(user));
     }
 

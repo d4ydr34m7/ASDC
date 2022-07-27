@@ -27,19 +27,19 @@ class BookingTest {
 
     @Test
     void testSaveNullRide() {
-        Booking booking=null;
+        Booking booking = null;
         assertFalse(bookingService.saveRide(booking));
 
     }
     @Test
     void testSaveEmptyRide() {
-        Booking booking=new Booking();
+        Booking booking = new Booking();
         assertFalse(bookingService.saveRide(booking));
 
     }
     @Test
     void testSaveCorrectRide() {
-        IRide ride=new Ride();
+        IRide ride = new Ride();
         ride.setSource("testSource1");
         ride.setDestination("testDestination1");
         ride.setStart_time("2022-07-26 01:00:00");
@@ -56,7 +56,7 @@ class BookingTest {
 
     @Test
     void testSaveinCorrectRide() {
-        Ride ride=new Ride();
+        Ride ride = new Ride();
         ride.setRide_id(5);
         ride.setSource("Bangalore");
         ride.setDestination("Mysore");
@@ -68,13 +68,12 @@ class BookingTest {
         ride.setDriver_id(1111);
         ride.setVehicle_id(1010);
         Booking booking = new Booking(2,2,"2022-03-31",55,2,1,ride);
-
         assertFalse(bookingService.saveRide(booking));
     }
 
     @Test
     void testSaveRideException() {
-        Ride ride=new Ride();
+        Ride ride = new Ride();
         ride.setRide_id(5);
         ride.setSource("Bangalore");
         ride.setDestination("Mysore");
@@ -96,6 +95,4 @@ class BookingTest {
     void testgetPreviousTripsForWrongCustomer() {
         assertTrue(bookingService.getPreviousRidesForPassenger(-1).size()<=0);
     }
-
-
 }
